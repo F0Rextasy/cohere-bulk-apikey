@@ -1,0 +1,64 @@
+{
+  "name": "cohere-bulk-apikey",
+  "version": "1.0.0",
+  "description": "Bulk API keys for cohere.com — free trial tier: 35 models incl. command-a-03-2025, command-r-plus, tiny-aya, embed-v5.0, rerank-v4.0 (1,000 calls/month per account). One account per key.",
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "cohere-bulk-apikey": "cli.js",
+    "cohere-bulk-apikey-launcher": "launcher.js"
+  },
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node launcher.js",
+    "mint": "node cli.js"
+  },
+  "keywords": [
+    "api-key",
+    "bulk",
+    "register",
+    "launcher",
+    "cohere",
+    "bulk",
+    "apikey"
+  ],
+  "files": [
+    "browser.js",
+    "bundlepeek.js",
+    "cdp.js",
+    "chrome-flags.js",
+    "chunkgrep.js",
+    "cli.js",
+    "click-confirm.js",
+    "delivery-test.js",
+    "endpoint-probe.js",
+    "finish-box.js",
+    "finish-now.js",
+    "finish.js",
+    "flow.js",
+    "hunt.js",
+    "launcher.js",
+    "lib.js",
+    "light-mint.js",
+    "light.js",
+    "mint.js",
+    "node-mint.js",
+    "pilot.js",
+    "post.js",
+    "probe.js",
+    "proxy.js",
+    "recaptcha-cache.js",
+    "recon.js",
+    "resolve-mail-links.js",
+    "rpc-probe.js",
+    "rpc.js",
+    "soak.js",
+    "stable.js",
+    "verify.js",
+    "README.md",
+    "LICENSE"
+  ]
+}
