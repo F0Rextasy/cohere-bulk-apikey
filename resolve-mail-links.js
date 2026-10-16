@@ -1,1 +1,42 @@
-const a0_0x58edc7=a0_0xe303;function a0_0xe303(_0x4cb262,_0x53da29){_0x4cb262=_0x4cb262-0xae;const _0x3ec6bf=a0_0x3f01();let _0x5df5d4=_0x3ec6bf[_0x4cb262];if(a0_0xe303['RbTUij']===undefined){var _0x3b15ca=function(_0xa292d2){const _0x47174d='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x18682f='',_0xc332d='',_0xaadfa0=_0x18682f+_0x3b15ca,_0x51610d=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x41513a=0x0,_0x8bd0e2,_0x539d0e,_0x206c4c=0x0;_0x539d0e=_0xa292d2['charAt'](_0x206c4c++);~_0x539d0e&&(_0x8bd0e2=_0x41513a%0x4?_0x8bd0e2*0x40+_0x539d0e:_0x539d0e,_0x41513a++%0x4)?_0x18682f+=_0x51610d||_0xaadfa0['charCodeAt'](_0x206c4c+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x8bd0e2>>(-0x2*_0x41513a&0x6)):_0x41513a:0x0){_0x539d0e=_0x47174d['indexOf'](_0x539d0e);}for(let _0x572f6a=0x0,_0x159d12=_0x18682f['length'];_0x572f6a<_0x159d12;_0x572f6a++){_0xc332d+='%'+('00'+_0x18682f['charCodeAt'](_0x572f6a)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0xc332d);};a0_0xe303['OagBMh']=_0x3b15ca,a0_0xe303['DSdEbe']={},a0_0xe303['RbTUij']=!![];}const _0x3f019f=_0x3ec6bf[0x0];a0_0xe303['hnzobJ']!==_0x3f019f&&(a0_0xe303['DSdEbe']={},a0_0xe303['hnzobJ']=_0x3f019f);const _0xe303ae=a0_0xe303['DSdEbe'][_0x4cb262];if(_0xe303ae===undefined){const _0xefac25=function(_0x12b246){this['iGaoTb']=_0x12b246,this['QKhXAR']=[0x1,0x0,0x0],this['TXeAAy']=function(){return'newState';},this['FwMvyL']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['Tofcpq']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0xefac25['prototype']['yCRaeS']=function(){const _0x3bfc7a=new RegExp(this['FwMvyL']+this['Tofcpq']),_0x52500d=_0x3bfc7a['test'](this['TXeAAy']['toString']())?--this['QKhXAR'][0x1]:--this['QKhXAR'][0x0];return this['yApbfu'](_0x52500d);},_0xefac25['prototype']['yApbfu']=function(_0x149f6d){if(!Boolean(~_0x149f6d))return _0x149f6d;return this['iQJoKN'](this['iGaoTb']);},_0xefac25['prototype']['iQJoKN']=function(_0x300975){for(let _0x22a877=0x0,_0x27e261=this['QKhXAR']['length'];_0x22a877<_0x27e261;_0x22a877++){this['QKhXAR']['push'](Math['round'](Math['random']())),_0x27e261=this['QKhXAR']['length'];}return _0x300975(this['QKhXAR'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0xefac25(a0_0xe303)['yCRaeS'](),_0x5df5d4=a0_0xe303['OagBMh'](_0x5df5d4),a0_0xe303['DSdEbe'][_0x4cb262]=_0x5df5d4;}else _0x5df5d4=_0xe303ae;return _0x5df5d4;}(function(_0x37af6f,_0x4f0e3a){const _0x5545b5=a0_0xe303,_0xe27df6=_0x37af6f();while(!![]){try{const _0x363a33=parseInt(_0x5545b5(0xd4))/0x1*(-parseInt(_0x5545b5(0xc3))/0x2)+-parseInt(_0x5545b5(0xc0))/0x3+-parseInt(_0x5545b5(0xbf))/0x4+parseInt(_0x5545b5(0xbc))/0x5+-parseInt(_0x5545b5(0xc4))/0x6+parseInt(_0x5545b5(0xd3))/0x7*(parseInt(_0x5545b5(0xae))/0x8)+-parseInt(_0x5545b5(0xba))/0x9*(-parseInt(_0x5545b5(0xcc))/0xa);if(_0x363a33===_0x4f0e3a)break;else _0xe27df6['push'](_0xe27df6['shift']());}catch(_0xc38ee6){_0xe27df6['push'](_0xe27df6['shift']());}}}(a0_0x3f01,0x3fde2));const a0_0x3b15ca=(function(){let _0x41513a=!![];return function(_0x8bd0e2,_0x539d0e){const _0x206c4c=_0x41513a?function(){const _0x45d966=a0_0xe303;if(_0x539d0e){const _0x572f6a=_0x539d0e[_0x45d966(0xcf)](_0x8bd0e2,arguments);return _0x539d0e=null,_0x572f6a;}}:function(){};return _0x41513a=![],_0x206c4c;};}()),a0_0x5df5d4=a0_0x3b15ca(this,function(){const _0x2c16f2=a0_0xe303;if(a0_0x5df5d4[_0x2c16f2(0xb4)]()[_0x2c16f2(0xcb)]()['indexOf']('\x0a')!==-0x1)return;return a0_0x5df5d4['toString']()[_0x2c16f2(0xd7)]('(((.+)+)+)+$')[_0x2c16f2(0xcb)]()['constructor'](a0_0x5df5d4)['search']('(((.+)+)+)+$');});function a0_0x3f01(){const _0x1d0a23=['C2vHCMnO','ohvmExLPqG','AM9PBG','C2XPy2u','B3v0l2zPBMLZAc1SAw5RlxjLC29SDMvKlNr4Da','C3bSAxq','AhrTBa','yMLUza','C3rHCNrZv2L0Aa','Bg9JyxrPB24','C2XLzxa','CMvZB2X2zs1SAw5RCW','zMLUza','mJm3ndjUsgfKBMW','rKfjtca','mJGZmdm1B2PeDfbK','zxHPDa','AhrTBf9IB2r5','nte4mZy4tvHru2vU','mta0odC2mxjdvKHjDa','CgfYC2u','yxjNDG','nJqXnZy4DufkB3Hu','ndGWotzjzK9ruha','Bg9N','DxrMoa','CMvWBgfJzq','Dgv4Da','BwfPBa','DgvZDa','Dg9tDhjPBMC','mJy5mhfMyKX0AG','BgvUz3rO','q09orKLstsbmsu5loIa','yxbWBhK','C3rHy2S','BM9gB2XSB3Dhzxq','zMLSDgvY','mJeYnde2nhnpsfbfAG','mxHjD3Dlqq','ihrYywnRAw5N','y2f0y2G'];a0_0x3f01=function(){return _0x1d0a23;};return a0_0x3f01();}a0_0x5df5d4();'use strict';const fs=require('fs'),lib=require('./lib'),post=require('./post'),args=process[a0_0x58edc7(0xc2)][a0_0x58edc7(0xb0)](0x2),opt=(_0x159d12,_0xefac25)=>{const _0x3451c9=a0_0x58edc7,_0x12b246=args[_0x3451c9(0xb9)](_0x3bfc7a=>_0x3bfc7a[_0x3451c9(0xb5)]('--'+_0x159d12+'='));return _0x12b246?_0x12b246[_0x3451c9(0xb2)]('=')[_0x3451c9(0xb0)](0x1)[_0x3451c9(0xaf)]('='):_0xefac25;},MAIL=opt(a0_0x58edc7(0xc9)),json=JSON[a0_0x58edc7(0xc1)](fs['readFileSync'](MAIL,a0_0x58edc7(0xc6))),blob=(json[a0_0x58edc7(0xbe)]||'')+'\x0a'+(json['text_body']||'')+'\x0a'+(json[a0_0x58edc7(0xb3)]||'')+'\x0a'+(json[a0_0x58edc7(0xc8)]||''),urls=[...new Set(blob['match'](/https?:\/\/[^\s"'<>)\]]+/g)||[])],tracking=urls[a0_0x58edc7(0xd2)](_0x52500d=>/sendgrid\.net/i[a0_0x58edc7(0xca)](_0x52500d));(async()=>{const _0x110c89=a0_0x58edc7;lib[_0x110c89(0xc5)](_0x110c89(0xb8),MAIL+':\x20'+urls[_0x110c89(0xcd)]+'\x20urls,\x20'+tracking[_0x110c89(0xcd)]+_0x110c89(0xd5));for(const _0x149f6d of tracking){try{const _0x300975=await post[_0x110c89(0xd1)](_0x149f6d),_0x22a877=(_0x300975[_0x110c89(0xb6)]||'')[_0x110c89(0xc7)](/&amp;/g,'&');lib['log'](_0x110c89(0xb8),_0x300975['status']+'\x20'+_0x149f6d[_0x110c89(0xb0)](0x0,0x5a)+'…\x20->\x20'+(_0x22a877?_0x22a877[_0x110c89(0xb0)](0x0,0xa0):'NO\x20LOCATION')),/dashboard\.cohere\.com\/confirm-email/i['test'](_0x22a877)&&(fs['writeFileSync'](_0x110c89(0xb1),_0x22a877),lib[_0x110c89(0xc5)](_0x110c89(0xb8),_0x110c89(0xce)+_0x22a877));}catch(_0x27e261){lib[_0x110c89(0xc5)](_0x110c89(0xb8),'ERR\x20'+_0x27e261['message']+'\x20'+_0x149f6d['slice'](0x0,0x46));}await lib[_0x110c89(0xb7)](0x190);}})()[a0_0x58edc7(0xd6)](_0x41edca=>{const _0x3189eb=a0_0x58edc7;lib[_0x3189eb(0xc5)](_0x3189eb(0xb8),_0x3189eb(0xbb)+_0x41edca[_0x3189eb(0xd0)]),process[_0x3189eb(0xbd)](0x1);});
+'use strict';
+// Resolves every SendGrid click-tracking URL in a stored mail body and prints
+// the real destinations, then optionally follows the confirm-email chain.
+//   node resolve-mail-links.js --mail=out/finish-5812-.../mail.json
+// Offline input, network = sendgrid/dashboard direct first.
+
+const fs = require('fs');
+const lib = require('./lib');
+const post = require('./post');
+
+const args = process.argv.slice(2);
+const opt = (n, d) => {
+  const h = args.find((a) => a.startsWith(`--${n}=`));
+  return h ? h.split('=').slice(1).join('=') : d;
+};
+
+const MAIL = opt('mail');
+const json = JSON.parse(fs.readFileSync(MAIL, 'utf8'));
+const blob = `${json.html_body || ''}\n${json.text_body || ''}\n${json.html || ''}\n${json.text || ''}`;
+const urls = [...new Set(blob.match(/https?:\/\/[^\s"'<>)\]]+/g) || [])];
+const tracking = urls.filter((u) => /sendgrid\.net/i.test(u));
+
+(async () => {
+  lib.log('resolve-links', `${MAIL}: ${urls.length} urls, ${tracking.length} tracking`);
+  for (const u of tracking) {
+    try {
+      const g = await post.noFollowGet(u);
+      const loc = (g.location || '').replace(/&amp;/g, '&');
+      lib.log('resolve-links', `${g.status} ${u.slice(0, 90)}… -> ${loc ? loc.slice(0, 160) : 'NO LOCATION'}`);
+      if (/dashboard\.cohere\.com\/confirm-email/i.test(loc)) {
+        fs.writeFileSync('out/finish-link-resolved.txt', loc);
+        lib.log('resolve-links', `CONFIRM LINK: ${loc}`);
+      }
+    } catch (e) {
+      lib.log('resolve-links', `ERR ${e.message} ${u.slice(0, 70)}`);
+    }
+    await lib.sleep(400);
+  }
+})().catch((e) => {
+  lib.log('resolve-links', `FAIL ${e.stack}`);
+  process.exit(1);
+});

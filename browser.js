@@ -1,1 +1,134 @@
-const a0_0x8b382d=a0_0x317a;(function(_0x3e0376,_0x563866){const _0xaf6bb3=a0_0x317a,_0x49a6c1=_0x3e0376();while(!![]){try{const _0xdb68ca=parseInt(_0xaf6bb3(0x1dd))/0x1*(parseInt(_0xaf6bb3(0x1bf))/0x2)+-parseInt(_0xaf6bb3(0x1f6))/0x3+parseInt(_0xaf6bb3(0x1e5))/0x4*(-parseInt(_0xaf6bb3(0x1ce))/0x5)+-parseInt(_0xaf6bb3(0x1d2))/0x6+-parseInt(_0xaf6bb3(0x1f7))/0x7+parseInt(_0xaf6bb3(0x1d4))/0x8*(parseInt(_0xaf6bb3(0x1df))/0x9)+parseInt(_0xaf6bb3(0x1e4))/0xa;if(_0xdb68ca===_0x563866)break;else _0x49a6c1['push'](_0x49a6c1['shift']());}catch(_0x83c03e){_0x49a6c1['push'](_0x49a6c1['shift']());}}}(a0_0x35b3,0x47d80));const a0_0xefcde0=(function(){let _0x1fd66d=!![];return function(_0x398a4a,_0x65133c){const _0x215fc6=_0x1fd66d?function(){const _0x24cf7b=a0_0x317a;if(_0x65133c){const _0x13db6b=_0x65133c[_0x24cf7b(0x1fa)](_0x398a4a,arguments);return _0x65133c=null,_0x13db6b;}}:function(){};return _0x1fd66d=![],_0x215fc6;};}()),a0_0x23e2c0=a0_0xefcde0(this,function(){const _0x47e6c6=a0_0x317a;if(a0_0x23e2c0[_0x47e6c6(0x1e7)]()['toString']()[_0x47e6c6(0x1c6)]('\x0a')!==-0x1)return;return a0_0x23e2c0[_0x47e6c6(0x1ee)]()[_0x47e6c6(0x202)](_0x47e6c6(0x1c3))['toString']()[_0x47e6c6(0x1b8)](a0_0x23e2c0)[_0x47e6c6(0x202)](_0x47e6c6(0x1c3));});a0_0x23e2c0();'use strict';const fs=require('fs'),os=require('os'),path=require(a0_0x8b382d(0x1db)),http=require(a0_0x8b382d(0x1ea)),{spawn}=require(a0_0x8b382d(0x1ff)),{CDP}=require(a0_0x8b382d(0x1de)),CHROME=a0_0x8b382d(0x1f8),UA=null,UA_NOTE=a0_0x8b382d(0x1fd);function httpJson(_0x36d9d7,_0x43e5bc){return new Promise((_0x38d553,_0x1b1e6b)=>{const _0x7dfea4=a0_0x317a;http[_0x7dfea4(0x1c4)]({'host':_0x7dfea4(0x1b9),'port':_0x36d9d7,'path':_0x43e5bc,'timeout':0x1388},_0x19cfa2=>{const _0x303bef=_0x7dfea4;let _0x873d9e='';_0x19cfa2['setEncoding'](_0x303bef(0x1d8)),_0x19cfa2['on'](_0x303bef(0x1c7),_0x351974=>_0x873d9e+=_0x351974),_0x19cfa2['on']('end',()=>{const _0xe3cebc=_0x303bef;try{_0x38d553(JSON[_0xe3cebc(0x1c0)](_0x873d9e));}catch(_0x5cc062){_0x1b1e6b(new Error(_0xe3cebc(0x1f9)+_0x873d9e['slice'](0x0,0x64)));}});})['on'](_0x7dfea4(0x1fc),_0x1b1e6b);});}async function waitPort(_0x35c42b,_0x43ee96=0x7530){const _0x1477c8=a0_0x8b382d,_0x4bbfbc=Date[_0x1477c8(0x1f5)]()+_0x43ee96;while(Date[_0x1477c8(0x1f5)]()<_0x4bbfbc){try{return await httpJson(_0x35c42b,_0x1477c8(0x1e3));}catch(_0x38d6e4){await new Promise(_0x3d8dfa=>setTimeout(_0x3d8dfa,0x190));}}throw new Error(_0x1477c8(0x1f1)+_0x35c42b+'\x20not\x20up');}function launchChrome(_0xa17de6,_0x3bb4b9='cohere',{headless:headless=![]}={}){const _0x99c5f=a0_0x8b382d,_0x551af0=path[_0x99c5f(0x1b6)](os['homedir'](),_0x99c5f(0x203)+_0x3bb4b9+'-'+Date[_0x99c5f(0x1f5)]()['toString'](0x24)),_0x464f81=['--remote-debugging-port='+_0xa17de6,_0x99c5f(0x1f2)+_0x551af0,'--no-first-run',_0x99c5f(0x1e8),_0x99c5f(0x1d0),_0x99c5f(0x1cb),'--disable-sync',_0x99c5f(0x1ec),_0x99c5f(0x1ba),_0x99c5f(0x1d7),_0x99c5f(0x1d1),'--no-service-autorun',_0x99c5f(0x1bc),'--password-store=basic',_0x99c5f(0x1b7),_0x99c5f(0x1d3),_0x99c5f(0x201),_0x99c5f(0x1e0),_0x99c5f(0x1c9)];if(headless)_0x464f81['unshift'](_0x99c5f(0x1bb),_0x99c5f(0x1e6),_0x99c5f(0x200));const _0x42d109=spawn(CHROME,_0x464f81,{'detached':!![],'stdio':_0x99c5f(0x1be),'windowsHide':!![]});return _0x42d109[_0x99c5f(0x1e1)](),fs[_0x99c5f(0x1cc)](path[_0x99c5f(0x1b6)](__dirname,_0x99c5f(0x1d9)),{'recursive':!![]}),fs[_0x99c5f(0x1e9)](path['join'](__dirname,_0x99c5f(0x1d9),_0x99c5f(0x1fb)+_0xa17de6+_0x99c5f(0x1c8)),JSON['stringify']({'pid':_0x42d109[_0x99c5f(0x1ed)],'port':_0xa17de6,'profileDir':_0x551af0,'at':new Date()['toISOString']()},null,0x2)),{'pid':_0x42d109[_0x99c5f(0x1ed)],'profileDir':_0x551af0,'port':_0xa17de6};}async function connect(_0x250751){const _0x5b8efb=a0_0x8b382d,_0x43193f=await waitPort(_0x250751),_0x3d7d86=new CDP(_0x43193f['webSocketDebuggerUrl'],{'commandTimeoutMs':0xea60});return await _0x3d7d86[_0x5b8efb(0x1ef)](),_0x3d7d86;}function a0_0x35b3(){const _0x47cff3=['y29UC3rYDwn0B3i','mti3lJaUmc4X','ls1KAxnHyMXLlwnSAwvUDc1ZAwrLlxbOAxnOAw5NlwrLDgvJDgLVBG','ls1OzwfKBgvZCZ1UzxC','ls1TzxrYAwnZlxjLy29YzgLUzY1VBMX5','C2XPy2u','AwDUB3jL','nJzryLzzuwK','CgfYC2u','zxHJzxb0Aw9Urgv0ywLSCW','zxzHBdOG','kcGOlISPkYKRksSK','z2v0','BMv3ugfNzq','Aw5KzxHpzG','zgf0yq','lMPZB24','ywjVDxq6yMXHBMS','zxHJzxb0Aw9U','ls1KAxnHyMXLlwnVBxbVBMvUDc11CgrHDgu','BwTKAxjtEw5J','ugfNzs5UyxzPz2f0zq','nxDsAeXlwa','Cg5N','ls1KAxnHyMXLlwjHy2TNCM91BMqTBMv0D29YA2LUzW','ls1KAxnHyMXLlwrLzMf1BhqTyxbWCW','mJu1otKWwwHly2jw','ls1Syw5NpwvUlvvt','ofP4CvfSyq','C2vUza','Dgv4Da','ls1KAxnHyMXLlwjYzwfRCgfK','DxrMoa','Bg9NCW','zgLYBMfTzq','Cgf0Aa','y2f0y2G','nJG3rhv2wLjn','lI9JzhaUANm','ndm2nxjgyxjJBW','ls13Aw5KB3CTCg9ZAxrPB249ndaSnda','Dw5Yzwy','tMv0D29YAY5LBMfIBgu','l2PZB24VDMvYC2LVBG','odKZntiXmfbArNfLtW','mtqYotG1mNrZCu1nuq','ls1OAwrLlxnJCM9SBgjHCNm','yMLUza','ls1UBY1KzwzHDwX0lwjYB3DZzxiTy2HLy2S','D3jPDgvgAwXLu3LUyW','Ahr0Ca','uNvUDgLTzs5LBMfIBgu','ls1KAxnHyMXLlwrVBwfPBI1YzwXPywjPBgL0Eq','CgLK','Dg9tDhjPBMC','y29UBMvJDa','zNjVBq','y2HYB21LigrLyNvNihbVCNqG','ls11C2vYlwrHDgeTzgLYpq','ugfNzs5LBMfIBgu','y3jLyxrLqNjVD3nLCKnVBNrLEhq','BM93','mZy4otK3DLPNvhfQ','nJK0otq2yKLYBMjH','qZPCuhjVz3jHBsbgAwXLC1XhB29NBgvCq2HYB21LxefWCgXPy2f0Aw9UxgnOCM9Tzs5LEgu','yMfKigPZB24GzNjVBsbJAhjVBwu6ia','yxbWBhK','y2HYB21Llq','zxjYB3i','y2HYB21Llw5HDgL2zq','uNvUDgLTzs5LDMfSDwf0zq','y2HPBgrFChjVy2vZCW','ls1TDxrLlwf1zgLV','ls13Aw5KB3CTC2L6zt0XmJGWldKWma','C2vHCMnO','lMnOlwnOCM9Tzs0','DgHLBG','CMvZDwX0','AM9PBG','ls1KAxnHyMXLlwzLyxr1CMvZpvrYyw5ZBgf0zsXnzwrPyvjVDxrLCIXpChrPBwL6yxrPB25iAw50CW'];a0_0x35b3=function(){return _0x47cff3;};return a0_0x35b3();}async function openContext(_0xae3322,{proxyServer:_0x3d558c,url:url='about:blank',proxyBypassList:_0x4580b1}={}){const _0x23c80b=a0_0x8b382d,_0x3fe83f={};if(_0x3d558c)_0x3fe83f['proxyServer']=_0x3d558c;if(_0x4580b1)_0x3fe83f['proxyBypassList']=_0x4580b1;const _0x26017f=await _0xae3322[_0x23c80b(0x1f4)](_0x3fe83f),{targetId:_0x2d1c2a,sessionId:_0x5816a9}=await _0xae3322[_0x23c80b(0x1c5)]({'browserContextId':_0x26017f,'url':_0x23c80b(0x1c9)});return await _0xae3322[_0x23c80b(0x1d5)](_0x23c80b(0x1f3),{},_0x5816a9),await _0xae3322['send'](_0x23c80b(0x1eb),{},_0x5816a9),await _0xae3322[_0x23c80b(0x1d5)](_0x23c80b(0x1e2),{},_0x5816a9),{'browserContextId':_0x26017f,'targetId':_0x2d1c2a,'sessionId':_0x5816a9};}function a0_0x317a(_0x434c3c,_0xda13b3){_0x434c3c=_0x434c3c-0x1b4;const _0x39472c=a0_0x35b3();let _0x23e2c0=_0x39472c[_0x434c3c];if(a0_0x317a['LkshFv']===undefined){var _0xefcde0=function(_0x2649bf){const _0x4dfbb3='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x2af52a='',_0x552d49='',_0x249411=_0x2af52a+_0xefcde0,_0x833fc8=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x1fd66d=0x0,_0x398a4a,_0x65133c,_0x215fc6=0x0;_0x65133c=_0x2649bf['charAt'](_0x215fc6++);~_0x65133c&&(_0x398a4a=_0x1fd66d%0x4?_0x398a4a*0x40+_0x65133c:_0x65133c,_0x1fd66d++%0x4)?_0x2af52a+=_0x833fc8||_0x249411['charCodeAt'](_0x215fc6+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x398a4a>>(-0x2*_0x1fd66d&0x6)):_0x1fd66d:0x0){_0x65133c=_0x4dfbb3['indexOf'](_0x65133c);}for(let _0x13db6b=0x0,_0x36d9d7=_0x2af52a['length'];_0x13db6b<_0x36d9d7;_0x13db6b++){_0x552d49+='%'+('00'+_0x2af52a['charCodeAt'](_0x13db6b)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x552d49);};a0_0x317a['daUZyH']=_0xefcde0,a0_0x317a['oZoTvq']={},a0_0x317a['LkshFv']=!![];}const _0x35b333=_0x39472c[0x0];a0_0x317a['trnvmi']!==_0x35b333&&(a0_0x317a['oZoTvq']={},a0_0x317a['trnvmi']=_0x35b333);const _0x317a89=a0_0x317a['oZoTvq'][_0x434c3c];if(_0x317a89===undefined){const _0x43e5bc=function(_0x38d553){this['bFJPNK']=_0x38d553,this['uBMAlV']=[0x1,0x0,0x0],this['sBZXPt']=function(){return'newState';},this['JmvCTn']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['helYLO']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0x43e5bc['prototype']['NpsgcB']=function(){const _0x1b1e6b=new RegExp(this['JmvCTn']+this['helYLO']),_0x19cfa2=_0x1b1e6b['test'](this['sBZXPt']['toString']())?--this['uBMAlV'][0x1]:--this['uBMAlV'][0x0];return this['igQKYc'](_0x19cfa2);},_0x43e5bc['prototype']['igQKYc']=function(_0x873d9e){if(!Boolean(~_0x873d9e))return _0x873d9e;return this['kcahER'](this['bFJPNK']);},_0x43e5bc['prototype']['kcahER']=function(_0x351974){for(let _0x5cc062=0x0,_0x35c42b=this['uBMAlV']['length'];_0x5cc062<_0x35c42b;_0x5cc062++){this['uBMAlV']['push'](Math['round'](Math['random']())),_0x35c42b=this['uBMAlV']['length'];}return _0x351974(this['uBMAlV'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0x43e5bc(a0_0x317a)['NpsgcB'](),_0x23e2c0=a0_0x317a['daUZyH'](_0x23e2c0),a0_0x317a['oZoTvq'][_0x434c3c]=_0x23e2c0;}else _0x23e2c0=_0x317a89;return _0x23e2c0;}function evalJs(_0x10c4ce,_0xe25bb6,_0x4a6d11,{awaitPromise:awaitPromise=![]}={}){const _0x5ed9fb=a0_0x8b382d;return _0x10c4ce[_0x5ed9fb(0x1d5)](_0x5ed9fb(0x1fe),{'expression':_0x4a6d11,'returnByValue':!![],'awaitPromise':awaitPromise,'userGesture':!![]},_0xe25bb6)[_0x5ed9fb(0x1b4)](_0x255a05=>{const _0x5dc0a6=_0x5ed9fb;if(_0x255a05[_0x5dc0a6(0x1c1)])throw new Error(_0x5dc0a6(0x1c2)+_0x255a05[_0x5dc0a6(0x1c1)][_0x5dc0a6(0x1d6)]+'\x20'+JSON['stringify'](_0x255a05[_0x5dc0a6(0x1c1)][_0x5dc0a6(0x1ca)]&&_0x255a05[_0x5dc0a6(0x1c1)][_0x5dc0a6(0x1ca)]['description']||'')[_0x5dc0a6(0x1bd)](0x0,0x12c));return _0x255a05[_0x5dc0a6(0x1b5)]['value'];});}function waitLoad(_0x41867e,_0x4e707b,_0x47ee96=0x15f90){const _0x38dae7=a0_0x8b382d;return _0x41867e['waitFor']('Page.loadEventFired',{'timeoutMs':_0x47ee96,'sessionId':_0x4e707b})[_0x38dae7(0x1dc)](()=>null);}async function navigate(_0x49ecfb,_0x2aa97f,_0x286363,_0xef7022=0x15f90){const _0x1cc241=a0_0x8b382d,_0x33967e=waitLoad(_0x49ecfb,_0x2aa97f,_0xef7022);await _0x49ecfb['send'](_0x1cc241(0x1cd),{'url':_0x286363},_0x2aa97f)[_0x1cc241(0x1dc)](()=>{}),await _0x33967e,await new Promise(_0x7544e5=>setTimeout(_0x7544e5,0x320));}async function screenshot(_0x306cf3,_0x133f9f,_0x386ac7){const _0x537b9f=a0_0x8b382d,_0x4c1855=await _0x306cf3[_0x537b9f(0x1d5)]('Page.captureScreenshot',{'format':_0x537b9f(0x1cf)},_0x133f9f);return fs[_0x537b9f(0x1cc)](path[_0x537b9f(0x1da)](_0x386ac7),{'recursive':!![]}),fs[_0x537b9f(0x1e9)](_0x386ac7,Buffer[_0x537b9f(0x1f0)](_0x4c1855[_0x537b9f(0x1c7)],'base64')),_0x386ac7;}module['exports']={'UA':UA,'CHROME':CHROME,'launchChrome':launchChrome,'connect':connect,'openContext':openContext,'evalJs':evalJs,'waitLoad':waitLoad,'navigate':navigate,'screenshot':screenshot,'waitPort':waitPort,'httpJson':httpJson};
+'use strict';
+// Chrome + CDP plumbing for the Cohere browser flow.
+// One Chrome per run; one context per account, each pinned to one pool exit.
+
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const http = require('http');
+const { spawn } = require('child_process');
+const { CDP } = require('./cdp.js');
+
+const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+// No UA override anywhere: Chrome must advertise its real engine version. Forcing a
+// stale UA while sec-ch-ua reports the true one is a first-class bot signal
+// (measured across runs on Turnstile; same class of signal in reCAPTCHA Enterprise).
+const UA = null;
+const UA_NOTE = 'chrome-native';
+
+function httpJson(port, p) {
+  return new Promise((resolve, reject) => {
+    http
+      .get({ host: '127.0.0.1', port, path: p, timeout: 5000 }, (res) => {
+        let b = '';
+        res.setEncoding('utf8');
+        res.on('data', (c) => (b += c));
+        res.on('end', () => {
+          try {
+            resolve(JSON.parse(b));
+          } catch (e) {
+            reject(new Error(`bad json from chrome: ${b.slice(0, 100)}`));
+          }
+        });
+      })
+      .on('error', reject);
+  });
+}
+
+async function waitPort(port, timeoutMs = 30000) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    try {
+      return await httpJson(port, '/json/version');
+    } catch (e) {
+      await new Promise((r) => setTimeout(r, 400));
+    }
+  }
+  throw new Error(`chrome debug port ${port} not up`);
+}
+
+function launchChrome(port, tag = 'cohere', { headless = false } = {}) {
+  const profileDir = path.join(os.homedir(), `.ch-chrome-${tag}-${Date.now().toString(36)}`);
+  const args = [
+    '--remote-debugging-port=' + port,
+    '--user-data-dir=' + profileDir,
+    '--no-first-run',
+    '--no-default-browser-check',
+    '--disable-background-networking',
+    '--disable-component-update',
+    '--disable-sync',
+    '--disable-domain-reliability',
+    '--disable-client-side-phishing-detection',
+    '--disable-breakpad',
+    '--disable-default-apps',
+    '--no-service-autorun',
+    '--metrics-recording-only',
+    '--password-store=basic',
+    '--disable-features=Translate,MediaRouter,OptimizationHints',
+    '--lang=en-US',
+    '--window-size=1280,900',
+    '--window-position=40,40',
+    'about:blank',
+  ];
+  if (headless) args.unshift('--headless=new', '--hide-scrollbars', '--mute-audio');
+  const child = spawn(CHROME, args, { detached: true, stdio: 'ignore', windowsHide: true });
+  child.unref();
+  fs.mkdirSync(path.join(__dirname, 'logs'), { recursive: true });
+  fs.writeFileSync(
+    path.join(__dirname, 'logs', `chrome-${port}.json`),
+    JSON.stringify({ pid: child.pid, port, profileDir, at: new Date().toISOString() }, null, 2)
+  );
+  return { pid: child.pid, profileDir, port };
+}
+
+async function connect(port) {
+  const v = await waitPort(port);
+  const cdp = new CDP(v.webSocketDebuggerUrl, { commandTimeoutMs: 60000 });
+  await cdp.connect();
+  return cdp;
+}
+
+/** Opens a page in a fresh context (optionally proxied) and wires Page/Runtime/Network. */
+async function openContext(cdp, { proxyServer, url = 'about:blank', proxyBypassList } = {}) {
+  const opts = {};
+  if (proxyServer) opts.proxyServer = proxyServer;
+  if (proxyBypassList) opts.proxyBypassList = proxyBypassList;
+  const browserContextId = await cdp.createBrowserContext(opts);
+  const { targetId, sessionId } = await cdp.newPage({ browserContextId, url: 'about:blank' });
+  await cdp.send('Page.enable', {}, sessionId);
+  await cdp.send('Runtime.enable', {}, sessionId);
+  await cdp.send('Network.enable', {}, sessionId);
+  return { browserContextId, targetId, sessionId };
+}
+
+function evalJs(cdp, sessionId, expression, { awaitPromise = false } = {}) {
+  return cdp
+    .send('Runtime.evaluate', { expression, returnByValue: true, awaitPromise, userGesture: true }, sessionId)
+    .then((r) => {
+      if (r.exceptionDetails)
+        throw new Error(
+          `eval: ${r.exceptionDetails.text} ${JSON.stringify((r.exceptionDetails.exception && r.exceptionDetails.exception.description) || '').slice(0, 300)}`
+        );
+      return r.result.value;
+    });
+}
+
+function waitLoad(cdp, sessionId, timeoutMs = 90000) {
+  return cdp.waitFor('Page.loadEventFired', { timeoutMs, sessionId }).catch(() => null);
+}
+
+async function navigate(cdp, sessionId, url, timeoutMs = 90000) {
+  const done = waitLoad(cdp, sessionId, timeoutMs);
+  await cdp.send('Page.navigate', { url }, sessionId).catch(() => {});
+  await done;
+  await new Promise((r) => setTimeout(r, 800));
+}
+
+async function screenshot(cdp, sessionId, file) {
+  const shot = await cdp.send('Page.captureScreenshot', { format: 'png' }, sessionId);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, Buffer.from(shot.data, 'base64'));
+  return file;
+}
+
+module.exports = { UA, CHROME, launchChrome, connect, openContext, evalJs, waitLoad, navigate, screenshot, waitPort, httpJson };

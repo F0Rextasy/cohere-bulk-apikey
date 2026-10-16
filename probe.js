@@ -1,1 +1,74 @@
-const a0_0x508e88=a0_0x185b;(function(_0x29feb9,_0x38203f){const _0x338905=a0_0x185b,_0x23d1bb=_0x29feb9();while(!![]){try{const _0x2a3c40=-parseInt(_0x338905(0x19e))/0x1+parseInt(_0x338905(0x19c))/0x2*(parseInt(_0x338905(0x1a5))/0x3)+parseInt(_0x338905(0x1a3))/0x4+parseInt(_0x338905(0x1ae))/0x5*(parseInt(_0x338905(0x193))/0x6)+parseInt(_0x338905(0x1aa))/0x7*(-parseInt(_0x338905(0x1b3))/0x8)+parseInt(_0x338905(0x192))/0x9*(parseInt(_0x338905(0x198))/0xa)+parseInt(_0x338905(0x195))/0xb*(-parseInt(_0x338905(0x185))/0xc);if(_0x2a3c40===_0x38203f)break;else _0x23d1bb['push'](_0x23d1bb['shift']());}catch(_0x4eff95){_0x23d1bb['push'](_0x23d1bb['shift']());}}}(a0_0x5d83,0x9e4fe));const a0_0x4f942f=(function(){let _0x5beece=!![];return function(_0x5d9d44,_0x3332aa){const _0x375e12=_0x5beece?function(){const _0x20e90a=a0_0x185b;if(_0x3332aa){const _0x118099=_0x3332aa[_0x20e90a(0x1bb)](_0x5d9d44,arguments);return _0x3332aa=null,_0x118099;}}:function(){};return _0x5beece=![],_0x375e12;};}()),a0_0x4b09bc=a0_0x4f942f(this,function(){const _0x1ae1d8=a0_0x185b;if(a0_0x4b09bc['bind']()[_0x1ae1d8(0x1bd)]()[_0x1ae1d8(0x1b4)]('\x0a')!==-0x1)return;return a0_0x4b09bc['toString']()['search'](_0x1ae1d8(0x1bf))[_0x1ae1d8(0x1bd)]()[_0x1ae1d8(0x182)](a0_0x4b09bc)[_0x1ae1d8(0x186)]('(((.+)+)+)+$');});a0_0x4b09bc();'use strict';const fs=require('fs'),path=require(a0_0x508e88(0x1b1)),lib=require(a0_0x508e88(0x189)),args=process['argv'][a0_0x508e88(0x18d)](0x2),opt=(_0x485f96,_0xf98337)=>{const _0x1e5f7d=a0_0x508e88,_0x4f2199=args[_0x1e5f7d(0x1b5)](_0x4d16c4=>_0x4d16c4[_0x1e5f7d(0x19b)]('--'+_0x485f96+'='));return _0x4f2199?_0x4f2199[_0x1e5f7d(0x183)]('=')[_0x1e5f7d(0x18d)](0x1)['join']('='):_0xf98337;},TARGET=parseInt(opt(a0_0x508e88(0x18a),'40'),0xa),CONC=Math['min'](0x5,parseInt(opt(a0_0x508e88(0x184),'5'),0xa)),DEFAULT_POOL=path[a0_0x508e88(0x1a4)](__dirname,'out',a0_0x508e88(0x19a)),POOL=opt('pool',process.env.COHERE_PROXY_LIST||DEFAULT_POOL),OUT_FILE=opt(a0_0x508e88(0x18e),path[a0_0x508e88(0x1a4)](lib['OUT'],'live-exits.txt')),PRIMARY=a0_0x508e88(0x1b8),SECONDARY=a0_0x508e88(0x1ba);function a0_0x5d83(){const _0x531fbf=['igLUia','rKfjtca','ywXS','mZq2nxvUBLv0wa','ntmYoti2nNjoBuzzAq','C3rHy2S','mtG2mJG3mZfPrMLPqMC','DxnHyMXLsw5cCM93C2vY','igXPBMvZpq','mtKWnJbHugLxswG','BxmGz29Vz2XLpq','Dw5PB24TBgL2zs50Ehq','C3rHCNrZv2L0Aa','mtKWmNb3sgzkvq','BM93','nti1mJqXANfTA0HI','CMf3','C2nHBM5Lzd0','igzVDw5Kpq','y29OzxjL','ndG4mdCZnKDStgPYDa','AM9PBG','mZa2BxPlr0HR','zNjVBq','ChjVEhK','D3jPDgvgAwXLu3LUyW','zMLSDgvY','ntaZotKZvfrczM9r','BwTKAxjtEw5J','zg9UztOGC2nHBM5Lzd0','Cg9VBd0','nwj4AxjhBq','y2f0y2G','z29Vz2XL','Cgf0Aa','ignVAgvYzt0','ohvquxvrDq','Aw5KzxHpzG','zMLUza','ChjVEhLmAwi','igvSyxbZzwq9','zgfZAgjVyxjKlMnVAgvYzs5JB20','yxbWzw5KrMLSzvn5BMm','D3D3lMDVB2DSzs5JB20','yxbWBhK','BgvUz3rO','Dg9tDhjPBMC','CM91BMq','kcGOlISPkYKRksSK','C2HPzNq','y29UC3rYDwn0B3i','C3bSAxq','y29UyW','mtjbsvrwAu8','C2vHCMnO','t1vu','Bg9N','lI9SAwi','DgfYz2v0','ChjVyMu','ignVBMm9','C2XPy2u','B3v0'];a0_0x5d83=function(){return _0x531fbf;};return a0_0x5d83();}function a0_0x185b(_0xa83519,_0x34e89d){_0xa83519=_0xa83519-0x182;const _0x4b78e7=a0_0x5d83();let _0x4b09bc=_0x4b78e7[_0xa83519];if(a0_0x185b['TvJzuZ']===undefined){var _0x4f942f=function(_0x5a2bae){const _0x4ba58f='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x344697='',_0x18db93='',_0xebf54b=_0x344697+_0x4f942f,_0x115e8c=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x5beece=0x0,_0x5d9d44,_0x3332aa,_0x375e12=0x0;_0x3332aa=_0x5a2bae['charAt'](_0x375e12++);~_0x3332aa&&(_0x5d9d44=_0x5beece%0x4?_0x5d9d44*0x40+_0x3332aa:_0x3332aa,_0x5beece++%0x4)?_0x344697+=_0x115e8c||_0xebf54b['charCodeAt'](_0x375e12+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x5d9d44>>(-0x2*_0x5beece&0x6)):_0x5beece:0x0){_0x3332aa=_0x4ba58f['indexOf'](_0x3332aa);}for(let _0x118099=0x0,_0x485f96=_0x344697['length'];_0x118099<_0x485f96;_0x118099++){_0x18db93+='%'+('00'+_0x344697['charCodeAt'](_0x118099)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x18db93);};a0_0x185b['XPsmrE']=_0x4f942f,a0_0x185b['dzOIYn']={},a0_0x185b['TvJzuZ']=!![];}const _0x5d838d=_0x4b78e7[0x0];a0_0x185b['bxJbue']!==_0x5d838d&&(a0_0x185b['dzOIYn']={},a0_0x185b['bxJbue']=_0x5d838d);const _0x185b26=a0_0x185b['dzOIYn'][_0xa83519];if(_0x185b26===undefined){const _0xf98337=function(_0x4f2199){this['HCzCvF']=_0x4f2199,this['jTGyyS']=[0x1,0x0,0x0],this['SXxUDh']=function(){return'newState';},this['mrGBQI']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['QBmzdR']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0xf98337['prototype']['HeoqOY']=function(){const _0x4d16c4=new RegExp(this['mrGBQI']+this['QBmzdR']),_0x14b12d=_0x4d16c4['test'](this['SXxUDh']['toString']())?--this['jTGyyS'][0x1]:--this['jTGyyS'][0x0];return this['KRqJeZ'](_0x14b12d);},_0xf98337['prototype']['KRqJeZ']=function(_0x296532){if(!Boolean(~_0x296532))return _0x296532;return this['MTDGWy'](this['HCzCvF']);},_0xf98337['prototype']['MTDGWy']=function(_0x3686c4){for(let _0x464772=0x0,_0x535665=this['jTGyyS']['length'];_0x464772<_0x535665;_0x464772++){this['jTGyyS']['push'](Math['round'](Math['random']())),_0x535665=this['jTGyyS']['length'];}return _0x3686c4(this['jTGyyS'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0xf98337(a0_0x185b)['HeoqOY'](),_0x4b09bc=a0_0x185b['XPsmrE'](_0x4b09bc),a0_0x185b['dzOIYn'][_0xa83519]=_0x4b09bc;}else _0x4b09bc=_0x185b26;return _0x4b09bc;}async function probeOne(_0x14b12d){const _0x413db8=a0_0x508e88,_0x296532=Date[_0x413db8(0x19d)]();let _0x3686c4=0x0;try{const _0x535665=await lib[_0x413db8(0x1b6)]['probe'](_0x14b12d,{'host':PRIMARY,'port':0x1bb,'timeoutMs':0x7530});if(!_0x535665['ok'])return null;_0x3686c4=_0x535665['ms'];}catch(_0x22f858){return null;}let _0x464772=-0x1;try{const _0x12e5b6=await lib[_0x413db8(0x1b6)][_0x413db8(0x18b)](_0x14b12d,{'host':SECONDARY,'port':0x1bb,'timeoutMs':0x61a8});if(_0x12e5b6['ok'])_0x464772=_0x12e5b6['ms'];}catch(_0x1d3097){}return{'proxy':_0x14b12d,'cohere':_0x3686c4,'google':_0x464772,'total':Date[_0x413db8(0x19d)]()-_0x296532};}(async()=>{const _0x406013=a0_0x508e88,_0x21eac0=lib['loadProxies'](POOL)[_0x406013(0x1a9)](_0x2520a2=>lib[_0x406013(0x1b6)][_0x406013(0x196)]?lib[_0x406013(0x1b6)][_0x406013(0x196)](_0x2520a2):!![]),_0x4de1f3=_0x21eac0[_0x406013(0x18d)]()['sort'](()=>Math['random']()-0.5);lib['log'](_0x406013(0x18b),_0x406013(0x1ad)+POOL+_0x406013(0x197)+_0x21eac0[_0x406013(0x1bc)]+'\x20target='+TARGET+_0x406013(0x18c)+CONC),fs[_0x406013(0x1ab)](lib[_0x406013(0x187)],{'recursive':!![]});const _0x38be8f=OUT_FILE;fs[_0x406013(0x1a8)](_0x38be8f,'');const _0xe124d9=_0x4de1f3[_0x406013(0x18d)]();let _0x16719b=0x0,_0x43278c=0x0;const _0x448cf6=Date[_0x406013(0x19d)](),_0x3ff519=Array[_0x406013(0x1a6)]({'length':CONC},async()=>{const _0x217b5a=_0x406013;while(_0xe124d9[_0x217b5a(0x1bc)]&&_0x16719b<TARGET){const _0x2f186f=_0xe124d9[_0x217b5a(0x1c0)]();_0x43278c++;const _0x496d17=await probeOne(_0x2f186f);if(_0x496d17){_0x16719b++;const _0x294e8e=_0x496d17[_0x217b5a(0x1a7)]['raw']+'\x09'+_0x496d17[_0x217b5a(0x1a2)]+'\x09'+_0x496d17[_0x217b5a(0x1b0)];fs[_0x217b5a(0x1b9)](_0x38be8f,_0x294e8e+'\x0a'),lib[_0x217b5a(0x188)]('probe','OK\x20'+_0x496d17[_0x217b5a(0x1a7)][_0x217b5a(0x19f)]+_0x217b5a(0x1b2)+_0x496d17[_0x217b5a(0x1a2)]+_0x217b5a(0x199)+_0x496d17['google']+'ms\x20('+_0x16719b+'/'+TARGET+')');}else _0x43278c%0x19===0x0&&lib[_0x217b5a(0x188)]('probe',_0x217b5a(0x1a0)+_0x43278c+_0x217b5a(0x1a1)+_0x16719b+_0x217b5a(0x1b7)+Math['round']((Date[_0x217b5a(0x19d)]()-_0x448cf6)/0x3e8)+'s');}});await Promise[_0x406013(0x191)](_0x3ff519),lib[_0x406013(0x188)](_0x406013(0x18b),_0x406013(0x1ac)+_0x43278c+_0x406013(0x1a1)+_0x16719b+_0x406013(0x18f)+Math[_0x406013(0x1be)]((Date[_0x406013(0x19d)]()-_0x448cf6)/0x3e8)+'s');})()[a0_0x508e88(0x1af)](_0x5d4ae0=>{const _0x493640=a0_0x508e88;lib[_0x493640(0x188)]('probe',_0x493640(0x190)+_0x5d4ae0[_0x493640(0x194)]),process['exit'](0x1);});
+'use strict';
+// Probes pool exits for Cohere + Google (reCAPTCHA host) reachability.
+//   node probe.js [--target=40] [--conc=8] [--pool=path] [--hosts=a,b]
+// Writes out/live-exits.txt: `proxy<TAB>cohereMs<TAB>googleMs` and a log.
+
+const fs = require('fs');
+const path = require('path');
+const lib = require('./lib');
+
+const args = process.argv.slice(2);
+const opt = (name, dflt) => {
+  const hit = args.find((a) => a.startsWith(`--${name}=`));
+  return hit ? hit.split('=').slice(1).join('=') : dflt;
+};
+
+const TARGET = parseInt(opt('target', '40'), 10);
+const CONC = Math.min(5, parseInt(opt('conc', '5'), 10));
+const DEFAULT_POOL = path.join(__dirname, 'out', 'union-live.txt');
+const POOL = opt('pool', process.env.COHERE_PROXY_LIST || DEFAULT_POOL);
+const OUT_FILE = opt('out', path.join(lib.OUT, 'live-exits.txt'));
+const PRIMARY = 'dashboard.cohere.com';
+const SECONDARY = 'www.google.com';
+
+async function probeOne(p) {
+  const t0 = Date.now();
+  let cohere = 0;
+  try {
+    const r = await lib.proxyLib.probe(p, { host: PRIMARY, port: 443, timeoutMs: 30000 });
+    if (!r.ok) return null;
+    cohere = r.ms;
+  } catch (e) {
+    return null;
+  }
+  let google = -1;
+  try {
+    const r2 = await lib.proxyLib.probe(p, { host: SECONDARY, port: 443, timeoutMs: 25000 });
+    if (r2.ok) google = r2.ms;
+  } catch (e) {}
+  return { proxy: p, cohere, google, total: Date.now() - t0 };
+}
+
+(async () => {
+  const all = lib.loadProxies(POOL).filter((p) => lib.proxyLib.usableInBrowser ? lib.proxyLib.usableInBrowser(p) : true);
+  const shuffled = all.slice().sort(() => Math.random() - 0.5);
+  lib.log('probe', `pool=${POOL} lines=${all.length} target=${TARGET} conc=${CONC}`);
+  fs.mkdirSync(lib.OUT, { recursive: true });
+  const outPath = OUT_FILE;
+  fs.writeFileSync(outPath, '');
+  const queue = shuffled.slice();
+  let found = 0;
+  let scanned = 0;
+  const start = Date.now();
+
+  const workers = Array.from({ length: CONC }, async () => {
+    while (queue.length && found < TARGET) {
+      const p = queue.shift();
+      scanned++;
+      const r = await probeOne(p);
+      if (r) {
+        found++;
+        const line = `${r.proxy.raw}\t${r.cohere}\t${r.google}`;
+        fs.appendFileSync(outPath, line + '\n');
+        lib.log('probe', `OK ${r.proxy.raw} cohere=${r.cohere}ms google=${r.google}ms (${found}/${TARGET})`);
+      } else if (scanned % 25 === 0) {
+        lib.log('probe', `scanned=${scanned} found=${found} elapsed=${Math.round((Date.now() - start) / 1000)}s`);
+      }
+    }
+  });
+  await Promise.all(workers);
+  lib.log('probe', `done: scanned=${scanned} found=${found} in ${Math.round((Date.now() - start) / 1000)}s`);
+})().catch((e) => {
+  lib.log('probe', `FAIL ${e.stack}`);
+  process.exit(1);
+});

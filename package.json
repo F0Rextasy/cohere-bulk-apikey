@@ -58,6 +58,7 @@
     "soak.js",
     "stable.js",
     "verify.js",
+    "connect-9router.js",
     "README.md",
     "LICENSE"
   ]

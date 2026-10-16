@@ -11,15 +11,16 @@
 
 # cohere-bulk-apikey
 
-**One [Cohere](https://cohere.com) account per API key — sign-up, mailbox confirm, onboarding and the trial key, with every key live-verified (models + chat) before it lands in `keys.txt`.**
+**Bulk-create Cohere accounts with auto-generated API keys — OpenAI-compatible inference + 9Router connector.**
 
 [![Node](https://img.shields.io/badge/Node-%E2%89%A518-3DA639?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue?style=for-the-badge)](#)
 [![License](https://img.shields.io/badge/license-MIT-6ea8fe?style=for-the-badge)](LICENSE)
+[![9Router](https://img.shields.io/badge/9Router-connector-8B5CF6.svg?style=for-the-badge)](#-connect-to-9router)
 [![Verified](https://img.shields.io/badge/keys%20live--verified-15%2F15-2ea043?style=for-the-badge)](#-verified-working--every-key-is-tested)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
-[🛠 Quick start](#-quick-start) · [✅ Verified](#-verified-working--every-key-is-tested) · [🤖 Models & free tier](#-models--free-tier) · [🧭 How it works](#-how-it-works) · [⚙️ Options](#️-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Issues](#-issues)
+[🛠 Quick start](#-quick-start) · [✅ Verified](#-verified-working--every-key-is-tested) · [🤖 Models & free tier](#-models--free-tier) · [🔌 9Router](#-connect-to-9router) · [🧭 How it works](#-how-it-works) · [⚙️ Options](#️-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Issues](#-issues)
 
 </div>
 
@@ -89,6 +90,30 @@ curl https://api.cohere.com/v1/chat \
   -d '{"model":"command-a-03-2025","message":"Reply with the single word: ok","max_tokens":8}'
 ```
 
+## 🔌 Connect to 9Router
+
+Cohere is OpenAI-compatible, so register it once and use every key:
+
+```bash
+node connect-9router.js \
+  --base http://localhost:20128 --password 123456 \
+  --keys-file keys.txt
+```
+
+Every key in `keys.txt` becomes one connection of the `cohere` provider node
+(`--api-key <key>` registers a single key instead, `--model <id>` overrides the
+default). Then pick a model inside 9Router:
+
+```
+cohere/command-a-03-2025
+cohere/command-r-08-2024
+cohere/command-r7b-12-2024
+```
+
+Point the connector at a refreshed `keys.txt` to add more accounts; the node and
+its model list stay the same. `node launcher.js --connect-9router` runs exactly
+this and asks for the base URL and password first.
+
 ## ✅ Verified working — every key is tested
 
 A key is written to `keys.txt` only after the live API answers with it:
@@ -113,7 +138,7 @@ The batch this repository shipped from, measured from the run logs:
 ## 🛠 Quick start
 
 ```bash
-git clone https://github.com/F0Rextasy/cohere-bulk-apikey.git
+# clone this repository (or download the ZIP), then:
 cd cohere-bulk-apikey
 
 # 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port)
@@ -204,7 +229,7 @@ persist in `launcher.config.json`.
 ## 🐞 Issues
 
 Cohere changed the RPC, the confirm route or the sign-up policy? The tool stops at the failing step and
-says so. **[Open an issue](https://github.com/F0Rextasy/cohere-bulk-apikey/issues)** with the command
+says so. **[Open an issue](../../issues)** with the command
 you ran and the exact output — the per-attempt dumps under `out/` (screenshots, DOM and network
 records) make failures reproducible without leaking a key. PRs are welcome.
 
@@ -216,6 +241,6 @@ MIT © 2026 — see [LICENSE](LICENSE). Use it on accounts you are allowed to cr
 
 <div align="center">
 
-**Built by F0REXTASY** · [github.com/F0Rextasy](https://github.com/F0Rextasy) · [x.com/bigbullapp](https://x.com/bigbullapp)
+**Built by cohere-bulk-apikey contributors** · [x.com/bigbullapp](https://x.com/bigbullapp)
 
 </div>

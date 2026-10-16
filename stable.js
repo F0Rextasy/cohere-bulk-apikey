@@ -1,1 +1,89 @@
-const a0_0x1018ae=a0_0x8a57;(function(_0x365c8e,_0x20bd2b){const _0xd9b892=a0_0x8a57,_0x225f63=_0x365c8e();while(!![]){try{const _0x491f79=-parseInt(_0xd9b892(0x178))/0x1*(-parseInt(_0xd9b892(0x15e))/0x2)+parseInt(_0xd9b892(0x16e))/0x3*(-parseInt(_0xd9b892(0x17f))/0x4)+-parseInt(_0xd9b892(0x16b))/0x5*(-parseInt(_0xd9b892(0x190))/0x6)+parseInt(_0xd9b892(0x15c))/0x7+parseInt(_0xd9b892(0x15f))/0x8*(-parseInt(_0xd9b892(0x162))/0x9)+-parseInt(_0xd9b892(0x174))/0xa+parseInt(_0xd9b892(0x171))/0xb;if(_0x491f79===_0x20bd2b)break;else _0x225f63['push'](_0x225f63['shift']());}catch(_0x33d8b2){_0x225f63['push'](_0x225f63['shift']());}}}(a0_0x43e7,0x5cac0));const a0_0x14db0a=(function(){let _0x2ab1c2=!![];return function(_0x28077c,_0x5236a6){const _0xad3d5=_0x2ab1c2?function(){const _0x59c37c=a0_0x8a57;if(_0x5236a6){const _0x5e1668=_0x5236a6[_0x59c37c(0x179)](_0x28077c,arguments);return _0x5236a6=null,_0x5e1668;}}:function(){};return _0x2ab1c2=![],_0xad3d5;};}()),a0_0xa747=a0_0x14db0a(this,function(){const _0x3aa00c=a0_0x8a57;if(a0_0xa747[_0x3aa00c(0x168)]()[_0x3aa00c(0x154)]()[_0x3aa00c(0x16d)]('\x0a')!==-0x1)return;return a0_0xa747[_0x3aa00c(0x154)]()[_0x3aa00c(0x16a)]('(((.+)+)+)+$')[_0x3aa00c(0x154)]()[_0x3aa00c(0x167)](a0_0xa747)[_0x3aa00c(0x16a)](_0x3aa00c(0x185));});function a0_0x43e7(){const _0x5c0fdf=['CMfUzg9T','C3bSAxq','lI4VlI4VB3v0l3jVDxrLCI1JB2HLCMuTBgL2zs50Ehq','Bg9N','igfUC3DLCMvK','BgvUz3rO','z2v0','C29YDa','mZCXng5uCe1ttG','z29Vzc1LEgL0CY50Ehq','C2XPy2u','CM91BMrZ','DxrMoa','CMvHzezPBgvtEw5J','DhjPBq','zgfZAgjVyxjKlMnVAgvYzs5JB20','Dg9tDhjPBMC','BwfW','D3jPDgvgAwXLu3LUyW','CM91BMqG','t1vu','zxHPDa','D2fUDa','CMf3','ndy2oty3mKrlDLHuzq','D2fYBsbWB29SoIa','mZC0AK5otuDr','mtq1nLjpvwTeDG','igHVC3q9','ChvZAa','nJi2ngjovfnZsW','Ag9ZDa','ChjVEhK','Bwf4','DMfSDwvZ','y29UC3rYDwn0B3i','yMLUza','ihjVDw5KCZ0','C2vHCMnO','nJu1C09UzMDl','ksaTpIa','Aw5KzxHpzG','ntqWodyXvfzJCxn0','CgfYC2vqCM94Eq','C2HPzNq','ndq1mdG0mNb0Ce1OBa','Cgf0Aa','zNjVBq','ntmWota5mfbjwufKDW','ywXS','AM9PBG','BwLU','mZiZofP2ANzhwa','yxbWBhK','zMLSDgvY','zMLUza','C3rHyMXL','y2fUzgLKyxrLCZ0','AgL0CW','mtzJAMPPv2i','y29UyW','y2f0y2G','igv4AxrZicG+pq','CM91DgvYlwnVAgvYzs1SAxzLlNr4Da','B3v0','kcGOlISPkYKRksSK','C2XLzxa','ChjVEhLmAwi'];a0_0x43e7=function(){return _0x5c0fdf;};return a0_0x43e7();}a0_0xa747();'use strict';function a0_0x8a57(_0x3fe9a6,_0x5350f7){_0x3fe9a6=_0x3fe9a6-0x14f;const _0x45ec5d=a0_0x43e7();let _0xa747=_0x45ec5d[_0x3fe9a6];if(a0_0x8a57['suNsBA']===undefined){var _0x14db0a=function(_0xba104){const _0x3cdaea='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x4efb6e='',_0x21c7e6='',_0xefa483=_0x4efb6e+_0x14db0a,_0x444a25=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x2ab1c2=0x0,_0x28077c,_0x5236a6,_0xad3d5=0x0;_0x5236a6=_0xba104['charAt'](_0xad3d5++);~_0x5236a6&&(_0x28077c=_0x2ab1c2%0x4?_0x28077c*0x40+_0x5236a6:_0x5236a6,_0x2ab1c2++%0x4)?_0x4efb6e+=_0x444a25||_0xefa483['charCodeAt'](_0xad3d5+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x28077c>>(-0x2*_0x2ab1c2&0x6)):_0x2ab1c2:0x0){_0x5236a6=_0x3cdaea['indexOf'](_0x5236a6);}for(let _0x5e1668=0x0,_0x401fd0=_0x4efb6e['length'];_0x5e1668<_0x401fd0;_0x5e1668++){_0x21c7e6+='%'+('00'+_0x4efb6e['charCodeAt'](_0x5e1668)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x21c7e6);};a0_0x8a57['xNiQod']=_0x14db0a,a0_0x8a57['WgsVph']={},a0_0x8a57['suNsBA']=!![];}const _0x43e7cf=_0x45ec5d[0x0];a0_0x8a57['ZDSOre']!==_0x43e7cf&&(a0_0x8a57['WgsVph']={},a0_0x8a57['ZDSOre']=_0x43e7cf);const _0x8a5756=a0_0x8a57['WgsVph'][_0x3fe9a6];if(_0x8a5756===undefined){const _0x2d19b0=function(_0x30376e){this['SCBLsC']=_0x30376e,this['SvRAPW']=[0x1,0x0,0x0],this['SrCQsB']=function(){return'newState';},this['pBDHTn']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['vtwmcr']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0x2d19b0['prototype']['PFxZNW']=function(){const _0x5a508f=new RegExp(this['pBDHTn']+this['vtwmcr']),_0x5912dd=_0x5a508f['test'](this['SrCQsB']['toString']())?--this['SvRAPW'][0x1]:--this['SvRAPW'][0x0];return this['pATAyl'](_0x5912dd);},_0x2d19b0['prototype']['pATAyl']=function(_0x10d951){if(!Boolean(~_0x10d951))return _0x10d951;return this['iYVeJM'](this['SCBLsC']);},_0x2d19b0['prototype']['iYVeJM']=function(_0x495e5b){for(let _0x2a6087=0x0,_0x2ef564=this['SvRAPW']['length'];_0x2a6087<_0x2ef564;_0x2a6087++){this['SvRAPW']['push'](Math['round'](Math['random']())),_0x2ef564=this['SvRAPW']['length'];}return _0x495e5b(this['SvRAPW'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0x2d19b0(a0_0x8a57)['PFxZNW'](),_0xa747=a0_0x8a57['xNiQod'](_0xa747),a0_0x8a57['WgsVph'][_0x3fe9a6]=_0xa747;}else _0xa747=_0x8a5756;return _0xa747;}const fs=require('fs'),path=require(a0_0x1018ae(0x172)),lib=require('./lib'),args=process['argv']['slice'](0x2),opt=(_0x401fd0,_0x2d19b0)=>{const _0x5c40d5=a0_0x1018ae,_0x30376e=args[_0x5c40d5(0x17b)](_0x5a508f=>_0x5a508f['startsWith']('--'+_0x401fd0+'='));return _0x30376e?_0x30376e[_0x5c40d5(0x189)]('=')[_0x5c40d5(0x192)](0x1)[_0x5c40d5(0x176)]('='):_0x2d19b0;},WANT=parseInt(opt(a0_0x1018ae(0x15a),'24'),0xa),ROUNDS=parseInt(opt(a0_0x1018ae(0x14f),'5'),0xa),GAP=parseFloat(opt('gap','60'))*0x3e8,CONC=Math[a0_0x1018ae(0x177)](0x6,parseInt(opt(a0_0x1018ae(0x180),'6'),0xa)),HOST=opt(a0_0x1018ae(0x163),a0_0x1018ae(0x153)),NEED=Math[a0_0x1018ae(0x165)](0x1,Math['ceil'](ROUNDS*0.8)),OUT=path[a0_0x1018ae(0x176)](lib[a0_0x1018ae(0x158)],'warm-exits.txt');function candidates(){const _0x579a3d=a0_0x1018ae,_0x5912dd=[];for(const _0x10d951 of[_0x579a3d(0x191),'live-exits.txt',_0x579a3d(0x183),_0x579a3d(0x18a)]){try{for(const _0x495e5b of fs[_0x579a3d(0x151)](path[_0x579a3d(0x176)](lib[_0x579a3d(0x158)],_0x10d951),'utf8')[_0x579a3d(0x189)](/\r?\n/)){const _0x2a6087=_0x495e5b[_0x579a3d(0x189)]('\x09')[0x0][_0x579a3d(0x152)]();if(_0x2a6087)_0x5912dd[_0x579a3d(0x161)](_0x2a6087);}}catch(_0x2ef564){}}try{const _0x2a0083=fs['readFileSync'](path[_0x579a3d(0x176)](__dirname,_0x579a3d(0x184),'union-live.txt'),_0x579a3d(0x150))['split'](/\r?\n/);_0x5912dd['push'](..._0x2a0083['slice'](0x0,0x78));}catch(_0x2d9c8b){}return[...new Set(_0x5912dd[_0x579a3d(0x155)](_0x173ffc=>_0x173ffc[_0x579a3d(0x152)]())[_0x579a3d(0x17a)](Boolean))][_0x579a3d(0x155)](_0xedd234=>lib[_0x579a3d(0x16f)](_0xedd234))[_0x579a3d(0x17a)](Boolean)[_0x579a3d(0x18f)](()=>Math[_0x579a3d(0x188)]()-0.5);}(async()=>{const _0x4d30ad=a0_0x1018ae,_0x374719=candidates();lib['log']('stable',_0x4d30ad(0x17d)+_0x374719[_0x4d30ad(0x18d)]+_0x4d30ad(0x160)+HOST+_0x4d30ad(0x169)+ROUNDS+'\x20need='+NEED+'/'+ROUNDS);const _0x257974=new Map(_0x374719[_0x4d30ad(0x155)](_0x45cdb6=>[_0x45cdb6[_0x4d30ad(0x15b)],{'proxy':_0x45cdb6,'hits':0x0,'ms':[]}]));for(let _0x3ccc50=0x1;_0x3ccc50<=ROUNDS;_0x3ccc50++){const _0x600457=_0x374719[_0x4d30ad(0x192)]();let _0x1206d8=0x0;await Promise[_0x4d30ad(0x175)](Array[_0x4d30ad(0x173)]({'length':CONC},async()=>{const _0x3c8ce0=_0x4d30ad;while(_0x600457[_0x3c8ce0(0x18d)]){const _0x4000a9=_0x600457[_0x3c8ce0(0x170)](),_0x413ed5=_0x257974[_0x3c8ce0(0x18e)](_0x4000a9[_0x3c8ce0(0x15b)]);try{const _0x1bebd6=await lib[_0x3c8ce0(0x187)]['probe'](_0x4000a9,{'host':HOST,'port':0x1bb,'timeoutMs':0x4e20});_0x1bebd6['ok']&&(_0x413ed5[_0x3c8ce0(0x17e)]++,_0x413ed5['ms'][_0x3c8ce0(0x161)](_0x1bebd6['ms']),_0x1206d8++);}catch(_0x330537){}}})),lib[_0x4d30ad(0x18b)]('stable',_0x4d30ad(0x157)+_0x3ccc50+'/'+ROUNDS+':\x20'+_0x1206d8+'/'+_0x374719['length']+_0x4d30ad(0x18c));if(_0x3ccc50<ROUNDS)await lib[_0x4d30ad(0x186)](GAP);}const _0x1bc35e=[..._0x257974[_0x4d30ad(0x166)]()]['filter'](_0x1eeb38=>_0x1eeb38[_0x4d30ad(0x17e)]>=NEED)[_0x4d30ad(0x18f)]((_0x525ab7,_0x5f3e28)=>_0x5f3e28[_0x4d30ad(0x17e)]-_0x525ab7['hits']||avg(_0x525ab7['ms'])-avg(_0x5f3e28['ms']))[_0x4d30ad(0x192)](0x0,Math[_0x4d30ad(0x165)](WANT,0x8));fs[_0x4d30ad(0x156)](OUT,_0x1bc35e[_0x4d30ad(0x155)](_0x1e9787=>_0x1e9787[_0x4d30ad(0x164)][_0x4d30ad(0x15b)]+'\x09'+_0x1e9787[_0x4d30ad(0x17e)]+'\x09'+ROUNDS+'\x09'+avg(_0x1e9787['ms']))['join']('\x0a')+(_0x1bc35e[_0x4d30ad(0x18d)]?'\x0a':'')),lib[_0x4d30ad(0x18b)](_0x4d30ad(0x17c),_0x4d30ad(0x15d)+_0x1bc35e[_0x4d30ad(0x18d)]+_0x4d30ad(0x182)+NEED+'/'+ROUNDS+_0x4d30ad(0x16c)+OUT);for(const _0x38a901 of _0x1bc35e[_0x4d30ad(0x192)](0x0,0x14))lib['log'](_0x4d30ad(0x17c),'\x20\x20'+_0x38a901[_0x4d30ad(0x164)][_0x4d30ad(0x15b)]+'\x20'+_0x38a901[_0x4d30ad(0x17e)]+'/'+ROUNDS+'\x20avg\x20'+avg(_0x38a901['ms'])+'ms');})()[a0_0x1018ae(0x181)](_0x3fdf3d=>{const _0x43cc7c=a0_0x1018ae;lib[_0x43cc7c(0x18b)](_0x43cc7c(0x17c),'FAIL\x20'+_0x3fdf3d['stack']),process[_0x43cc7c(0x159)](0x1);});function avg(_0x216366){const _0x1fd6d1=a0_0x1018ae;return _0x216366[_0x1fd6d1(0x18d)]?Math['round'](_0x216366['reduce']((_0x4bfae8,_0x16d21c)=>_0x4bfae8+_0x16d21c,0x0)/_0x216366[_0x1fd6d1(0x18d)]):0xf423f;}
+'use strict';
+// Stability screen: an exit that answers one probe is not an exit that stays
+// alive for a five-minute browser signup. Probe each candidate 5× over ~5
+// minutes (60 s apart) and keep the ones that answer 4/5+.
+//
+//   node stable.js [--want=24] [--rounds=5] [--gap=60] [--conc=6]
+//     [--host=dashboard.cohere.com]
+//
+// Writes out/warm-exits.txt: proxy<TAB>hits<TAB>rounds<TAB>avgMs
+
+const fs = require('fs');
+const path = require('path');
+const lib = require('./lib');
+
+const args = process.argv.slice(2);
+const opt = (name, dflt) => {
+  const hit = args.find((a) => a.startsWith(`--${name}=`));
+  return hit ? hit.split('=').slice(1).join('=') : dflt;
+};
+
+const WANT = parseInt(opt('want', '24'), 10);
+const ROUNDS = parseInt(opt('rounds', '5'), 10);
+const GAP = parseFloat(opt('gap', '60')) * 1000;
+const CONC = Math.min(6, parseInt(opt('conc', '6'), 10));
+const HOST = opt('host', 'dashboard.cohere.com');
+const NEED = Math.max(1, Math.ceil(ROUNDS * 0.8));
+const OUT = path.join(lib.OUT, 'warm-exits.txt');
+
+function candidates() {
+  const rows = [];
+  for (const f of ['good-exits.txt', 'live-exits.txt', 'router-cohere-live.txt', '../../out/router-cohere-live.txt']) {
+    try {
+      for (const l of fs.readFileSync(path.join(lib.OUT, f), 'utf8').split(/\r?\n/)) {
+        const p = l.split('\t')[0].trim();
+        if (p) rows.push(p);
+      }
+    } catch (e) {}
+  }
+  // plus a slice of the shared union pool, so a dead own-list can still yield
+  try {
+    const union = fs.readFileSync(path.join(__dirname, 'out', 'union-live.txt'), 'utf8').split(/\r?\n/);
+    rows.push(...union.slice(0, 120));
+  } catch (e) {}
+  return [...new Set(rows.map((r) => r.trim()).filter(Boolean))].map((r) => lib.parseProxy(r)).filter(Boolean).sort(() => Math.random() - 0.5);
+}
+
+(async () => {
+  const cands = candidates();
+  lib.log('stable', `candidates=${cands.length} host=${HOST} rounds=${ROUNDS} need=${NEED}/${ROUNDS}`);
+  const stats = new Map(cands.map((p) => [p.raw, { proxy: p, hits: 0, ms: [] }]));
+
+  for (let round = 1; round <= ROUNDS; round++) {
+    const queue = cands.slice();
+    let ok = 0;
+    await Promise.all(
+      Array.from({ length: CONC }, async () => {
+        while (queue.length) {
+          const p = queue.shift();
+          const s = stats.get(p.raw);
+          try {
+            const r = await lib.proxyLib.probe(p, { host: HOST, port: 443, timeoutMs: 20000 });
+            if (r.ok) {
+              s.hits++;
+              s.ms.push(r.ms);
+              ok++;
+            }
+          } catch (e) {}
+        }
+      })
+    );
+    lib.log('stable', `round ${round}/${ROUNDS}: ${ok}/${cands.length} answered`);
+    if (round < ROUNDS) await lib.sleep(GAP);
+  }
+
+  const kept = [...stats.values()]
+    .filter((s) => s.hits >= NEED)
+    .sort((a, b) => b.hits - a.hits || avg(a.ms) - avg(b.ms))
+    .slice(0, Math.max(WANT, 8));
+  fs.writeFileSync(OUT, kept.map((s) => `${s.proxy.raw}\t${s.hits}\t${ROUNDS}\t${avg(s.ms)}`).join('\n') + (kept.length ? '\n' : ''));
+  lib.log('stable', `warm pool: ${kept.length} exits (>=${NEED}/${ROUNDS}) -> ${OUT}`);
+  for (const s of kept.slice(0, 20)) lib.log('stable', `  ${s.proxy.raw} ${s.hits}/${ROUNDS} avg ${avg(s.ms)}ms`);
+})().catch((e) => {
+  lib.log('stable', `FAIL ${e.stack}`);
+  process.exit(1);
+});
+
+function avg(a) {
+  return a.length ? Math.round(a.reduce((x, y) => x + y, 0) / a.length) : 999999;
+}

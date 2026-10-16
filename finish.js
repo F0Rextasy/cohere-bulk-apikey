@@ -1,1 +1,421 @@
-const a0_0x257501=a0_0x2faf;(function(_0x54d735,_0x2514fa){const _0x540888=a0_0x2faf,_0x306e5d=_0x54d735();while(!![]){try{const _0x4644f3=-parseInt(_0x540888(0x11d))/0x1+parseInt(_0x540888(0x117))/0x2+-parseInt(_0x540888(0x101))/0x3*(-parseInt(_0x540888(0x10e))/0x4)+-parseInt(_0x540888(0x172))/0x5*(-parseInt(_0x540888(0x187))/0x6)+parseInt(_0x540888(0x199))/0x7+-parseInt(_0x540888(0x156))/0x8+-parseInt(_0x540888(0x14c))/0x9*(parseInt(_0x540888(0x181))/0xa);if(_0x4644f3===_0x2514fa)break;else _0x306e5d['push'](_0x306e5d['shift']());}catch(_0x2f1900){_0x306e5d['push'](_0x306e5d['shift']());}}}(a0_0x38e4,0xad1bd));const a0_0x260738=(function(){let _0x1771b8=!![];return function(_0x12e6c6,_0x1a19ff){const _0x507018=_0x1771b8?function(){const _0x3111b6=a0_0x2faf;if(_0x1a19ff){const _0x31168a=_0x1a19ff[_0x3111b6(0x105)](_0x12e6c6,arguments);return _0x1a19ff=null,_0x31168a;}}:function(){};return _0x1771b8=![],_0x507018;};}()),a0_0x26bff6=a0_0x260738(this,function(){const _0x139fbf=a0_0x2faf;if(a0_0x26bff6[_0x139fbf(0x10b)]()[_0x139fbf(0xf2)]()[_0x139fbf(0xec)]('\x0a')!==-0x1)return;return a0_0x26bff6[_0x139fbf(0xf2)]()[_0x139fbf(0x13b)]('(((.+)+)+)+$')['toString']()[_0x139fbf(0x121)](a0_0x26bff6)[_0x139fbf(0x13b)]('(((.+)+)+)+$');});a0_0x26bff6();'use strict';const fs=require('fs'),path=require(a0_0x257501(0x15b)),os=require('os'),https=require(a0_0x257501(0x19e)),lib=require('./lib'),post=require(a0_0x257501(0x186)),verify=require(a0_0x257501(0x19d)),args=process['argv']['slice'](0x2),opt=(_0x2d7836,_0x5d1782)=>{const _0x39e427=a0_0x257501,_0x2831cf=args['find'](_0x59ede9=>_0x59ede9[_0x39e427(0x13d)]('--'+_0x2d7836+'='));return _0x2831cf?_0x2831cf[_0x39e427(0x150)]('=')[_0x39e427(0x131)](0x1)[_0x39e427(0x12f)]('='):_0x5d1782;},flag=_0x74b570=>args[a0_0x257501(0xfd)]('--'+_0x74b570),DEFAULTS={'box':a0_0x257501(0x141),'email':'<your-mailtrap-inbox>','password':'<your-mailtrap-password>','registered':a0_0x257501(0x192)},BOX={'id':parseInt(opt(a0_0x257501(0x182),DEFAULTS[a0_0x257501(0x182)]),0xa),'address':opt('email',DEFAULTS[a0_0x257501(0x12d)]),'password':opt('password',DEFAULTS[a0_0x257501(0x115)]),'registered':opt(a0_0x257501(0x14a),DEFAULTS['registered'])},CROSS=flag(a0_0x257501(0xf5))||BOX['id']===0x14f4,STAMP=new Date()['toISOString']()[a0_0x257501(0x17a)](/[:.]/g,'-'),RUN_DIR=path['join'](lib[a0_0x257501(0x11a)],a0_0x257501(0x171)+BOX['id']+'-'+STAMP),EVIDENCE=path[a0_0x257501(0x12f)](lib[a0_0x257501(0x11a)],a0_0x257501(0x15a)+BOX['id']+a0_0x257501(0x13e)),TOKEN=fs[a0_0x257501(0x10c)](path[a0_0x257501(0x12f)](os[a0_0x257501(0x180)](),a0_0x257501(0x1a0)),a0_0x257501(0x15c))[a0_0x257501(0x11b)](),say=_0x3f3193=>lib[a0_0x257501(0x132)](a0_0x257501(0x10f),_0x3f3193),evidence={'at':new Date()[a0_0x257501(0x16f)](),'box':{'id':BOX['id'],'address':BOX[a0_0x257501(0x135)],'registered':BOX[a0_0x257501(0x14a)]},'routes':{},'mail':null,'post':null,'login':null,'verify':null,'key':null,'verdict':null},save=()=>lib[a0_0x257501(0x104)](EVIDENCE,evidence),LINK_RE=/https?:\/\/[^\s"'<>)\]]+/g,isConclusive=_0x3b99e8=>_0x3b99e8===0xc8||_0x3b99e8===0x194||_0x3b99e8===0x191||_0x3b99e8===0x193;function a0_0x2faf(_0x239d86,_0x2a9d38){_0x239d86=_0x239d86-0xec;const _0x315b03=a0_0x38e4();let _0x26bff6=_0x315b03[_0x239d86];if(a0_0x2faf['STzzMh']===undefined){var _0x260738=function(_0x4178bd){const _0x31c855='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x5139f5='',_0x394988='',_0x55e0e4=_0x5139f5+_0x260738,_0x3d2539=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x97404f=0x0,_0x1771b8,_0x12e6c6,_0x1a19ff=0x0;_0x12e6c6=_0x4178bd['charAt'](_0x1a19ff++);~_0x12e6c6&&(_0x1771b8=_0x97404f%0x4?_0x1771b8*0x40+_0x12e6c6:_0x12e6c6,_0x97404f++%0x4)?_0x5139f5+=_0x3d2539||_0x55e0e4['charCodeAt'](_0x1a19ff+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x1771b8>>(-0x2*_0x97404f&0x6)):_0x97404f:0x0){_0x12e6c6=_0x31c855['indexOf'](_0x12e6c6);}for(let _0x507018=0x0,_0x31168a=_0x5139f5['length'];_0x507018<_0x31168a;_0x507018++){_0x394988+='%'+('00'+_0x5139f5['charCodeAt'](_0x507018)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x394988);};a0_0x2faf['uIgove']=_0x260738,a0_0x2faf['NbuLOq']={},a0_0x2faf['STzzMh']=!![];}const _0x38e435=_0x315b03[0x0];a0_0x2faf['aMAKfz']!==_0x38e435&&(a0_0x2faf['NbuLOq']={},a0_0x2faf['aMAKfz']=_0x38e435);const _0x2fafb8=a0_0x2faf['NbuLOq'][_0x239d86];if(_0x2fafb8===undefined){const _0x2d7836=function(_0x5d1782){this['JHpBcX']=_0x5d1782,this['BKfeAi']=[0x1,0x0,0x0],this['estnlA']=function(){return'newState';},this['LyKmPN']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['BDSnZq']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0x2d7836['prototype']['LyJpWO']=function(){const _0x2831cf=new RegExp(this['LyKmPN']+this['BDSnZq']),_0x59ede9=_0x2831cf['test'](this['estnlA']['toString']())?--this['BKfeAi'][0x1]:--this['BKfeAi'][0x0];return this['OBPyOm'](_0x59ede9);},_0x2d7836['prototype']['OBPyOm']=function(_0x74b570){if(!Boolean(~_0x74b570))return _0x74b570;return this['MdZzaa'](this['JHpBcX']);},_0x2d7836['prototype']['MdZzaa']=function(_0x3f3193){for(let _0x3b99e8=0x0,_0x3ad790=this['BKfeAi']['length'];_0x3b99e8<_0x3ad790;_0x3b99e8++){this['BKfeAi']['push'](Math['round'](Math['random']())),_0x3ad790=this['BKfeAi']['length'];}return _0x3f3193(this['BKfeAi'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0x2d7836(a0_0x2faf)['LyJpWO'](),_0x26bff6=a0_0x2faf['uIgove'](_0x26bff6),a0_0x2faf['NbuLOq'][_0x239d86]=_0x26bff6;}else _0x26bff6=_0x2fafb8;return _0x26bff6;}function directGet(_0x3ad790,_0x4bc8c4=0x4e20){return new Promise((_0x207194,_0x49ab20)=>{const _0x3f157b=a0_0x2faf,_0x484a6f=Date['now'](),_0x496ec2=https[_0x3f157b(0x18f)]({'method':'GET','host':_0x3f157b(0x107),'port':0x1bb,'path':_0x3ad790,'family':0x4,'timeout':_0x4bc8c4,'headers':{'authorization':'Bearer\x20'+TOKEN,'accept':_0x3f157b(0x19f)}},_0x4820b2=>{const _0x4a69cb=_0x3f157b;let _0x3c993d='';_0x4820b2[_0x4a69cb(0x12b)](_0x4a69cb(0x15c)),_0x4820b2['on'](_0x4a69cb(0x16c),_0x148061=>_0x3c993d+=_0x148061),_0x4820b2['on'](_0x4a69cb(0x142),()=>_0x207194({'status':_0x4820b2[_0x4a69cb(0x155)],'text':_0x3c993d[_0x4a69cb(0x131)](0x0,0x30d40),'ms':Date[_0x4a69cb(0x196)]()-_0x484a6f}));});_0x496ec2['setTimeout'](_0x4bc8c4,()=>_0x496ec2[_0x3f157b(0x14f)](new Error(_0x3f157b(0x11e)+_0x4bc8c4+'ms'))),_0x496ec2['on'](_0x3f157b(0x144),_0x5f4b45=>_0x49ab20(new Error(_0x5f4b45[_0x3f157b(0x159)]+'\x20('+(Date[_0x3f157b(0x196)]()-_0x484a6f)+_0x3f157b(0x16e)))),_0x496ec2[_0x3f157b(0x142)]();});}async function routeDirect(){const _0x31fe86=a0_0x257501,_0x22587f={'tries':[]};for(let _0xd2742b=0x0;_0xd2742b<0xc;_0xd2742b++){try{const _0x4cc4a3=await directGet(_0x31fe86(0x146)+BOX['id']+_0x31fe86(0x18d)),_0x3683d7={'attempt':_0xd2742b+0x1,'status':_0x4cc4a3[_0x31fe86(0x125)],'ms':_0x4cc4a3['ms'],'snippet':_0x4cc4a3[_0x31fe86(0x17d)][_0x31fe86(0x131)](0x0,0xf0)};_0x22587f[_0x31fe86(0x154)][_0x31fe86(0x12a)](_0x3683d7),say(_0x31fe86(0x14d)+(_0xd2742b+0x1)+_0x31fe86(0x14e)+_0x4cc4a3[_0x31fe86(0x125)]+'\x20'+_0x4cc4a3['ms']+_0x31fe86(0x151)+_0x3683d7[_0x31fe86(0x160)][_0x31fe86(0x17a)](/\s+/g,'\x20')[_0x31fe86(0x131)](0x0,0xa0));if(isConclusive(_0x4cc4a3[_0x31fe86(0x125)])){_0x22587f[_0x31fe86(0x176)]={'status':_0x4cc4a3[_0x31fe86(0x125)],'text':_0x4cc4a3[_0x31fe86(0x17d)],'attempt':_0xd2742b+0x1};break;}}catch(_0x3ba757){_0x22587f[_0x31fe86(0x154)]['push']({'attempt':_0xd2742b+0x1,'error':_0x3ba757['message']}),say('direct\x20#'+(_0xd2742b+0x1)+_0x31fe86(0x14e)+_0x3ba757['message']);}if(_0xd2742b<0xb)await lib['sleep'](0x7d0);}try{const _0x4dd3cf=await directGet(_0x31fe86(0x1a3));_0x22587f[_0x31fe86(0x178)]={'status':_0x4dd3cf[_0x31fe86(0x125)],'text':_0x4dd3cf['text']['slice'](0x0,0x5dc)};if(_0x4dd3cf[_0x31fe86(0x125)]===0xc8){let _0x22d237=[];try{_0x22d237=JSON[_0x31fe86(0x10d)](_0x4dd3cf[_0x31fe86(0x17d)]);}catch(_0x1d7948){}const _0x3aeaf6=Array[_0x31fe86(0x162)](_0x22d237)?_0x22d237:_0x22d237[_0x31fe86(0x178)]||[],_0x3f2037=_0x3aeaf6[_0x31fe86(0x1a4)](_0x1c5111=>_0x1c5111[_0x31fe86(0x18b)]===_0x31fe86(0x153));if(_0x3f2037){const _0x5222d6=await directGet('/api/inbound/folders/'+_0x3f2037['id']+_0x31fe86(0x184))['catch'](_0x5d12cc=>({'error':_0x5d12cc['message']}));_0x22587f[_0x31fe86(0x18e)]=_0x5222d6[_0x31fe86(0x125)]?{'status':_0x5222d6[_0x31fe86(0x125)],'text':_0x5222d6['text']['slice'](0x0,0xfa0)}:{'error':_0x5222d6[_0x31fe86(0x144)]};}}}catch(_0x38d444){_0x22587f[_0x31fe86(0x178)]={'error':_0x38d444[_0x31fe86(0x159)]};}return _0x22587f;}async function proxyGet(_0xe357f5,_0x42d60c,_0x27c009=0x61a8){const _0x1b2d95=a0_0x257501,_0x448115=Date[_0x1b2d95(0x196)]();try{const _0x11471c=await lib[_0x1b2d95(0x18f)](_0xe357f5,{'url':'https://mailtrap.io'+_0x42d60c,'headers':{'authorization':'Bearer\x20'+TOKEN,'accept':_0x1b2d95(0x19f)},'timeoutMs':_0x27c009});return{'status':_0x11471c[_0x1b2d95(0x125)],'text':_0x11471c['text'][_0x1b2d95(0x131)](0x0,0x30d40),'ms':Date[_0x1b2d95(0x196)]()-_0x448115,'proxy':_0xe357f5[_0x1b2d95(0xfc)]};}catch(_0x5025a2){return{'error':_0x5025a2[_0x1b2d95(0x159)],'ms':Date[_0x1b2d95(0x196)]()-_0x448115,'proxy':_0xe357f5[_0x1b2d95(0xfc)]};}}async function routeProxy(){const _0x326112=a0_0x257501,_0x461d13=lib[_0x326112(0x17f)](),_0x2607e3=_0x461d13['slice'](0x0,0x18),_0x11aa6f={'pool':_0x461d13[_0x326112(0x158)],'candidates':_0x2607e3[_0x326112(0x158)],'rounds':0x2,'deadlineMs':0x493e0,'tried':[]},_0x5c1bb7=Date[_0x326112(0x196)]()+_0x11aa6f[_0x326112(0xff)],_0x303223=Math[_0x326112(0x133)](Math[_0x326112(0x139)]()*Math[_0x326112(0x10a)](0x1,_0x2607e3[_0x326112(0x158)]));_0x97404f:for(let _0x5f4dec=0x0;_0x5f4dec<0x2;_0x5f4dec++){for(let _0x44ff9e=0x0;_0x44ff9e<_0x2607e3[_0x326112(0x158)];_0x44ff9e++){if(Date[_0x326112(0x196)]()>_0x5c1bb7){_0x11aa6f[_0x326112(0x179)]=_0x326112(0x12e)+_0x11aa6f[_0x326112(0x140)][_0x326112(0x158)]+_0x326112(0x1a1);break _0x97404f;}const _0x54f2f5=_0x2607e3[(_0x303223+_0x44ff9e)%_0x2607e3[_0x326112(0x158)]],_0x1aad42=await proxyGet(_0x54f2f5,'/api/inbound/inboxes/'+BOX['id']+_0x326112(0x18d));_0x11aa6f[_0x326112(0x140)][_0x326112(0x12a)]({'round':_0x5f4dec,'proxy':_0x54f2f5[_0x326112(0xfc)],'status':_0x1aad42[_0x326112(0x125)]||null,'error':_0x1aad42['error']||null,'ms':_0x1aad42['ms'],'snippet':_0x1aad42[_0x326112(0x17d)]?String(_0x1aad42[_0x326112(0x17d)])['slice'](0x0,0xc8):null}),say(_0x326112(0x11f)+_0x5f4dec+'\x20'+_0x54f2f5[_0x326112(0xfc)]+'\x20->\x20'+(_0x1aad42['status']||_0x1aad42['error'])+'\x20'+_0x1aad42['ms']+'ms');if(isConclusive(_0x1aad42[_0x326112(0x125)])){_0x11aa6f['conclusive']={'round':_0x5f4dec,'proxy':_0x54f2f5[_0x326112(0xfc)],'status':_0x1aad42[_0x326112(0x125)],'text':_0x1aad42[_0x326112(0x17d)]};break _0x97404f;}if(Date[_0x326112(0x196)]()>_0x5c1bb7)break _0x97404f;}}if(!_0x11aa6f[_0x326112(0x176)]&&!_0x11aa6f[_0x326112(0x179)])_0x11aa6f[_0x326112(0x179)]=_0x326112(0x194)+_0x11aa6f[_0x326112(0x140)][_0x326112(0x158)]+_0x326112(0x183);return _0x11aa6f;}async function routeBroker(){const _0x265c6a=a0_0x257501,_0x462bfc={'tries':[]};for(let _0x58a19c=0x0;_0x58a19c<0x2;_0x58a19c++){const _0x3e0557=Date['now']();try{const _0x3e1b33=await lib[_0x265c6a(0x13f)](0x25e4,String(BOX['id'])),_0x26e9c8={'attempt':_0x58a19c+0x1,'ms':Date[_0x265c6a(0x196)]()-_0x3e0557,'json':JSON[_0x265c6a(0x113)](_0x3e1b33)['slice'](0x0,0x4b0)};_0x462bfc[_0x265c6a(0x154)][_0x265c6a(0x12a)](_0x26e9c8),say(_0x265c6a(0x106)+(_0x58a19c+0x1)+_0x265c6a(0x14e)+_0x26e9c8['ms']+_0x265c6a(0x151)+_0x26e9c8[_0x265c6a(0x189)]['slice'](0x0,0xc8));if(_0x3e1b33&&(Array['isArray'](_0x3e1b33)||_0x3e1b33[_0x265c6a(0xfb)])){_0x462bfc[_0x265c6a(0x137)]=_0x3e1b33;break;}}catch(_0x7fa30b){_0x462bfc[_0x265c6a(0x154)][_0x265c6a(0x12a)]({'attempt':_0x58a19c+0x1,'ms':Date['now']()-_0x3e0557,'error':_0x7fa30b[_0x265c6a(0x159)]}),say(_0x265c6a(0x106)+(_0x58a19c+0x1)+'\x20->\x20'+_0x7fa30b[_0x265c6a(0x159)]);}}return _0x462bfc;}function a0_0x38e4(){const _0x52c346=['ywnJzxnZ','zMLUAxnOqwnJB3vUDa','zMLUAxnOzxiTBg9NAw4','ChjVEhK','C3vIAMvJDa','zxjY','zgf0yq','Bg9NAw4GChjVyMuGkef1DgHwmIKGC3rHCNq','BxmP','Dg9ju09tDhjPBMC','yNjVA2vY','zMLUAxnOlq','mtm1uhr2twPY','ig1HAwW9','zgLYzwn0ig5VDcaYmdaGka','Cgf0Ag5HBwu','y29Uy2X1C2L2zq','zMfPBa','zM9SzgvYCW','C3rVChbLza','CMvWBgfJzq','BwvZC2fNzunVDw50','DMLH','Dgv4Da','AhrTBa','Bg9HzfbYB3HPzxm','Ag9TzwrPCG','mtCWCKPhExze','yM94','ihrYAwvZigLUy29Uy2X1C2L2zq','l2LUyM94zxm','yxbWzw5Ks2v5','lI9WB3n0','mtK3mdiYEwTOtLzH','ktSGDhj5Aw5NigjYB2TLCIbYzwfK','ANnVBG','A2v5ia','BMfTzq','Dgv4Dc9ODg1S','l21LC3nHz2vZ','zM9SzgvYsw5IB3HLCW','CMvXDwvZDa','C2XLzxa','BM9Uzq','phjLz2LZDgvYzwqTyxq+','zgvSzxrLzcG0mdqP','ywXSia','zMv0y2HlzxKGzMfPBgvKoIa','BM93','Bw9KzwW','icH2zxjKAwn0ia','mtm5ndKZowndr1fyCW','Aw5IB3GG','CMvHy2HHyMXL','DMvYAwz5qw55','lI92zxjPzNK','Ahr0Chm','yxbWBgLJyxrPB24VANnVBG','lNjPDMvYlw1HAwX0CMfWlxrVA2vU','ihrYAwvZ','Dw52zxjPzMLLzc1RzxLZlNr4Da','l2fWAs9PBMjVDw5Kl2zVBgrLCNm','zMLUza','Aw5KzxHpzG','CMfJzq','zgLYzwn0igrLDgfPBcb1BNjLywnOywjSzq','Bg9NAw4GywnJzxb0zwqGlt4GChvSBgLUzYb0CMLHBcbRzxK','zMLSDgvY','CM91DgvZ','Dg9tDhjPBMC','Ag9ZDg5HBwu','Dgv4Df9IB2r5','y3jVC3m','C3rHy2S','BwfPBcbWCMvZzw50igj1DcbUBYbJB25MAxjTigXPBMSGzM91BMqGAw4GAxq','Bg9NAw4GChjVyMuGC2TPChbLzcaOA2v5igfSCMvHzhKGDMvYAwzPzwqP','uK9pva','ihn0B3jLzcaOBg9NAw4GCgf0AcWG','BwvZC2fNzxm','CMf3','Aw5JBhvKzxm','ChjVEhKGzgv0ywLSia','zgvHzgXPBMvnCW','zgv0ywLSigzLDgnOigzHAwXLzcaO','mJK5odi5rvzxt1np','ihjLywqGC3rHCNqGka','ihn0B3jLzcaO','C2f2zuPZB24','yxbWBhK','yNjVA2vYicm','BwfPBhrYyxaUAw8','ihn1yMPLy3q9iG','DgHLBG','Bwf4','yMLUza','CMvHzezPBgvtEw5J','CgfYC2u','mZjlyw9wvfO','zMLUAxnOzxi','zxHPDa','A2v5','DMvYzgLJDa','C3rYAw5NAwz5','l21LC3nHz2vZlW','CgfZC3DVCMq','DgvZDa','mtG5nty0nMziEvrgqq','igv4y2vLzgvKia','Bg9JyxrPB24','t1vu','DhjPBq','BMv3','mJK4nZm4ELfeEwrN','DgLTzw91Dca','ChjVEhKGCG','CMvZDw1L','y29UC3rYDwn0B3i','CgfYC2vqCM94Eq','AgvHzgvYCW','zMLUAxnOigrVBMu6ihzLCMrPy3q9','C3rHDhvZ','ksWGDMvYAwzPzwqGBgL2zsb2AweG','Bg9HzePZB24','DMvYAwz5','Cg9YDa','ChvZAa','C2v0rw5JB2rPBMC','s0vzia','zw1HAwW','zgvHzgXPBMuGywz0zxiG','AM9PBG','ChjVEhKG','C2XPy2u','Bg9N','zMXVB3i','BM8GyMvHCMvY','ywrKCMvZCW','ktSGCg9VBcbJCM9ZCY1JAgvJAW','BgLZDa','igXVz2LUpq','CMfUzg9T','igTLEt0','C2vHCMnO','D3jPDgvgAwXLu3LUyW','C3rHCNrZv2L0Aa','lMPZB24','yNjVA2vYtgLZDa','DhjPzwq','pgjVEc1Pzd4','zw5K','igzHAwXLzdOG','zxjYB3i','C3rHBxa','l2fWAs9PBMjVDw5Kl2LUyM94zxmV','y2f0y2G','Bg9NAw4GChjVyMu6ia','BwvZC2fNzv9Pza','CMvNAxn0zxjLza','zMLUAxnOiezbsuWG','nJeZmZu5vNH4vejd','zgLYzwn0icm','ic0+ia','zgvZDhjVEq','C3bSAxq','BxmG','Cg9ZDcbJAgfPBIbMywLSzwq6ia','CML2zxiTyNvSAW','DhjPzxm','C3rHDhvZq29Kzq','ntmZnta4mhHIEvzvuG','zgLYzwn0','BgvUz3rO','BwvZC2fNzq','Aw5IB3GT','Cgf0Aa','DxrMoa','DgLTzw91Da','yNjVA2vYuMvHza','BM8GBwvZC2fNzsbPBIbPBMjVEca','C25PChbLDa','ywnJB3vUDhmUANnVBG','AxnbCNjHEq','AhrTBf9IB2r5','Bg9NAw4','BwfPBcbWCMvZzw50oIbPzd0'];a0_0x38e4=function(){return _0x52c346;};return a0_0x38e4();}function parseList(_0x2d8e78){const _0x427771=a0_0x257501;try{const _0x584b22=JSON[_0x427771(0x10d)](_0x2d8e78);return Array[_0x427771(0x162)](_0x584b22)?_0x584b22:_0x584b22[_0x427771(0x16c)]||_0x584b22[_0x427771(0xfb)]||[];}catch(_0xc437ef){return[];}}async function fetchDetail(_0xa6edd2,_0x4227e2){const _0x51f463=a0_0x257501,_0x10f8b5=_0x51f463(0x146)+BOX['id']+_0x51f463(0x114)+_0xa6edd2;if(_0x4227e2){const _0x50dc1d=await proxyGet(lib[_0x51f463(0x122)](_0x4227e2)||{'raw':_0x4227e2},_0x10f8b5);if(_0x50dc1d[_0x51f463(0x125)]===0xc8)return{'via':_0x51f463(0x130)+_0x4227e2,'json':JSON[_0x51f463(0x10d)](_0x50dc1d[_0x51f463(0x17d)])};throw new Error(_0x51f463(0xfe)+(_0x50dc1d[_0x51f463(0x125)]||_0x50dc1d[_0x51f463(0x144)]));}for(let _0x3ca541=0x0;_0x3ca541<0x6;_0x3ca541++){try{const _0x3b83e5=await directGet(_0x10f8b5);if(_0x3b83e5[_0x51f463(0x125)]===0xc8)return{'via':'direct','json':JSON[_0x51f463(0x10d)](_0x3b83e5[_0x51f463(0x17d)])};if(isConclusive(_0x3b83e5['status']))throw new Error('direct\x20detail\x20'+_0x3b83e5['status']);}catch(_0x5b430c){if(/detail \d+/['test'](_0x5b430c[_0x51f463(0x159)]))throw _0x5b430c;}await lib[_0x51f463(0x190)](0x7d0);}throw new Error(_0x51f463(0xee));}function allUrls(_0x471dda){const _0xdeec0=a0_0x257501,_0x591ffa=[_0x471dda[_0xdeec0(0x17d)],_0x471dda[_0xdeec0(0xf4)],_0x471dda[_0xdeec0(0x17e)],_0x471dda[_0xdeec0(0x163)],JSON[_0xdeec0(0x113)](_0x471dda)][_0xdeec0(0xf0)](Boolean)['join']('\x0a')['replace'](/&amp;/g,'&');return[...new Set(_0x591ffa['match'](LINK_RE)||[])];}function linksFrom(_0x508fde){const _0x27a7fa=a0_0x257501;return allUrls(_0x508fde)['filter'](_0x4aeafb=>/confirm|verif|activate|token/i[_0x27a7fa(0x116)](_0x4aeafb));}function noFollowGet(_0x436549,_0x5045c1=0x4e20){return new Promise((_0x27ab5d,_0x1ac15a)=>{const _0x2e5b44=a0_0x2faf,_0x31dae1=new URL(_0x436549),_0x2cc3f7=https[_0x2e5b44(0x18f)]({'method':'GET','host':_0x31dae1[_0x2e5b44(0xf3)],'port':_0x31dae1[_0x2e5b44(0x129)]||0x1bb,'path':_0x31dae1[_0x2e5b44(0x175)]+_0x31dae1['search'],'family':0x4,'timeout':_0x5045c1,'headers':{'user-agent':lib['UA'],'accept':_0x2e5b44(0x18c)}},_0x59c517=>{const _0x4e88ac=_0x2e5b44,_0x1caa6b=_0x59c517[_0x4e88ac(0x123)]['location']||null;_0x59c517[_0x4e88ac(0x120)](),_0x59c517['on'](_0x4e88ac(0x142),()=>_0x27ab5d({'status':_0x59c517[_0x4e88ac(0x155)],'location':_0x1caa6b}));});_0x2cc3f7['setTimeout'](_0x5045c1,()=>_0x2cc3f7['destroy'](new Error(_0x2e5b44(0x11e)+_0x5045c1+'ms'))),_0x2cc3f7['on'](_0x2e5b44(0x144),_0x1ac15a),_0x2cc3f7['end']();});}async function resolveTracking(_0x4ce2b3,_0x18ccda=0x14){const _0x461a89=a0_0x257501;for(const _0xe9e9db of _0x4ce2b3['slice'](0x0,_0x18ccda)){if(!/sendgrid\.net/i['test'](_0xe9e9db))continue;for(let _0x5be9e2=0x0;_0x5be9e2<0x3;_0x5be9e2++){try{const _0x4fcbb8=await noFollowGet(_0xe9e9db),_0x4ebf01=_0x4fcbb8[_0x461a89(0x119)]?_0x4fcbb8[_0x461a89(0x119)]['replace'](/&amp;/g,'&'):null;if(_0x4ebf01&&/cohere\.(com|ai)/i[_0x461a89(0x116)](_0x4ebf01))return{'from':_0xe9e9db[_0x461a89(0x131)](0x0,0x78),'link':_0x4ebf01};break;}catch(_0x2b6fcb){if(_0x5be9e2===0x2)say('resolve\x20'+_0xe9e9db[_0x461a89(0x131)](0x0,0x50)+_0x461a89(0x143)+_0x2b6fcb[_0x461a89(0x159)]);}await lib['sleep'](0x5dc);}}return null;}async function bounded(_0x2391af,_0x590094,_0x2a0ce8){const _0x26a9a1=a0_0x257501;return Promise[_0x26a9a1(0xed)]([_0x2391af,lib['sleep'](_0x590094)[_0x26a9a1(0x109)](()=>({'ok':![],'timeout':!![],'error':_0x2a0ce8+_0x26a9a1(0x118)+Math['round'](_0x590094/0x3e8)+'s'}))]);}(async()=>{const _0x28c590=a0_0x257501;fs['mkdirSync'](RUN_DIR,{'recursive':!![]}),say(_0x28c590(0x19a)+BOX['id']+_0x28c590(0x102)+BOX[_0x28c590(0x135)]+')\x20->\x20'+EVIDENCE),evidence['routes'][_0x28c590(0x157)]=await routeDirect(),save();const _0x3012da=evidence[_0x28c590(0xf1)][_0x28c590(0x157)][_0x28c590(0x176)]&&evidence[_0x28c590(0xf1)][_0x28c590(0x157)][_0x28c590(0x176)][_0x28c590(0x125)]===0xc8;if(!_0x3012da||CROSS){if(!_0x3012da)say(_0x28c590(0x174)+(evidence[_0x28c590(0xf1)][_0x28c590(0x157)][_0x28c590(0x176)]?evidence['routes'][_0x28c590(0x157)][_0x28c590(0x176)][_0x28c590(0x125)]:'unreachable')+_0x28c590(0x136));evidence['routes'][_0x28c590(0x169)]=await routeProxy(),save(),evidence[_0x28c590(0xf1)][_0x28c590(0x170)]=await routeBroker(),save();}else say('direct\x20answered\x20200;\x20pool/broker\x20cross-check\x20skipped');const _0x1b1d7d=[];if(evidence[_0x28c590(0xf1)][_0x28c590(0x157)][_0x28c590(0x176)])_0x1b1d7d['push'](evidence['routes'][_0x28c590(0x157)]['conclusive'][_0x28c590(0x125)]);if(evidence[_0x28c590(0xf1)][_0x28c590(0x169)]&&evidence[_0x28c590(0xf1)][_0x28c590(0x169)][_0x28c590(0x176)])_0x1b1d7d[_0x28c590(0x12a)](evidence[_0x28c590(0xf1)][_0x28c590(0x169)][_0x28c590(0x176)][_0x28c590(0x125)]);const _0x2d95d6=_0x3012da||evidence[_0x28c590(0xf1)]['proxy']&&evidence[_0x28c590(0xf1)][_0x28c590(0x169)]['conclusive']&&evidence[_0x28c590(0xf1)][_0x28c590(0x169)][_0x28c590(0x176)][_0x28c590(0x125)]===0xc8;evidence[_0x28c590(0x112)]=_0x2d95d6?_0x28c590(0x19b):_0x1b1d7d[_0x28c590(0xfd)](0x194)?_0x28c590(0x193):'unreachable';let _0x53dd1b=[];if(_0x3012da)_0x53dd1b=parseList(evidence[_0x28c590(0xf1)]['direct'][_0x28c590(0x176)][_0x28c590(0x17d)]);if(!_0x53dd1b['length']&&evidence[_0x28c590(0xf1)][_0x28c590(0x169)]&&evidence['routes'][_0x28c590(0x169)][_0x28c590(0x176)]&&evidence[_0x28c590(0xf1)][_0x28c590(0x169)]['conclusive']['status']===0xc8)_0x53dd1b=parseList(evidence[_0x28c590(0xf1)][_0x28c590(0x169)][_0x28c590(0x176)][_0x28c590(0x17d)]);if(!_0x53dd1b['length']&&evidence[_0x28c590(0xf1)][_0x28c590(0x170)]&&evidence[_0x28c590(0xf1)]['broker'][_0x28c590(0x137)]){const _0x110105=evidence[_0x28c590(0xf1)]['broker'][_0x28c590(0x137)];_0x53dd1b=Array['isArray'](_0x110105)?_0x110105:_0x110105[_0x28c590(0xfb)]||[];}evidence['messageCount']=_0x53dd1b[_0x28c590(0x158)];if(_0x53dd1b[_0x28c590(0x158)]){const _0x20cd3b=_0x53dd1b[0x0],_0xc3a0cf=_0x20cd3b['id']||_0x20cd3b[_0x28c590(0x149)];say(_0x28c590(0x165)+_0xc3a0cf+_0x28c590(0x108)+(_0x20cd3b['subject']||'')+'\x22');let _0x3dc8ee=null;try{_0x3dc8ee=await fetchDetail(_0xc3a0cf,evidence['routes']['proxy']&&evidence[_0x28c590(0xf1)][_0x28c590(0x169)][_0x28c590(0x176)]&&evidence[_0x28c590(0xf1)][_0x28c590(0x169)]['conclusive'][_0x28c590(0x125)]===0xc8?evidence['routes']['proxy'][_0x28c590(0x176)][_0x28c590(0x169)]:null);}catch(_0x57293f){say(_0x28c590(0x100)+_0x57293f[_0x28c590(0x159)]+_0x28c590(0x188)),_0x3dc8ee=await lib[_0x28c590(0x15e)](0x25e4,String(BOX['id']),_0xc3a0cf)['then'](_0x46465b=>({'via':_0x28c590(0x170),'json':_0x46465b}))[_0x28c590(0x147)](_0xf5d6f5=>({'via':_0x28c590(0x191),'error':_0xf5d6f5[_0x28c590(0x159)]}));}const _0x397272=_0x3dc8ee&&_0x3dc8ee[_0x28c590(0x189)]||_0x20cd3b;fs[_0x28c590(0x13c)](path[_0x28c590(0x12f)](RUN_DIR,'mail.json'),JSON[_0x28c590(0x113)](_0x397272,null,0x2));const _0x74691d=linksFrom(_0x397272);evidence['mail']={'id':_0xc3a0cf,'subject':_0x397272[_0x28c590(0x16a)]||_0x20cd3b['subject']||'','via':_0x3dc8ee[_0x28c590(0x17c)],'links':_0x74691d,'text':String(_0x397272[_0x28c590(0x17d)]||_0x397272[_0x28c590(0xf4)]||'')[_0x28c590(0x131)](0x0,0xfa0)},save();const _0x1e989b=_0x74691d[0x0]||null;if(_0x1e989b){say('link\x20'+_0x1e989b[_0x28c590(0x131)](0x0,0xa0));const _0x42c3c6=await post[_0x28c590(0x167)]({'email':BOX[_0x28c590(0x135)],'password':BOX['password'],'mailPort':0x25e4,'token':String(BOX['id']),'link':_0x1e989b,'runDir':RUN_DIR,'log':say});evidence['post']={'ok':_0x42c3c6['ok'],'error':_0x42c3c6[_0x28c590(0x144)]||null,'trace':_0x42c3c6['trace']},save();if(_0x42c3c6['ok']&&_0x42c3c6[_0x28c590(0x111)]){const _0x3488e2=await bounded(verify[_0x28c590(0x19c)](_0x42c3c6[_0x28c590(0x111)]),0x493e0,'verify');evidence[_0x28c590(0x128)]={'ok':!!_0x3488e2['ok'],'status':_0x3488e2[_0x28c590(0x125)]||_0x3488e2[_0x28c590(0x16b)],'model':_0x3488e2[_0x28c590(0x197)],'proxy':_0x3488e2['proxy']||null},evidence['key']=_0x42c3c6['key'][_0x28c590(0x131)](0x0,0x4)+'…'+_0x42c3c6[_0x28c590(0x111)]['slice'](-0x4);if(_0x3488e2['ok']){const _0x748f9e=lib[_0x28c590(0x185)](_0x42c3c6['key'],{'address':BOX['address'],'proxy':_0x3488e2['proxy']||null,'via':_0x28c590(0x10f)}),_0x13cd1a=path[_0x28c590(0x12f)](lib[_0x28c590(0xf9)],'accounts.json'),_0x5e1c4a=lib['loadJson'](_0x13cd1a,[]);_0x5e1c4a[_0x28c590(0x12a)]({'address':BOX[_0x28c590(0x135)],'password':BOX[_0x28c590(0x115)],'key':_0x42c3c6['key'],'proxy':_0x3488e2['proxy']||null,'at':lib['stamp']()}),lib['saveJson'](_0x13cd1a,_0x5e1c4a),say('KEY\x20'+evidence[_0x28c590(0x111)]+_0x28c590(0x103)+(_0x748f9e?_0x28c590(0x11c):'dupe')+'),\x20verified\x20live\x20via\x20'+_0x3488e2[_0x28c590(0x169)]);}else fs['appendFileSync'](path['join'](lib['OUT'],_0x28c590(0x1a2)),_0x42c3c6[_0x28c590(0x111)]+'\x0a'),say(_0x28c590(0x18a)+evidence['key']+'\x20unverified:\x20'+JSON[_0x28c590(0x113)](_0x3488e2)[_0x28c590(0x131)](0x0,0xa0));}else say(_0x28c590(0x152)+_0x42c3c6[_0x28c590(0x144)]);save();}else say(_0x28c590(0xf7));}else say(_0x28c590(0x15f)+BOX['id']+_0x28c590(0x198)+evidence[_0x28c590(0x112)]+')');const _0x49505a=evidence['key']&&evidence[_0x28c590(0x128)]&&evidence[_0x28c590(0x128)]['ok'];if(!_0x49505a){say(_0x28c590(0x16d));const _0x24a0d4=await bounded(post[_0x28c590(0x164)](BOX[_0x28c590(0x135)],BOX[_0x28c590(0x115)],{'log':say}),0x3a980,_0x28c590(0x164));evidence['login']={'ok':!!_0x24a0d4['ok'],'timeout':!!_0x24a0d4[_0x28c590(0x15d)],'error':_0x24a0d4[_0x28c590(0x144)]||null},save();if(_0x24a0d4['ok']&&_0x24a0d4[_0x28c590(0x166)]){say(_0x28c590(0xef));const _0xe018b3=await bounded(post['fetchKey'](_0x24a0d4['access'],{'log':say}),0x3a980,'fetchKey');if(_0xe018b3['ok']){const _0x4c6adf=await bounded(verify[_0x28c590(0x19c)](_0xe018b3[_0x28c590(0x111)]),0x493e0,_0x28c590(0x128));evidence[_0x28c590(0x128)]={'ok':!!_0x4c6adf['ok'],'status':_0x4c6adf[_0x28c590(0x125)]||_0x4c6adf[_0x28c590(0x16b)],'model':_0x4c6adf[_0x28c590(0x197)],'proxy':_0x4c6adf['proxy']||null},evidence[_0x28c590(0x111)]=_0xe018b3[_0x28c590(0x111)][_0x28c590(0x131)](0x0,0x4)+'…'+_0xe018b3[_0x28c590(0x111)]['slice'](-0x4);if(_0x4c6adf['ok']){const _0x1178d0=lib[_0x28c590(0x185)](_0xe018b3[_0x28c590(0x111)],{'address':BOX[_0x28c590(0x135)],'proxy':_0x4c6adf[_0x28c590(0x169)]||null,'via':_0x28c590(0x168)}),_0x1cd20d=path[_0x28c590(0x12f)](lib[_0x28c590(0xf9)],_0x28c590(0x161)),_0x5db173=lib[_0x28c590(0x127)](_0x1cd20d,[]);_0x5db173[_0x28c590(0x12a)]({'address':BOX[_0x28c590(0x135)],'password':BOX[_0x28c590(0x115)],'key':_0xe018b3[_0x28c590(0x111)],'proxy':_0x4c6adf[_0x28c590(0x169)]||null,'at':lib[_0x28c590(0x145)]()}),lib[_0x28c590(0x104)](_0x1cd20d,_0x5db173),say(_0x28c590(0x12c)+evidence[_0x28c590(0x111)]+_0x28c590(0xfa)+(_0x1178d0?_0x28c590(0x11c):'dupe')+_0x28c590(0x126)+_0x4c6adf[_0x28c590(0x169)]);}else fs['appendFileSync'](path[_0x28c590(0x12f)](lib[_0x28c590(0x11a)],_0x28c590(0x1a2)),_0xe018b3['key']+'\x0a'),say(_0x28c590(0x18a)+evidence['key']+'\x20unverified:\x20'+JSON['stringify'](_0x4c6adf)[_0x28c590(0x131)](0x0,0xa0));}else say(_0x28c590(0x195)+(_0xe018b3[_0x28c590(0x144)]||_0xe018b3[_0x28c590(0x15d)]));}else say(_0x28c590(0x148)+(_0x24a0d4['error']||_0x28c590(0x134)));save();}else say(_0x28c590(0xf8));say(_0x28c590(0x124)+evidence[_0x28c590(0x112)]+_0x28c590(0x173)+(evidence[_0x28c590(0x17b)]||0x0)+_0x28c590(0x138)+(evidence[_0x28c590(0x164)]?evidence[_0x28c590(0x164)]['ok']?'ok':evidence['login']['error']||_0x28c590(0x177):'n/a')+_0x28c590(0x13a)+(evidence[_0x28c590(0x111)]||_0x28c590(0x191)));})()[a0_0x257501(0x147)](_0x5b3d7a=>{const _0x15d189=a0_0x257501;say(_0x15d189(0x14b)+_0x5b3d7a[_0x15d189(0xf6)]),save(),process[_0x15d189(0x110)](0x1);});
+'use strict';
+// Finisher for one registered account: evidence about its Mailtrap inbox,
+// then — if a message is there — the post chain (confirm -> bearer -> trial
+// key) and a live verify; otherwise an AuthV2 login probe tells whether the
+// account exists at all.
+//
+//   node finish.js                                   # box set below
+//   node finish.js --box=5812 --email=… --password=… # any cohere-bulk box
+//
+// Mailtrap is the box provider, not the target, so reading it is allowed and
+// has three routes tried in order:
+//   A) direct from our line (family:4, up to 12 tries / 2 s — this line
+//      blackholes/refuses the first connects)
+//   B) the proxy pool (lib.loadProxies -> lib.request) — runs when A is not a
+//      clean 200 (deleted-box cross-check), unless A answered 200
+//   C) the local broker (:9700) that created the box — same condition as B
+// Cohere traffic never leaves through our own line (rpc.js rotates exits).
+//
+// Evidence: out/inbox-<id>.json (rewritten after every phase). Nothing is
+// deleted anywhere.
+
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+const https = require('https');
+const lib = require('./lib');
+const post = require('./post');
+const verify = require('./verify');
+
+const args = process.argv.slice(2);
+const opt = (name, dflt) => {
+  const hit = args.find((a) => a.startsWith(`--${name}=`));
+  return hit ? hit.split('=').slice(1).join('=') : dflt;
+};
+const flag = (name) => args.includes(`--${name}`);
+
+const DEFAULTS = {
+  box: '<box-id>',
+  email: '<your-mailtrap-inbox>',
+  password: '<your-mailtrap-password>',
+  registered: '<registered-at>',
+};
+const BOX = {
+  id: parseInt(opt('box', DEFAULTS.box), 10),
+  address: opt('email', DEFAULTS.email),
+  password: opt('password', DEFAULTS.password),
+  registered: opt('registered', DEFAULTS.registered),
+};
+const CROSS = flag('cross') || BOX.id === 5364;
+const STAMP = new Date().toISOString().replace(/[:.]/g, '-');
+const RUN_DIR = path.join(lib.OUT, `finish-${BOX.id}-${STAMP}`);
+const EVIDENCE = path.join(lib.OUT, `inbox-${BOX.id}.json`);
+const TOKEN = fs.readFileSync(path.join(os.homedir(), '.river-mailtrap-token'), 'utf8').trim();
+
+const say = (m) => lib.log('finisher', m);
+const evidence = { at: new Date().toISOString(), box: { id: BOX.id, address: BOX.address, registered: BOX.registered }, routes: {}, mail: null, post: null, login: null, verify: null, key: null, verdict: null };
+const save = () => lib.saveJson(EVIDENCE, evidence);
+
+const LINK_RE = /https?:\/\/[^\s"'<>)\]]+/g;
+const isConclusive = (s) => s === 200 || s === 404 || s === 401 || s === 403;
+
+// ------------------------------------------------------------------ route A
+
+function directGet(pathq, timeoutMs = 20000) {
+  return new Promise((resolve, reject) => {
+    const t0 = Date.now();
+    const req = https.request(
+      {
+        method: 'GET',
+        host: 'mailtrap.io',
+        port: 443,
+        path: pathq,
+        family: 4,
+        timeout: timeoutMs,
+        headers: { authorization: `Bearer ${TOKEN}`, accept: 'application/json' },
+      },
+      (res) => {
+        let text = '';
+        res.setEncoding('utf8');
+        res.on('data', (c) => (text += c));
+        res.on('end', () => resolve({ status: res.statusCode, text: text.slice(0, 200000), ms: Date.now() - t0 }));
+      }
+    );
+    req.setTimeout(timeoutMs, () => req.destroy(new Error(`timeout ${timeoutMs}ms`)));
+    req.on('error', (e) => reject(new Error(`${e.message} (${Date.now() - t0}ms)`)));
+    req.end();
+  });
+}
+
+async function routeDirect() {
+  const r = { tries: [] };
+  for (let i = 0; i < 12; i++) {
+    try {
+      const g = await directGet(`/api/inbound/inboxes/${BOX.id}/messages`);
+      const row = { attempt: i + 1, status: g.status, ms: g.ms, snippet: g.text.slice(0, 240) };
+      r.tries.push(row);
+      say(`direct #${i + 1} -> ${g.status} ${g.ms}ms ${row.snippet.replace(/\s+/g, ' ').slice(0, 160)}`);
+      if (isConclusive(g.status)) {
+        r.conclusive = { status: g.status, text: g.text, attempt: i + 1 };
+        break;
+      }
+    } catch (e) {
+      r.tries.push({ attempt: i + 1, error: e.message });
+      say(`direct #${i + 1} -> ${e.message}`);
+    }
+    if (i < 11) await lib.sleep(2000);
+  }
+  // Reachability + namespace check: folders, then river-bulk's inbox list.
+  try {
+    const f = await directGet('/api/inbound/folders');
+    r.folders = { status: f.status, text: f.text.slice(0, 1500) };
+    if (f.status === 200) {
+      let list = [];
+      try {
+        list = JSON.parse(f.text);
+      } catch (e) {}
+      const rows = Array.isArray(list) ? list : list.folders || [];
+      const rb = rows.find((x) => x.name === 'river-bulk');
+      if (rb) {
+        const inv = await directGet(`/api/inbound/folders/${rb.id}/inboxes`).catch((e) => ({ error: e.message }));
+        r.folderInboxes = inv.status ? { status: inv.status, text: inv.text.slice(0, 4000) } : { error: inv.error };
+      }
+    }
+  } catch (e) {
+    r.folders = { error: e.message };
+  }
+  return r;
+}
+
+// ------------------------------------------------------------------ route B
+
+async function proxyGet(proxy, pathq, timeoutMs = 25000) {
+  const t0 = Date.now();
+  try {
+    const res = await lib.request(proxy, {
+      url: `https://mailtrap.io${pathq}`,
+      headers: { authorization: `Bearer ${TOKEN}`, accept: 'application/json' },
+      timeoutMs,
+    });
+    return { status: res.status, text: res.text.slice(0, 200000), ms: Date.now() - t0, proxy: proxy.raw };
+  } catch (e) {
+    return { error: e.message, ms: Date.now() - t0, proxy: proxy.raw };
+  }
+}
+
+async function routeProxy() {
+  const pool = lib.loadProxies();
+  const cand = pool.slice(0, 24);
+  const r = { pool: pool.length, candidates: cand.length, rounds: 2, deadlineMs: 300000, tried: [] };
+  const deadline = Date.now() + r.deadlineMs;
+  const start = Math.floor(Math.random() * Math.max(1, cand.length));
+  outer: for (let round = 0; round < 2; round++) {
+    for (let i = 0; i < cand.length; i++) {
+      if (Date.now() > deadline) {
+        r.stopped = `deadline after ${r.tried.length} tries`;
+        break outer;
+      }
+      const p = cand[(start + i) % cand.length];
+      const g = await proxyGet(p, `/api/inbound/inboxes/${BOX.id}/messages`);
+      r.tried.push({ round, proxy: p.raw, status: g.status || null, error: g.error || null, ms: g.ms, snippet: g.text ? String(g.text).slice(0, 200) : null });
+      say(`proxy r${round} ${p.raw} -> ${g.status || g.error} ${g.ms}ms`);
+      if (isConclusive(g.status)) {
+        r.conclusive = { round, proxy: p.raw, status: g.status, text: g.text };
+        break outer;
+      }
+      if (Date.now() > deadline) break outer;
+    }
+  }
+  if (!r.conclusive && !r.stopped) r.stopped = `all ${r.tried.length} tries inconclusive`;
+  return r;
+}
+
+// ------------------------------------------------------------------ route C
+
+async function routeBroker() {
+  const r = { tries: [] };
+  for (let i = 0; i < 2; i++) {
+    const t0 = Date.now();
+    try {
+      const j = await lib.brokerList(9700, String(BOX.id));
+      const row = { attempt: i + 1, ms: Date.now() - t0, json: JSON.stringify(j).slice(0, 1200) };
+      r.tries.push(row);
+      say(`broker #${i + 1} -> ${row.ms}ms ${row.json.slice(0, 200)}`);
+      if (j && (Array.isArray(j) || j.messages)) {
+        r.list = j;
+        break;
+      }
+    } catch (e) {
+      r.tries.push({ attempt: i + 1, ms: Date.now() - t0, error: e.message });
+      say(`broker #${i + 1} -> ${e.message}`);
+    }
+  }
+  return r;
+}
+
+// --------------------------------------------------------------- mail detail
+
+function parseList(text) {
+  try {
+    const j = JSON.parse(text);
+    return Array.isArray(j) ? j : j.data || j.messages || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+/** Detail fetch straight from a route we already know answers. */
+async function fetchDetail(id, proxyRaw) {
+  const pathq = `/api/inbound/inboxes/${BOX.id}/messages/${id}`;
+  if (proxyRaw) {
+    const g = await proxyGet(lib.parseProxy(proxyRaw) || { raw: proxyRaw }, pathq);
+    if (g.status === 200) return { via: `proxy ${proxyRaw}`, json: JSON.parse(g.text) };
+    throw new Error(`proxy detail ${g.status || g.error}`);
+  }
+  for (let i = 0; i < 6; i++) {
+    try {
+      const g = await directGet(pathq);
+      if (g.status === 200) return { via: 'direct', json: JSON.parse(g.text) };
+      if (isConclusive(g.status)) throw new Error(`direct detail ${g.status}`);
+    } catch (e) {
+      if (/detail \d+/.test(e.message)) throw e;
+    }
+    await lib.sleep(2000);
+  }
+  throw new Error('direct detail unreachable');
+}
+
+function allUrls(msg) {
+  const blob = [msg.text, msg.text_body, msg.html, msg.html_body, JSON.stringify(msg)]
+    .filter(Boolean)
+    .join('\n')
+    .replace(/&amp;/g, '&');
+  return [...new Set(blob.match(LINK_RE) || [])];
+}
+
+function linksFrom(msg) {
+  return allUrls(msg).filter((u) => /confirm|verif|activate|token/i.test(u));
+}
+
+/**
+ * Cohere's mail goes out through SendGrid click tracking: every href is a
+ * `ct.sendgrid.net/ls/click?upn=…` wrapper and none of them contains
+ * "confirm". A no-follow GET (sendgrid only — the redirect target is never
+ * fetched from our line) hands back the real link in `Location`.
+ */
+function noFollowGet(url, timeoutMs = 20000) {
+  return new Promise((resolve, reject) => {
+    const u = new URL(url);
+    const req = https.request(
+      {
+        method: 'GET',
+        host: u.hostname,
+        port: u.port || 443,
+        path: u.pathname + u.search,
+        family: 4,
+        timeout: timeoutMs,
+        headers: { 'user-agent': lib.UA, accept: 'text/html' },
+      },
+      (res) => {
+        const location = res.headers.location || null;
+        res.resume();
+        res.on('end', () => resolve({ status: res.statusCode, location }));
+      }
+    );
+    req.setTimeout(timeoutMs, () => req.destroy(new Error(`timeout ${timeoutMs}ms`)));
+    req.on('error', reject);
+    req.end();
+  });
+}
+
+async function resolveTracking(urls, limit = 20) {
+  for (const u of urls.slice(0, limit)) {
+    if (!/sendgrid\.net/i.test(u)) continue;
+    for (let i = 0; i < 3; i++) {
+      try {
+        const g = await noFollowGet(u);
+        const loc = g.location ? g.location.replace(/&amp;/g, '&') : null;
+        if (loc && /cohere\.(com|ai)/i.test(loc)) return { from: u.slice(0, 120), link: loc };
+        break; // answered, but not a cohere redirect
+      } catch (e) {
+        if (i === 2) say(`resolve ${u.slice(0, 80)} failed: ${e.message}`);
+      }
+      await lib.sleep(1500);
+    }
+  }
+  return null;
+}
+
+// ------------------------------------------------------------------- login
+
+async function bounded(promise, ms, label) {
+  return Promise.race([promise, lib.sleep(ms).then(() => ({ ok: false, timeout: true, error: `${label} exceeded ${Math.round(ms / 1000)}s` }))]);
+}
+
+// ------------------------------------------------------------------- main
+
+(async () => {
+  fs.mkdirSync(RUN_DIR, { recursive: true });
+  say(`inbox ${BOX.id} read start (${BOX.address}) -> ${EVIDENCE}`);
+
+  evidence.routes.direct = await routeDirect();
+  save();
+
+  const directOk = evidence.routes.direct.conclusive && evidence.routes.direct.conclusive.status === 200;
+  if (!directOk || CROSS) {
+    if (!directOk) say(`direct not 200 (${evidence.routes.direct.conclusive ? evidence.routes.direct.conclusive.status : 'unreachable'}); pool cross-check`);
+    evidence.routes.proxy = await routeProxy();
+    save();
+    evidence.routes.broker = await routeBroker();
+    save();
+  } else {
+    say('direct answered 200; pool/broker cross-check skipped');
+  }
+
+  const statuses = [];
+  if (evidence.routes.direct.conclusive) statuses.push(evidence.routes.direct.conclusive.status);
+  if (evidence.routes.proxy && evidence.routes.proxy.conclusive) statuses.push(evidence.routes.proxy.conclusive.status);
+  const any200 = directOk || (evidence.routes.proxy && evidence.routes.proxy.conclusive && evidence.routes.proxy.conclusive.status === 200);
+  evidence.verdict = any200 ? 'reachable' : statuses.includes(404) ? 'deleted(404)' : 'unreachable';
+
+  // Mail?
+  let msgs = [];
+  if (directOk) msgs = parseList(evidence.routes.direct.conclusive.text);
+  if (!msgs.length && evidence.routes.proxy && evidence.routes.proxy.conclusive && evidence.routes.proxy.conclusive.status === 200)
+    msgs = parseList(evidence.routes.proxy.conclusive.text);
+  if (!msgs.length && evidence.routes.broker && evidence.routes.broker.list) {
+    const l = evidence.routes.broker.list;
+    msgs = Array.isArray(l) ? l : l.messages || [];
+  }
+  evidence.messageCount = msgs.length;
+
+  if (msgs.length) {
+    const first = msgs[0];
+    const id = first.id || first.message_id;
+    say(`mail present: id=${id} subject="${first.subject || ''}"`);
+    let detail = null;
+    try {
+      detail = await fetchDetail(id, evidence.routes.proxy && evidence.routes.proxy.conclusive && evidence.routes.proxy.conclusive.status === 200 ? evidence.routes.proxy.conclusive.proxy : null);
+    } catch (e) {
+      say(`detail fetch failed (${e.message}); trying broker read`);
+      detail = await lib.brokerRead(9700, String(BOX.id), id).then((j) => ({ via: 'broker', json: j })).catch((x) => ({ via: 'none', error: x.message }));
+    }
+    const msg = (detail && detail.json) || first;
+    fs.writeFileSync(path.join(RUN_DIR, 'mail.json'), JSON.stringify(msg, null, 2));
+    const links = linksFrom(msg);
+    evidence.mail = { id, subject: msg.subject || first.subject || '', via: detail.via, links, text: String(msg.text || msg.text_body || '').slice(0, 4000) };
+    save();
+    const link = links[0] || null;
+    if (link) {
+      say(`link ${link.slice(0, 160)}`);
+      const p = await post.finishAccount({ email: BOX.address, password: BOX.password, mailPort: 9700, token: String(BOX.id), link, runDir: RUN_DIR, log: say });
+      evidence.post = { ok: p.ok, error: p.error || null, trace: p.trace };
+      save();
+      if (p.ok && p.key) {
+        const v = await bounded(verify.verifyAny(p.key), 300000, 'verify');
+        evidence.verify = { ok: !!v.ok, status: v.status || v.err, model: v.model, proxy: v.proxy || null };
+        evidence.key = `${p.key.slice(0, 4)}…${p.key.slice(-4)}`;
+        if (v.ok) {
+          const fresh = lib.appendKey(p.key, { address: BOX.address, proxy: v.proxy || null, via: 'finisher' });
+          const af = path.join(lib.ROOT, 'accounts.json');
+          const accounts = lib.loadJson(af, []);
+          accounts.push({ address: BOX.address, password: BOX.password, key: p.key, proxy: v.proxy || null, at: lib.stamp() });
+          lib.saveJson(af, accounts);
+          say(`KEY ${evidence.key} stored (${fresh ? 'new' : 'dupe'}), verified live via ${v.proxy}`);
+        } else {
+          fs.appendFileSync(path.join(lib.OUT, 'unverified-keys.txt'), p.key + '\n');
+          say(`key ${evidence.key} unverified: ${JSON.stringify(v).slice(0, 160)}`);
+        }
+      } else {
+        say(`post chain failed: ${p.error}`);
+      }
+      save();
+    } else {
+      say('mail present but no confirm link found in it');
+    }
+  } else {
+    say(`no message in inbox ${BOX.id} (verdict ${evidence.verdict})`);
+  }
+
+  // Account-existence probe, independent of the mailbox: AuthV2 login.
+  const haveKey = evidence.key && evidence.verify && evidence.verify.ok;
+  if (!haveKey) {
+    say('login probe (AuthV2) start');
+    const li = await bounded(post.login(BOX.address, BOX.password, { log: say }), 240000, 'login');
+    evidence.login = { ok: !!li.ok, timeout: !!li.timeout, error: li.error || null };
+    save();
+    if (li.ok && li.access) {
+      say('login accepted -> pulling trial key');
+      const k = await bounded(post.fetchKey(li.access, { log: say }), 240000, 'fetchKey');
+      if (k.ok) {
+        const v = await bounded(verify.verifyAny(k.key), 300000, 'verify');
+        evidence.verify = { ok: !!v.ok, status: v.status || v.err, model: v.model, proxy: v.proxy || null };
+        evidence.key = `${k.key.slice(0, 4)}…${k.key.slice(-4)}`;
+        if (v.ok) {
+          const fresh = lib.appendKey(k.key, { address: BOX.address, proxy: v.proxy || null, via: 'finisher-login' });
+          const af = path.join(lib.ROOT, 'accounts.json');
+          const accounts = lib.loadJson(af, []);
+          accounts.push({ address: BOX.address, password: BOX.password, key: k.key, proxy: v.proxy || null, at: lib.stamp() });
+          lib.saveJson(af, accounts);
+          say(`KEY ${evidence.key} stored (login path, ${fresh ? 'new' : 'dupe'}), verified live via ${v.proxy}`);
+        } else {
+          fs.appendFileSync(path.join(lib.OUT, 'unverified-keys.txt'), k.key + '\n');
+          say(`key ${evidence.key} unverified: ${JSON.stringify(v).slice(0, 160)}`);
+        }
+      } else {
+        say(`fetchKey failed: ${k.error || k.timeout}`);
+      }
+    } else {
+      say(`login probe: ${li.error || 'no bearer'}`);
+    }
+    save();
+  } else {
+    say('login probe skipped (key already verified)');
+  }
+
+  say(`finish done: verdict=${evidence.verdict} mail=${evidence.messageCount || 0} login=${evidence.login ? (evidence.login.ok ? 'ok' : evidence.login.error || 'fail') : 'n/a'} key=${evidence.key || 'none'}`);
+})().catch((e) => {
+  say(`finish FAIL ${e.stack}`);
+  save();
+  process.exit(1);
+});
