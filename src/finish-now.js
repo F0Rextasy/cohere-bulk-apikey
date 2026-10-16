@@ -4,8 +4,8 @@
 // this runs the post chain (confirm -> bearer -> trial key -> live verify)
 // and stores the key.
 //
-//   node finish-now.js --inbox=5812 --email=… --password=… --link="https://dashboard.cohere.com/confirm-email?token=…"
-//   node finish-now.js --inbox=5812 --email=… --password=… --link-file=out/finish-link-5812.txt
+//   node src/finish-now.js --inbox=5812 --email=… --password=… --link="https://dashboard.cohere.com/confirm-email?token=…"
+//   node src/finish-now.js --inbox=5812 --email=… --password=… --link-file=out/finish-link-5812.txt
 
 const fs = require('fs');
 const path = require('path');
@@ -25,7 +25,7 @@ const PASSWORD = opt('password');
 let LINK = opt('link', null);
 const LINK_FILE = opt('link-file', null);
 if (!LINK && LINK_FILE) LINK = fs.readFileSync(LINK_FILE, 'utf8').trim().replace(/["'([\]]+$/, '');
-if (!INBOX || !EMAIL || !PASSWORD || !LINK) throw new Error('usage: node finish-now.js --inbox=<id> --email=<addr> --password=<pw> [--link=… | --link-file=…]');
+if (!INBOX || !EMAIL || !PASSWORD || !LINK) throw new Error('usage: node src/finish-now.js --inbox=<id> --email=<addr> --password=<pw> [--link=… | --link-file=…]');
 
 const RUN = path.join(lib.OUT, `finish-now-${INBOX}-${new Date().toISOString().replace(/[:.]/g, '-')}`);
 fs.mkdirSync(RUN, { recursive: true });

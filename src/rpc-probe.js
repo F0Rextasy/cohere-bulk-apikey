@@ -3,7 +3,7 @@
 // (status, content-type, body bytes, trailer) so the wire format is known
 // before scripting it.
 //
-//   node rpc-probe.js [--method=RegisterWithEmail] [--host=os|dash] [--token=...]
+//   node src/rpc-probe.js [--method=RegisterWithEmail] [--host=os|dash] [--token=...]
 
 const fs = require('fs');
 const path = require('path');

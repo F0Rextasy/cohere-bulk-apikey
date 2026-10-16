@@ -4,8 +4,8 @@
 // key) and a live verify; otherwise an AuthV2 login probe tells whether the
 // account exists at all.
 //
-//   node finish.js                                   # box set below
-//   node finish.js --box=5812 --email=… --password=… # any cohere-bulk box
+//   node src/finish.js                                   # box set below
+//   node src/finish.js --box=5812 --email=… --password=… # any cohere-bulk box
 //
 // Mailtrap is the box provider, not the target, so reading it is allowed and
 // has three routes tried in order:

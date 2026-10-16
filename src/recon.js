@@ -1,7 +1,7 @@
 'use strict';
 // Recon: fetch Cohere dashboard register page + its JS chunks through a live
 // pool exit and pull out API endpoints / form field names / captcha markers.
-//   node recon.js [--proxy=line] [--save=dir]
+//   node src/recon.js [--proxy=line] [--save=dir]
 
 const fs = require('fs');
 const path = require('path');

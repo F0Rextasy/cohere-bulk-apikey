@@ -2,7 +2,7 @@
 // Batch engine for the light path: N accounts, one mailbox + one exit per
 // account, several accounts in flight, resumable (keys.txt is the record).
 //
-//   node light-mint.js [--count=30] [--port=9351] [--workers=2] [--headless]
+//   node src/light-mint.js [--count=30] [--port=9351] [--workers=2] [--headless]
 //     [--bypass-google] [--keep] [--budget-min=600]
 //
 // Split of work per account:

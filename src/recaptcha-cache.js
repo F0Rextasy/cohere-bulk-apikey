@@ -8,7 +8,7 @@
 // and then served to every Chrome context via the Fetch domain (no own-IP
 // traffic, no repeated 1 MB downloads).
 //
-//   node recaptcha-cache.js            # populate the cache through the pool
+//   node src/recaptcha-cache.js            # populate the cache through the pool
 
 const fs = require('fs');
 const path = require('path');

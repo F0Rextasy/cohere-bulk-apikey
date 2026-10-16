@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const file = process.argv[2] || path.join(__dirname, 'out', 'recon', '_app-8f3d75f0cc65c950.js');
+const file = process.argv[2] || path.join(path.resolve(__dirname, '..'), 'out', 'recon', '_app-8f3d75f0cc65c950.js');
 const t = fs.readFileSync(file, 'utf8');
 const start = parseInt(process.argv[3] || '1075863', 10);
 const end = parseInt(process.argv[4] || '1120000', 10);

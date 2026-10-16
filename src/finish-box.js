@@ -4,7 +4,7 @@
 // body needs Mailtrap's own message endpoints), pull the verification link, then
 // run the confirm -> bearer -> trial-key pipeline.
 //
-//   node finish-box.js --inbox=<box-id> --email=<your-mailtrap-inbox> --password=<your-mailtrap-password>
+//   node src/finish-box.js --inbox=<box-id> --email=<your-mailtrap-inbox> --password=<your-mailtrap-password>
 //
 // Mailtrap is our own inbox provider, not the target, so this may talk to it
 // directly (with retries — the first connects from this line are blackholed);
@@ -87,7 +87,7 @@ function json(text) {
 }
 
 (async () => {
-  if (!INBOX || !EMAIL) throw new Error('usage: node finish-box.js --inbox=<mailtrap inbox id> --email=<address> [--password=…]');
+  if (!INBOX || !EMAIL) throw new Error('usage: node src/finish-box.js --inbox=<mailtrap inbox id> --email=<address> [--password=…]');
 
   // 1) newest messages
   const list = await get(`https://mailtrap.io/api/inbound/inboxes/${INBOX}/messages`);

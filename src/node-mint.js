@@ -1,7 +1,7 @@
 'use strict';
 // Node-only mint: no browser, no captcha, no page load.
 //
-//   node node-mint.js [--count=30] [--minutes=12] [--tries=8]
+//   node src/node-mint.js [--count=30] [--minutes=12] [--tries=8]
 //
 // Why this exists: `RegisterWithEmail` answers 200 even with an EMPTY
 // X-Recaptcha-Token (probed), so if Mailtrap still receives the verification

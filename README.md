@@ -1,17 +1,17 @@
 <div align="center">
 
 ```
-███████╗ ██████╗ ██████╗ ███████╗██╗  ██╗████████╗ █████╗ ███████╗██╗   ██╗
-██╔════╝██╔═████╗██╔══██╗██╔════╝╚██╗██╔╝╚══██╔══╝██╔══██╗██╔════╝╚██╗ ██╔╝
-█████╗  ██║██╔██║██████╔╝█████╗   ╚███╔╝    ██║   ███████║███████╗ ╚████╔╝
-██╔══╝  ████╔╝██║██╔══██╗██╔══╝   ██╔██╗    ██║   ██╔══██║╚════██║  ╚██╔╝
-██║     ╚██████╔╝██║  ██║███████╗██╔╝ ██╗   ██║   ██║  ██║███████║   ██║
-╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝   ╚═╝
+ ██████╗   ██████╗  ██╗  ██╗ ███████╗ ██████╗  ███████╗
+██╔════╝  ██╔═══██╗ ██║  ██║ ██╔════╝ ██╔══██╗ ██╔════╝
+██║       ██║   ██║ ███████║ █████╗   ██████╔╝ █████╗
+██║       ██║   ██║ ██╔══██║ ██╔══╝   ██╔══██╗ ██╔══╝
+╚██████╗  ╚██████╔╝ ██║  ██║ ███████╗ ██║  ██║ ███████╗
+ ╚═════╝   ╚═════╝  ╚═╝  ╚═╝ ╚══════╝ ╚═╝  ╚═╝ ╚══════╝
 ```
 
 # cohere-bulk-apikey
 
-**Bulk-create Cohere accounts with auto-generated API keys — OpenAI-compatible inference + 9Router connector.**
+**Bulk-create Cohere accounts with auto-generated API keys — OpenAI-compatible + 9Router connector.**
 
 [![Node](https://img.shields.io/badge/Node-%E2%89%A518-3DA639?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue?style=for-the-badge)](#)
@@ -63,7 +63,7 @@ API answers with it.
 ## 🤖 Models & free tier
 
 A verified key sees the **whole account catalogue — 35 models** on `GET /v1/models`, written to
-[`models.json`](models.json) by the first key that passes verification:
+[`models.json`](src/models.json) by the first key that passes verification:
 
 | Family | Examples |
 | --- | --- |
@@ -95,7 +95,7 @@ curl https://api.cohere.com/v1/chat \
 Cohere is OpenAI-compatible, so register it once and use every key:
 
 ```bash
-node connect-9router.js \
+node src/connect-9router.js \
   --base http://localhost:20128 --password 123456 \
   --keys-file keys.txt
 ```
@@ -111,7 +111,7 @@ cohere/command-r7b-12-2024
 ```
 
 Point the connector at a refreshed `keys.txt` to add more accounts; the node and
-its model list stay the same. `node launcher.js --connect-9router` runs exactly
+its model list stay the same. `node src/launcher.js --connect-9router` runs exactly
 this and asks for the base URL and password first.
 
 ## ✅ Verified working — every key is tested
@@ -133,7 +133,7 @@ The batch this repository shipped from, measured from the run logs:
 | Confirm route | `GET /confirm-email?token=…` → **307** → `GET /api/auth/confirm_email?token=…` — the first touch consumes the token and confirms the account |
 | Onboarding gate | `AgreeToOnboarding {agreementType:"PROFILE_SETUP"}` → `200` → `onboarded=true`, `accessType=FULL`, key call `200`; without it the key call answers `401` |
 
-`node cli.js verify --keys keys.txt` reproduces exactly that pair of checks for your own file.
+`node src/cli.js verify --keys keys.txt` reproduces exactly that pair of checks for your own file.
 
 ## 🛠 Quick start
 
@@ -149,9 +149,9 @@ printf 'http://127.0.0.1:8080\n' > proxies.txt
 #     broker on :9701 is the built-in fallback)
 
 # 3) go
-node launcher.js                    # interactive menu: mint / finish / verify / settings
-node cli.js mint --count 30         # create fresh accounts and mint one key each
-node cli.js verify --keys keys.txt  # re-check the keys already on disk
+node src/launcher.js                    # interactive menu: mint / finish / verify / settings
+node src/cli.js mint --count 30         # create fresh accounts and mint one key each
+node src/cli.js verify --keys keys.txt  # re-check the keys already on disk
 
 # the sign-up phase drives a real Chrome over CDP — Google Chrome must be installed
 ```
@@ -160,10 +160,11 @@ What lands on disk while it runs:
 
 | Path | Content |
 | --- | --- |
+| `src/` | the tool — run it as `node src/<file>.js` from the repository root (`src/launcher.js`, `src/cli.js`) |
 | `keys.txt` | the keys, **one per line**, appended the moment a key passes the live check |
 | `accounts.json` | one record per account: mailbox, password, key, the exit that minted it |
 | `out/` | per-attempt run directories (screenshots + DOM/network dumps), the batch log, exit bookkeeping |
-| `models.json` | written by `verify` — the live `GET /v1/models` answer of the first key that verifies |
+| `src/models.json` | written by `verify` — the live `GET /v1/models` answer of the first key that verifies |
 
 ## 🧭 How it works
 
@@ -196,10 +197,10 @@ Operational notes:
 ## ⚙️ Options
 
 ```bash
-node cli.js mint   --count 30        # create fresh accounts and mint one key each
-node cli.js finish                   # log in to accounts already created and finish their key
-node cli.js verify --keys keys.txt   # re-check keys that are already on disk
-node cli.js help                     # tasks and flags
+node src/cli.js mint   --count 30        # create fresh accounts and mint one key each
+node src/cli.js finish                   # log in to accounts already created and finish their key
+node src/cli.js verify --keys keys.txt   # re-check keys that are already on disk
+node src/cli.js help                     # tasks and flags
 ```
 
 | Task | Flags |
@@ -210,7 +211,7 @@ node cli.js help                     # tasks and flags
 
 Every task module also answers `--help` directly (`node <task-file> --help`).
 
-Prefer a menu? `node launcher.js` offers **mint · finish · verify · settings** — the header shows
+Prefer a menu? `node src/launcher.js` offers **mint · finish · verify · settings** — the header shows
 how many exits `proxies.txt` holds and how many keys are on disk, and settings (count, concurrency)
 persist in `launcher.config.json`.
 

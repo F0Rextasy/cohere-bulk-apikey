@@ -1,10 +1,11 @@
 'use strict';
 // Verifies every key in keys.txt against the live API (models + a real chat
 // completion), each attempt through a soaked exit, and writes models.json.
-//   node verify.js [--keys=../keys.txt] [--limit=0]
+//   node src/verify.js [--keys=../keys.txt] [--limit=0]
 
 const fs = require('fs');
 const path = require('path');
+const ROOT = ROOT; // data root (the repo root)
 const lib = require('./lib');
 
 const args = process.argv.slice(2);
@@ -27,7 +28,7 @@ function exits() {
     ? fs.readFileSync(f2, 'utf8').split(/\r?\n/).filter(Boolean).map((l) => l.split('\t')[0])
     : [];
   // The published tree has no out/ — the user's own pool lives at proxies.txt.
-  const f3 = path.join(__dirname, 'proxies.txt');
+  const f3 = path.join(ROOT, 'proxies.txt');
   const fromUser = fs.existsSync(f3)
     ? fs.readFileSync(f3, 'utf8').split(/\r?\n/).map((l) => l.split(/\s+#/)[0].trim()).filter(Boolean)
     : [];
@@ -119,7 +120,7 @@ if (require.main === module) {
     if (r.ok) {
       okCount++;
       if (!modelsWritten && r.models && r.models.length) {
-        lib.saveJson(path.join(lib.ROOT, 'models.json'), {
+        lib.saveJson(path.join(__dirname, 'models.json'), { // the shipped catalogue sits beside the code
                     at: lib.stamp(),
           count: r.models.length,
           models: r.models,

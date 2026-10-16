@@ -3,7 +3,7 @@
 // network, then checks /api-keys — the ground-truth check of what the click
 // actually does server-side.
 //
-//   node click-confirm.js --url="https://dashboard.cohere.com/confirm-email?token=…" [--exit=line] [--keep]
+//   node src/click-confirm.js --url="https://dashboard.cohere.com/confirm-email?token=…" [--exit=line] [--keep]
 
 const fs = require('fs');
 const path = require('path');
@@ -19,7 +19,7 @@ const opt = (n, d) => {
 const flag = (n) => args.includes(`--${n}`);
 
 const TARGET = opt('url');
-if (!TARGET) throw new Error('usage: node click-confirm.js --url=<confirm link> [--exit=line] [--keep]');
+if (!TARGET) throw new Error('usage: node src/click-confirm.js --url=<confirm link> [--exit=line] [--keep]');
 const EXIT = opt('exit', null);
 const PORT = parseInt(opt('port', '9371'), 10);
 const RUN = path.join(lib.OUT, `click-${new Date().toISOString().replace(/[:.]/g, '-')}`);

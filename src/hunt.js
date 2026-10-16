@@ -5,7 +5,7 @@
 //   2. soak survivors with the full page payload (chunks + recaptcha script)
 // Survivors are appended to out/good-exits.txt.
 //
-//   node hunt.js [--pool=../out/rw-big.txt] [--want=12] [--scan=400]
+//   node src/hunt.js [--pool out/rw-big.txt] [--want=12] [--scan=400]
 //                [--min-kbs=40] [--conc=5]
 
 const fs = require('fs');
@@ -19,7 +19,7 @@ const opt = (name, dflt) => {
 };
 
 const ROOT = lib.ROOT;
-const POOL = opt('pool', path.join(__dirname, 'out', 'rw-big.txt'));
+const POOL = opt('pool', path.join(ROOT, 'out', 'rw-big.txt'));
 const WANT = parseInt(opt('want', '12'), 10);
 const SCAN = parseInt(opt('scan', '400'), 10);
 const MIN_KBS = parseFloat(opt('min-kbs', '40'));

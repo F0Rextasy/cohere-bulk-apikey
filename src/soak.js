@@ -3,7 +3,7 @@
 // page payload (Next.js chunks) AND Google's reCAPTCHA Enterprise script, at a
 // usable speed. Public exits that answer one TLS probe often die mid-page.
 //
-//   node soak.js [--in=out/live-exits.txt] [--out=out/good-exits.txt] [--min-kbs=60]
+//   node src/soak.js [--in=out/live-exits.txt] [--out=out/good-exits.txt] [--min-kbs=60]
 //
 // Writes: proxy<TAB>kbs<TAB>registerMs<TAB>appMs<TAB>recaptchaMs<TAB>totalMs
 

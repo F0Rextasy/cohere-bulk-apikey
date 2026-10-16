@@ -7,7 +7,7 @@
 // Payload per account: register HTML (~26 KB) + enterprise.js (~small), vs
 // ~2.5 MB for the SPA route — which is what makes it survivable on free exits.
 //
-//   node light-pilot.js [--exit=line] [--keep] [--headless]
+//   node src/light-pilot.js [--exit=line] [--keep] [--headless]
 
 const fs = require('fs');
 const path = require('path');

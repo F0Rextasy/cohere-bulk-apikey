@@ -1,7 +1,7 @@
 'use strict';
 // Resolves every SendGrid click-tracking URL in a stored mail body and prints
 // the real destinations, then optionally follows the confirm-email chain.
-//   node resolve-mail-links.js --mail=out/finish-5812-.../mail.json
+//   node src/resolve-mail-links.js --mail=out/finish-5812-.../mail.json
 // Offline input, network = sendgrid/dashboard direct first.
 
 const fs = require('fs');

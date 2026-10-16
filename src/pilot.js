@@ -1,6 +1,6 @@
 'use strict';
 // Pilot: one Cohere account through one live exit in real Chrome.
-//   node pilot.js [--proxy=line] [--mail=9700|9701] [--port=9340] [--headless] [--keep]
+//   node src/pilot.js [--proxy=line] [--mail=9700|9701] [--port=9340] [--headless] [--keep]
 //
 // Creates a fresh mailbox from the local broker, opens a Chrome context pinned
 // to one pool exit (probed live for dashboard.cohere.com), runs the register ->

@@ -1,6 +1,6 @@
 'use strict';
 // Batch mint: N Cohere accounts, one per fresh inbox + one per soaked exit.
-//   node mint.js [--count=30] [--mail=9700|9701] [--port=9341] [--headless]
+//   node src/mint.js [--count=30] [--mail=9700|9701] [--port=9341] [--headless]
 //    [--min-kbs=60] [--budget-min=600]
 //
 // One Chrome for the whole run; one isolated browser context per account (its

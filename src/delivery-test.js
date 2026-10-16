@@ -6,7 +6,7 @@
 //      two-call Node flow)
 //   2) does Mailtrap deliver Cohere's verification mail to a cohere-bulk box?
 //
-//   node delivery-test.js [--minutes=8]
+//   node src/delivery-test.js [--minutes=8]
 
 const lib = require('./lib');
 const rpc = require('./rpc');

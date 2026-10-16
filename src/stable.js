@@ -3,13 +3,14 @@
 // alive for a five-minute browser signup. Probe each candidate 5× over ~5
 // minutes (60 s apart) and keep the ones that answer 4/5+.
 //
-//   node stable.js [--want=24] [--rounds=5] [--gap=60] [--conc=6]
+//   node src/stable.js [--want=24] [--rounds=5] [--gap=60] [--conc=6]
 //     [--host=dashboard.cohere.com]
 //
 // Writes out/warm-exits.txt: proxy<TAB>hits<TAB>rounds<TAB>avgMs
 
 const fs = require('fs');
 const path = require('path');
+const ROOT = ROOT; // data root (the repo root)
 const lib = require('./lib');
 
 const args = process.argv.slice(2);
@@ -38,7 +39,7 @@ function candidates() {
   }
   // plus a slice of the shared union pool, so a dead own-list can still yield
   try {
-    const union = fs.readFileSync(path.join(__dirname, 'out', 'union-live.txt'), 'utf8').split(/\r?\n/);
+    const union = fs.readFileSync(path.join(ROOT, 'out', 'union-live.txt'), 'utf8').split(/\r?\n/);
     rows.push(...union.slice(0, 120));
   } catch (e) {}
   return [...new Set(rows.map((r) => r.trim()).filter(Boolean))].map((r) => lib.parseProxy(r)).filter(Boolean).sort(() => Math.random() - 0.5);

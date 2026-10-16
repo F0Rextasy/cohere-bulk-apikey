@@ -4,7 +4,7 @@
 // reading whether the server answers with validation/captcha errors (real path)
 // or 404 (wrong path). Sends one request per path; different exit each time.
 //
-//   node endpoint-probe.js [--from=out/live-exits.txt]
+//   node src/endpoint-probe.js [--from=out/live-exits.txt]
 
 const fs = require('fs');
 const path = require('path');
@@ -39,8 +39,7 @@ const BASES = {
 };
 
 function exits() {
-  const files = [
-  path.join(__dirname, 'proxies.txt'),'good-exits.txt', 'live-exits.txt'].map((f) => path.join(lib.OUT, f));
+  const files = ['proxies.txt', 'good-exits.txt', 'live-exits.txt'].map((f) => path.join(lib.OUT, f));
   const out = [];
   for (const f of files) {
     try {

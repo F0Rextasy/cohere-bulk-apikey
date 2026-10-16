@@ -9,7 +9,7 @@ const http = require('http');
 const os = require('os');
 const proxyLib = require('./proxy.js');
 
-const ROOT = path.join(__dirname);
+const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
 const LOGS = path.join(ROOT, 'logs');
 const OUT = path.join(ROOT, 'out');
 
@@ -102,7 +102,7 @@ function request(proxy, { method = 'GET', url, headers = {}, body, timeoutMs = 4
 // Emailnator's gmail pool is the working mailbox there.
 let emailnator = null;
 try {
-  emailnator = require('../../cloudflare-wai/emailnator');
+  emailnator = require('../../../cloudflare-wai/emailnator'); // workspace build only — a fresh clone falls back to null
 } catch (e) {}
 
 const isEmailnatorToken = (token) => typeof token === 'string' && token.includes('@');
@@ -286,7 +286,7 @@ function sleep(ms) {
 
 const DEFAULT_POOL = [
   path.join(ROOT, 'out', 'live-exits.txt'),
-  path.join(__dirname, 'out', 'union-live.txt'),
+  path.join(ROOT, 'out', 'union-live.txt'),
 ].find((f) => {
   try {
     return fs.existsSync(f) && fs.statSync(f).size > 0;

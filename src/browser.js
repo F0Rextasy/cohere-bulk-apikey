@@ -73,9 +73,10 @@ function launchChrome(port, tag = 'cohere', { headless = false } = {}) {
   if (headless) args.unshift('--headless=new', '--hide-scrollbars', '--mute-audio');
   const child = spawn(CHROME, args, { detached: true, stdio: 'ignore', windowsHide: true });
   child.unref();
-  fs.mkdirSync(path.join(__dirname, 'logs'), { recursive: true });
+  const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
+fs.mkdirSync(path.join(ROOT, 'logs'), { recursive: true });
   fs.writeFileSync(
-    path.join(__dirname, 'logs', `chrome-${port}.json`),
+    path.join(ROOT, 'logs', `chrome-${port}.json`),
     JSON.stringify({ pid: child.pid, port, profileDir, at: new Date().toISOString() }, null, 2)
   );
   return { pid: child.pid, profileDir, port };

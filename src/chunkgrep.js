@@ -1,6 +1,6 @@
 'use strict';
 // Fetches specific dashboard chunks through live exits and greps them for a
-// pattern.   node chunkgrep.js <pattern> <chunkUrl...>
+// pattern.   node src/chunkgrep.js <pattern> <chunkUrl...>
 
 const fs = require('fs');
 const path = require('path');
@@ -8,7 +8,7 @@ const lib = require('./lib');
 
 const pattern = process.argv[2];
 const urls = process.argv.slice(3);
-if (!pattern || !urls.length) throw new Error('usage: node chunkgrep.js <pattern> <url...>');
+if (!pattern || !urls.length) throw new Error('usage: node src/chunkgrep.js <pattern> <url...>');
 
 function candidates() {
   const f = path.join(lib.ROOT, 'out', 'good-exits.txt');
