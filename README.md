@@ -197,11 +197,11 @@ node src/cli.js help                     # tasks and flags
 
 | Task | Flags |
 | --- | --- |
-| `mint` | `--count N` — default `30`, any N |
-| `finish` | — (logs in to already-created accounts and finishes their key) |
-| `verify` | `--keys <file>` — default `keys.txt` |
+| `mint` | `--count N` (30) · `--mail <port>` (9700) · `--port N` (Chrome CDP, 9341) · `--min-kbs N` (60) · `--budget-min N` (600) · `--headless` · `--keep` |
+| `finish` | `--box=<id>` · `--email=<addr>` · `--password=<pw>` · `--registered=<at>` (all `=` form, `--cross` = cross-check the box) |
+| `verify` | `--keys=<file>` (default `keys.txt`) · `--limit=N` (0 = all) |
 
-Every task module also answers `--help` directly (`node <task-file> --help`). `node src/launcher.js` offers mint · finish · verify · settings — the header shows how many exits `proxies.txt` holds and how many keys are on disk, and settings persist in `launcher.config.json`.
+The dispatcher's `help` task lists the tasks; flags are read as `--name=value`. `node src/launcher.js` offers mint · finish · verify · settings — the header shows how many exits `proxies.txt` holds and how many keys are on disk, and settings persist in `launcher.config.json`.
 
 | Environment variable | Default | Meaning |
 | --- | --- | --- |
