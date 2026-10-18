@@ -1,7 +1,7 @@
 'use strict';
 // Batch mint: N Cohere accounts, one per fresh inbox + one per soaked exit.
 //   node src/mint.js [--count=30] [--mail=9700|9701] [--port=9341] [--headless]
-//    [--min-kbs=60] [--budget-min=600]
+//    [--min-kbs=60] [--budget-min=600] [--preset=turbo|balanced|safe] [--gap=S]
 //
 // One Chrome for the whole run; one isolated browser context per account (its
 // own exit, its own cookies/storage). Keys are appended to keys.txt as each
@@ -13,12 +13,26 @@ const lib = require('./lib');
 const B = require('./browser');
 const flow = require('./flow');
 
+// Keep the fleet alive when a single CDP socket dies (ECONNRESET etc.).
+process.on('uncaughtException', (e) => console.log(`WARN uncaught: ${String(e && e.message).slice(0, 180)}`));
+
 const args = process.argv.slice(2);
 const opt = (name, dflt) => {
   const hit = args.find((a) => a.startsWith(`--${name}=`));
   return hit ? hit.split('=').slice(1).join('=') : dflt;
 };
 const flag = (name) => args.includes(`--${name}`);
+
+// Run-shape presets (operator standard v3): `--preset=turbo|balanced|safe` sets the
+// account spacing; an explicit `--gap=N` wins over it, and with no `--preset` the
+// historical 3-7 s jitter is untouched.
+const { presetArgv, resolvePreset } = require('./preset');
+const gapArg = opt('gap', null);
+const PRESET = resolvePreset({ preset: presetArgv(args), gap: gapArg == null ? null : parseFloat(gapArg) });
+const GAP_MS = PRESET.gap == null ? null : Math.max(0, PRESET.gap) * 1000;
+/** One exit line for the live console: credentials masked. */
+const maskExit = (raw) => (raw ? String(raw).replace(/:[^:@/]+@/, ':***@') : 'direct');
+let okCount = 0;
 
 const COUNT = parseInt(opt('count', '30'), 10);
 const MAIL_PORT = parseInt(opt('mail', '9700'), 10);
@@ -90,6 +104,7 @@ function markUsed(raw, info) {
       const proxy = lib.parseProxy(row.raw);
       const t0 = Date.now();
       lib.log('mint', `--- attempt ${attempt} via ${row.raw} (${row.kbs} KB/s) ---`);
+      console.log(`… #${attempt} başladı (${maskExit(row.raw)})`);
 
       let box = null;
       let teardownAuth = null;
@@ -129,8 +144,11 @@ function markUsed(raw, info) {
           accounts.push({ address: box.address, password: res.password, key: res.key, proxy: row.raw, at: lib.stamp() });
           lib.saveJson(accountsFile, accounts);
           lib.log('mint', `KEY ${res.key.slice(0, 6)}…${res.key.slice(-4)} ${isNew ? 'stored' : 'already had it'} — total ${keysHave()}`);
+          okCount++;
+          console.log(`✓ #${attempt} KEY ALINDI: ${res.key.slice(0, 22)}…   [${okCount} ok / ${attempt} deneme]`);
         } else {
           markUsed(row.raw, { account: attempt, ok: false, stage: res.stage, error: res.error });
+          console.log(`✗ #${attempt} key yok: ${`${res.stage || 'unknown'} ${res.error || ''}`.trim()}`);
         }
         // keep the account record for the report even when registration succeeded
         // only up to the key step
@@ -143,6 +161,7 @@ function markUsed(raw, info) {
         });
       } catch (e) {
         lib.log('mint', `attempt ${attempt} failed: ${e.message}`);
+        console.log(`✗ #${attempt} key yok: ${String(e.message).slice(0, 200)}`);
         markUsed(row.raw, { account: attempt, ok: false, error: e.message });
       } finally {
         try {
@@ -152,8 +171,8 @@ function markUsed(raw, info) {
           if (browserContextId) await cdp.disposeBrowserContext(browserContextId);
         } catch (e) {}
       }
-      // small human-ish gap between accounts
-      await lib.sleep(3000 + Math.random() * 4000);
+      // small human-ish gap between accounts (--preset / --gap override the jitter)
+      await lib.sleep(GAP_MS == null ? 3000 + Math.random() * 4000 : GAP_MS);
     }
   } finally {
     lib.saveJson(path.join(RUN_DIR, 'summary.json'), { attempts: attempt, keys: keysHave(), results });
@@ -167,6 +186,7 @@ function markUsed(raw, info) {
       } catch (e) {}
     }
     lib.log('mint', `run over: ${keysHave()} keys total, ${attempt} attempts`);
+    console.log(`MINT ${okCount}/${COUNT} OK`);
   }
 })().catch((e) => {
   lib.log('mint', `FAIL ${e.stack}`);

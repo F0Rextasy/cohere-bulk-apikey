@@ -201,6 +201,8 @@ node src/cli.js help                     # tasks and flags
 | `finish` | `--box=<id>` · `--email=<addr>` · `--password=<pw>` · `--registered=<at>` (all `=` form, `--cross` = cross-check the box) |
 | `verify` | `--keys=<file>` (default `keys.txt`) · `--limit=N` (0 = all) |
 
+Turbo önerilir (5); daha fazlası zayıf bilgisayarda yük/ban riski.
+
 The dispatcher's `help` task lists the tasks; flags are read as `--name=value`. `node src/launcher.js` offers mint · finish · verify · settings — the header shows how many exits `proxies.txt` holds and how many keys are on disk, and settings persist in `launcher.config.json`.
 
 | Environment variable | Default | Meaning |

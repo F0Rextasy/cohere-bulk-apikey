@@ -9,10 +9,15 @@ const http = require('http');
 const { spawn } = require('child_process');
 const { CDP } = require('./cdp.js');
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-// No UA override anywhere: Chrome must advertise its real engine version. Forcing a
-// stale UA while sec-ch-ua reports the true one is a first-class bot signal
-// (measured across runs on Turnstile; same class of signal in reCAPTCHA Enterprise).
+const { chromePath, fingerprintForSeed } = require('./chrome-flags.js');
+// SD_CHROME (or SD_CHROME_HEADLESS_SHELL for a headless run) can move the binary.
+const CHROME = chromePath();
+// No UA override on a headed run: Chrome must advertise its real engine version.
+// Forcing a stale UA while sec-ch-ua reports the true one is a first-class bot
+// signal (measured across runs on Turnstile; same class of signal in reCAPTCHA
+// Enterprise). A headless run is the one exception — headless advertises
+// `HeadlessChrome` — so there this profile's UA comes from the chrome-flags
+// pool (fingerprintForSeed; SD_UA / SD_UA_POOL pin one for a one-off run).
 const UA = null;
 const UA_NOTE = 'chrome-native';
 
@@ -49,6 +54,10 @@ async function waitPort(port, timeoutMs = 30000) {
 
 function launchChrome(port, tag = 'cohere', { headless = false } = {}) {
   const profileDir = path.join(os.homedir(), `.ch-chrome-${tag}-${Date.now().toString(36)}`);
+  // One fingerprint per profile: UA (headless only), viewport, timezone and
+  // locale all come from this profile's own index, so no two profiles run the
+  // same combination. SD_UA / SD_UA_POOL override the UA side.
+  const fp = fingerprintForSeed(profileDir);
   const args = [
     '--remote-debugging-port=' + port,
     '--user-data-dir=' + profileDir,
@@ -65,13 +74,13 @@ function launchChrome(port, tag = 'cohere', { headless = false } = {}) {
     '--metrics-recording-only',
     '--password-store=basic',
     '--disable-features=Translate,MediaRouter,OptimizationHints',
-    '--lang=en-US',
-    '--window-size=1280,900',
+    `--lang=${fp.locale.lang}`,
+    `--window-size=${fp.windowSize}`,
     '--window-position=40,40',
     'about:blank',
   ];
-  if (headless) args.unshift('--headless=new', '--hide-scrollbars', '--mute-audio');
-  const child = spawn(CHROME, args, { detached: true, stdio: 'ignore', windowsHide: true });
+  if (headless) args.unshift('--headless=new', '--hide-scrollbars', '--mute-audio', `--user-agent=${fp.userAgent}`);
+  const child = spawn(CHROME, args, { detached: true, stdio: 'ignore', windowsHide: true, env: { ...process.env, TZ: fp.timezone } });
   child.unref();
   const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
 fs.mkdirSync(path.join(ROOT, 'logs'), { recursive: true });
