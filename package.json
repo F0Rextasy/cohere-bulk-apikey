@@ -6,6 +6,7 @@
   "type": "commonjs",
   "bin": {
     "cohere-bulk-apikey": "src/cli.js",
+    "cohere-bulk-apikey-9router": "src/connect-9router.js",
     "cohere-bulk-apikey-launcher": "src/launcher.js"
   },
   "main": "src/cli.js",
