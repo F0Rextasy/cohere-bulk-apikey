@@ -24,6 +24,12 @@
 
 </div>
 
+<div align="center">
+
+**English** · [Türkçe](README.tr.md) · [中文](README.cn.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [Português](README.pt.md)
+
+</div>
+
 ---
 
 ## ✨ Why this exists
@@ -72,14 +78,9 @@ node src/cli.js verify --keys=keys.txt     # every key in keys.txt is re-tested 
 
 A verified key sees the **whole account catalogue — 35 models** on `GET /v1/models`, written to [`src/models.json`](src/models.json) by the first key that passes verification:
 
-| Family | Examples |
-| --- | --- |
-| Command (chat/generation) | `command-a-03-2025`, `command-a-plus-05-2026`, `command-a-reasoning-08-2025`, `command-a-translate-08-2025`, `command-a-vision-07-2025` |
-| Command R | `command-r-08-2024`, `command-r-plus-08-2024`, `command-r7b-12-2024`, `command-r7b-arabic-02-2025` |
-| Tiny Aya (small models) | `tiny-aya-earth`, `tiny-aya-fire`, `tiny-aya-global`, `tiny-aya-water` |
-| Embed | `embed-v4.0`, `embed-v5.0-pro`, `embed-v5.0-fast`, `embed-english-v3.0`, `embed-multilingual-v3.0` |
-| Rerank | `rerank-v4.0-pro`, `rerank-v4.0-fast`, `rerank-v3.5`, `rerank-english-v3.0`, `rerank-multilingual-v3.0` |
-| Aya / speech / code | `c4ai-aya-expanse-32b`, `c4ai-aya-vision-32b`, `cohere-transcribe-03-2026`, `north-mini-code-1-0` |
+|Model|✓|
+|---|---|
+|`command-a-03-2025`|✓|
 
 Live probe of one key:
 
