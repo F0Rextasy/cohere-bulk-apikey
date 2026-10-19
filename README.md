@@ -30,6 +30,11 @@
 
 </div>
 
+
+
+
+
+
 ---
 
 ## ✨ Why this exists
@@ -78,9 +83,27 @@ node src/cli.js verify --keys=keys.txt     # every key in keys.txt is re-tested 
 
 A verified key sees the **whole account catalogue — 35 models** on `GET /v1/models`, written to [`src/models.json`](src/models.json) by the first key that passes verification:
 
+The live chat probe (2026-10-19, 2 keys) answered `200` on these 17 ids; the remaining catalogue entries are embedding / rerank / transcribe ids that the compatibility endpoint does not serve:
+
 |Model|✓|
 |---|---|
 |`command-a-03-2025`|✓|
+|`c4ai-aya-expanse-32b`|✓|
+|`c4ai-aya-vision-32b`|✓|
+|`command-a-plus-05-2026`|✓|
+|`command-a-reasoning-08-2025`|✓|
+|`command-a-translate-08-2025`|✓|
+|`command-a-vision-07-2025`|✓|
+|`command-r-08-2024`|✓|
+|`command-r-plus-08-2024`|✓|
+|`command-r7b-12-2024`|✓|
+|`command-r7b-arabic-02-2025`|✓|
+|`north-mini-code-1-0`|✓|
+|`north-small-translate-09-2026`|✓|
+|`tiny-aya-earth`|✓|
+|`tiny-aya-fire`|✓|
+|`tiny-aya-global`|✓|
+|`tiny-aya-water`|✓|
 
 Live probe of one key:
 

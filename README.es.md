@@ -11,7 +11,7 @@
 
 # cohere-bulk-apikey
 
-**Creación masiva de cuentas de Cohere con claves API generadas automáticamente — inferencia compatible con OpenAI + conector 9Router.**
+**Crea cuentas de Cohere en masa con claves API autogeneradas — inferencia compatible con OpenAI + conector 9Router.**
 
 [![Node](https://img.shields.io/badge/Node-%E2%89%A518-3DA639?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue?style=for-the-badge)](#)
@@ -20,7 +20,7 @@
 [![9Router](https://img.shields.io/badge/9Router-connector-8B5CF6?style=for-the-badge)](#-connect-to-9router)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
-[🛠 Inicio rápido](#-quick-start) · [🎁 Capa gratuita](#-free-tier--how-much-you-get) · [🤖 Modelos](#-models--all-35-of-them) · [🧪 Usar la API](#-how-to-use-the-api) · [✅ Verificado](#-verified-working--every-key-is-tested) · [🧭 Cómo funciona](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [⚙️ Opciones](#️-cli-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Problemas](#-issues)
+[🛠 Inicio rápido](#-quick-start) · [🎁 Nivel gratuito](#-free-tier--how-much-you-get) · [🤖 Modelos](#-models--all-35-of-them) · [🧪 Usar la API](#-how-to-use-the-api) · [✅ Verificado](#-verified-working--every-key-is-tested) · [🧭 Cómo funciona](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [⚙️ Opciones](#️-cli-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Problemas](#-issues)
 
 </div>
 
@@ -32,87 +32,107 @@
 
 
 
+
+
 ---
 
 ## ✨ Por qué existe esto
 
-La capa gratuita de Cohere depende de la **cuenta**: la consola genera una clave API `TRIAL` por cuenta (registrada como **1.000 llamadas/mes por cuenta** mientras duró la campaña de prueba), y una clave de producción requiere un proceso separado con contrato. Por tanto, la unidad útil es *una cuenta por clave*, nunca múltiples claves desde una sola cuenta.
+El nivel gratuito de Cohere reside en la **cuenta**: la consola emite una clave API `TRIAL` por cuenta (registrada como **1.000 llamadas/mes por cuenta** mientras duró la campaña de prueba), y una clave de producción es un proceso aparte, condicionado a un contrato. Así que la unidad útil es *una cuenta por clave*, nunca muchas claves de una sola cuenta.
 
-El registro es sencillo — solo un campo de correo y una contraseña — pero la página solo crea una cuenta funcional cuando se ejecuta en un navegador real, y todo lo posterior al correo de confirmación es HTTP plano:
+El registro es pequeño — un campo de correo, una contraseña — pero la página solo produce una cuenta funcional cuando se ejecuta en un navegador real, con todo lo posterior al correo de confirmación en HTTP simple:
 
 ```
-proxies.txt ─▶ salida preflight (comprobación de egreso; CGNAT/IP propia rechazada)
+proxies.txt ─▶ exit preflight (egress check; CGNAT/own IP rejected)
                     │
                     ▼
-  buzón nuevo ──▶ contexto Chrome vinculado a una salida
-                    ├─ página de registro (el pequeño formulario SSR)
+  fresh mailbox ──▶ Chrome context pinned to one exit
+                    ├─ register page (the small SSR form)
                     └─ RegisterWithEmail  → 200
                                   │
-   correo (rastreo de clics de SendGrid) ─▶ Location ─▶ /confirm-email?token=…
-                                  │                └─ 307 ─▶ /api/auth/confirm_email  (el primer acceso consume el token)
+   mail (SendGrid click-tracking) ─▶ Location ─▶ /confirm-email?token=…
+                                  │                └─ 307 ─▶ /api/auth/confirm_email  (first touch consumes it)
                                   ▼
-            portador AuthV2 ─▶ AgreeToOnboarding(PROFILE_SETUP) ─▶ GetOrCreateDefaultAPIKey
+            AuthV2 bearer ─▶ AgreeToOnboarding(PROFILE_SETUP) ─▶ GetOrCreateDefaultAPIKey
                                   │
-        GET /v1/models 200 + POST /v1/chat 200  ◀── verificación en vivo ──┘
+        GET /v1/models 200 + POST /v1/chat 200  ◀── live verification ──┘
                                   ▼
                                keys.txt
 ```
 
-## 🎁 Capa gratuita — lo que obtienes
+## 🎁 Nivel gratuito — cuánto obtienes
 
-La capa gratuita de Cohere es la **clave de prueba en la cuenta** — **1.000 llamadas API por mes por cuenta** (la cuota registrada durante la campaña; la consola en [dashboard.cohere.com](https://dashboard.cohere.com) siempre muestra tu plan y límites actuales, que Cohere puede modificar). Una clave de producción requiere contrato.
+El nivel gratuito de Cohere es la **clave de prueba de la cuenta** — **1.000 llamadas API al mes por cuenta** (la cuota registrada para la campaña; la consola en [dashboard.cohere.com](https://dashboard.cohere.com) siempre muestra tu plan y límites actuales, que Cohere puede cambiar). Una clave de producción está condicionada a un contrato.
 
 | Qué | Valor |
 | --- | --- |
-| Crédito inicial | una clave `TRIAL` por cuenta — 1.000 llamadas/mes (durante la campaña) |
+| Asignación de bienvenida | una clave `TRIAL` por cuenta — 1.000 llamadas/mes (campaña) |
 | Tarjeta requerida | **No** |
-| Registro | correo + contraseña en navegador real; confirmación por enlace; aceptación del proceso de incorporación |
-| Unidad escalable | **una cuenta = una clave** → `--count N` equivale a N presupuestos de prueba |
-| Cómo ver tus límites | [dashboard.cohere.com](https://dashboard.cohere.com) — fuente oficial en tiempo real de los límites del plan |
+| Registro | correo + contraseña en un navegador real; confirmación por enlace; acuerdo de incorporación |
+| La unidad que escala | **una cuenta = una clave** → `--count N` son N presupuestos de prueba |
+| Cómo ver tus límites | [dashboard.cohere.com](https://dashboard.cohere.com) — la fuente en vivo de los límites del plan |
 
-> 💡 La capa gratuita es definida por Cohere y puede cambiar. Consulta los valores actuales en [cohere.com](https://cohere.com) — y deja que el propio sistema del herramienta decida:
+> 💡 El nivel gratuito lo define Cohere y puede cambiar. Consulta las cifras en vivo en [cohere.com](https://cohere.com) — y deja que el propio filtro de la herramienta decida:
 
 ```bash
-node src/cli.js verify --keys=keys.txt     # cada clave en keys.txt se vuelve a probar con una llamada real de chat
+node src/cli.js verify --keys=keys.txt     # every key in keys.txt is re-tested with a real chat call
 ```
 
-## 🤖 Modelos — los 35 disponibles
+## 🤖 Modelos — los 35
 
-Una clave verificada ve todo el catálogo de la cuenta — **35 modelos** en `GET /v1/models`, escritos en [`src/models.json`](src/models.json) por la primera clave que pase la verificación:
+Una clave verificada ve **todo el catálogo de la cuenta — 35 modelos** en `GET /v1/models`, escrito en [`src/models.json`](src/models.json) por la primera clave que pasa la verificación:
+
+La prueba de chat en vivo (2026-10-19, 2 claves) respondió `200` en estos 17 ids; las entradas restantes del catálogo son ids de embedding / rerank / transcribe que el endpoint de compatibilidad no sirve:
 
 |Modelo|✓|
 |---|---|
 |`command-a-03-2025`|✓|
+|`c4ai-aya-expanse-32b`|✓|
+|`c4ai-aya-vision-32b`|✓|
+|`command-a-plus-05-2026`|✓|
+|`command-a-reasoning-08-2025`|✓|
+|`command-a-translate-08-2025`|✓|
+|`command-a-vision-07-2025`|✓|
+|`command-r-08-2024`|✓|
+|`command-r-plus-08-2024`|✓|
+|`command-r7b-12-2024`|✓|
+|`command-r7b-arabic-02-2025`|✓|
+|`north-mini-code-1-0`|✓|
+|`north-small-translate-09-2026`|✓|
+|`tiny-aya-earth`|✓|
+|`tiny-aya-fire`|✓|
+|`tiny-aya-global`|✓|
+|`tiny-aya-water`|✓|
 
-Prueba en vivo con una clave:
+Prueba en vivo de una clave:
 
 ```bash
 curl https://api.cohere.com/v1/chat \
-  -H "Authorization: Bearer <una de tus claves>" \
+  -H "Authorization: Bearer <one of your keys>" \
   -H "Content-Type: application/json" \
-  -d '{"model":"command-a-03-2025","message":"Responde con la palabra única: ok","max_tokens":8}'
+  -d '{"model":"command-a-03-2025","message":"Reply with the single word: ok","max_tokens":8}'
 ```
 
 ## 🧪 Cómo usar la API
 
-La clave API de Cohere (`Bearer <clave>`) accede al punto de conexión de compatibilidad `https://api.cohere.com/compatibility/v1` — compatible con OpenAI — y al punto de conexión de chat nativo `https://api.cohere.com/v1/chat`. La misma clave responde ambos; 9Router apunta al URL de compatibilidad.
+La clave API de Cohere (`Bearer <key>`) llega al endpoint de compatibilidad `https://api.cohere.com/compatibility/v1` — compatible con OpenAI — y al endpoint nativo de chat `https://api.cohere.com/v1/chat`. La misma clave responde a ambos; 9Router apunta a la URL de compatibilidad.
 
 **Cualquier SDK / curl (compatibilidad):**
 
 ```bash
 curl https://api.cohere.ai/compatibility/v1/chat/completions \
-  -H "Authorization: Bearer <una de tus claves>" \
+  -H "Authorization: Bearer <one of your keys>" \
   -H "Content-Type: application/json" \
-  -d '{"model":"command-a-03-2025","messages":[{"role":"user","content":"hola"}]}'
+  -d '{"model":"command-a-03-2025","messages":[{"role":"user","content":"hi"}]}'
 ```
 
 **Chat nativo (lo que usa el verificador):**
 
 ```bash
 curl https://api.cohere.com/v1/chat \
-  -H "Authorization: Bearer <una de tus claves>" \
+  -H "Authorization: Bearer <one of your keys>" \
   -H "Content-Type: application/json" \
-  -d '{"model":"command-a-03-2025","message":"hola","max_tokens":8}'
+  -d '{"model":"command-a-03-2025","message":"hi","max_tokens":8}'
 ```
 
 ## 🛠 Inicio rápido
@@ -121,117 +141,117 @@ curl https://api.cohere.com/v1/chat \
 git clone https://github.com/F0Rextasy/cohere-bulk-apikey.git
 cd cohere-bulk-apikey
 
-# 1) tu lista de proxies, una salida por línea (http://, socks5://, socks4:// o host:puerto simple)
+# 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port)
 printf 'http://127.0.0.1:8080\n' > proxies.txt
 
-# 2) buzones — un intermediario local que entrega buzones descartables mediante HTTP simple
-#    (un intermediario basado en Mailtrap en :9700 sirvió el lote enviado; un intermediario en inboxes.com
-#     en :9701 es la opción predeterminada)
+# 2) mailboxes — a local broker that hands out disposable inboxes over plain HTTP
+#    (a Mailtrap-backed broker on :9700 served the shipped batch; an inboxes.com
+#     broker on :9701 is the built-in fallback)
 
-# 3) adelante
-node src/launcher.js                    # menú interactivo: crear / finalizar / verificar / ajustes
-node src/cli.js mint --count=30         # crear cuentas nuevas y generar una clave por cuenta
-node src/cli.js verify --keys=keys.txt  # volver a comprobar las claves ya en disco
+# 3) go
+node src/launcher.js                    # interactive menu: mint / finish / verify / settings
+node src/cli.js mint --count=30         # create fresh accounts and mint one key each
+node src/cli.js verify --keys=keys.txt  # re-check the keys already on disk
 
-# la fase de registro controla un Chrome real mediante CDP — debe tener Google Chrome instalado
+# the sign-up phase drives a real Chrome over CDP — Google Chrome must be installed
 ```
 
-Lo que se guarda en disco durante la ejecución:
+Qué queda en disco mientras se ejecuta:
 
 | Ruta | Contenido |
 | --- | --- |
-| `src/` | la herramienta — ejecútala como `node src/<archivo>.js` desde la raíz del repositorio (`src/launcher.js`, `src/cli.js`) |
-| `keys.txt` | las claves, **una por línea**, añadidas inmediatamente tras pasar la comprobación en vivo |
-| `accounts.json` | un registro por cuenta: buzón, contraseña, clave, salida que la generó |
-| `out/` | directorios por intento (capturas de pantalla + volcados DOM/red), registro del lote, seguimiento de salidas |
-| `src/models.json` | generado por `verify` — respuesta real de `GET /v1/models` de la primera clave verificada |
+| `src/` | la herramienta — ejecútala como `node src/<file>.js` desde la raíz del repositorio (`src/launcher.js`, `src/cli.js`) |
+| `keys.txt` | las claves, **una por línea**, añadidas en el momento en que una clave pasa la comprobación en vivo |
+| `accounts.json` | un registro por cuenta: buzón, contraseña, clave, la salida que la emitió |
+| `out/` | directorios de ejecución por intento (capturas de pantalla + volcados de DOM/red), el registro del lote, contabilidad de salidas |
+| `src/models.json` | escrito por `verify` — la respuesta en vivo de `GET /v1/models` de la primera clave que se verifica |
 
 ### 🖱️ El lanzador
 
-El lanzador es `src/launcher.js`: un menú para crear / finalizar / verificar / ajustes (+ 9Router). Recuerda `count`/`conc` en `launcher.config.json` y muestra cuántas salidas tiene `proxies.txt` y cuántas claves hay en disco en el encabezado. `node src/launcher.js --connect-9router` registra las claves con un 9Router local.
+El lanzador es `src/launcher.js`: un menú sobre mint / finish / verify / settings (+ 9Router). Recuerda `count`/`conc` en `launcher.config.json` y muestra en la cabecera cuántas salidas contiene `proxies.txt` y cuántas claves hay en disco. `node src/launcher.js --connect-9router` registra las claves con un 9Router local.
 
-## ✅ Verificado y funcional — cada clave es probada
+## ✅ Verificado y funcionando — cada clave se prueba
 
-Una clave se escribe en `keys.txt` solo tras obtener respuesta de la API en vivo:
+Una clave se escribe en `keys.txt` solo después de que la API en vivo responda con ella:
 
 | comprobación | llamada | esperado |
 | --- | --- | --- |
 | autenticación + lista de modelos | `GET https://api.cohere.com/v1/models?page_size=100` | `200` |
 | generación real | `POST https://api.cohere.com/v1/chat` (`command-a-03-2025`) | `200` con texto |
 
-El lote con el que se distribuyó este repositorio, medido a partir de los registros de ejecución:
+El lote con el que se publicó este repositorio, medido a partir de los registros de ejecución:
 
 | Medición | Resultado |
 | --- | --- |
 | Cadena completa | **15 cuentas → 15 claves** el 2026-10-14, 19:16–20:07 — registro → correo → confirmación → incorporación → clave |
-| Verificación | **15/15 activas** (`models 200` + `chat 200`, `command-a-03-2025`) |
-| Política de prueba | una clave cuya verificación no responde correctamente **no** se escribe — la herramienta prefiere una clave faltante a una no verificada |
+| Verificación | **15/15 en vivo** (`models 200` + `chat 200`, `command-a-03-2025`) |
+| Política de prueba | una clave cuya comprobación en vivo no responde limpiamente **no** se escribe — la herramienta prefiere una clave ausente antes que una no probada |
 | Ruta de confirmación | `GET /confirm-email?token=…` → **307** → `GET /api/auth/confirm_email?token=…` — el primer acceso consume el token |
-| Puerta de incorporación | `AgreeToOnboarding {agreementType:"PROFILE_SETUP"}` → `200` → `onboarded=true`, `accessType=FULL`, llamada de clave `200`; sin esto `401` |
+| Puerta de incorporación | `AgreeToOnboarding {agreementType:"PROFILE_SETUP"}` → `200` → `onboarded=true`, `accessType=FULL`, llamada de clave `200`; sin ella `401` |
 
 ```bash
-node src/cli.js verify --keys=keys.txt    # reproduce ambas comprobaciones para tu propio archivo
+node src/cli.js verify --keys=keys.txt    # reproduces both checks for your own file
 ```
 
 ## 🧭 Cómo funciona
 
 ```
-buzón (una dirección por cuenta)                                  una dirección nueva por cuenta
+inbox (one address per account)                                  a fresh address per account
    │
-   ├─▶ registro: página de Cohere → dirección de correo → código / enlace desde el buzón
-   ├─▶ sesión: cookies de la cuenta o token de acceso disponibles
-   ├─▶ generación de clave: punto de acceso de clave de la cuenta → clave en texto plano devuelta una vez (escrita inmediatamente en disco)
-   └─▶ prueba en vivo: POST https://api.cohere.ai/compatibility/v1/chat/completions → contenido real = clave activa
+   ├─▶ sign-up: Cohere page → e-mail address → code / link from the inbox
+   ├─▶ session: the account's cookies or access token in hand
+   ├─▶ key mint: the account's key endpoint → plaintext key returned once (written to disk immediately)
+   └─▶ live proof: POST https://api.cohere.ai/compatibility/v1/chat/completions → real content = the key is live
 ```
 
 Por cuenta, dos fases, un buzón nuevo y una salida nueva:
 
-1. **Fase del navegador** — un contexto Chrome aislado, vinculado a una salida. Se carga la página de registro, se resuelve el desafío reCAPTCHA Enterprise de la página, y sigue el POST `RegisterWithEmail` interno. Los recursos del captcha se almacenan en caché en disco una vez y se sirven a cada contexto desde allí, por lo que una salida de corta duración solo debe transportar la pequeña página del formulario y el POST. Si el transporte de la página falla a mitad de camino, el POST de registro se reintenta desde Node mediante una salida rotada.
-2. **Fase posterior** — HTTP plano, rotación de salidas, sin navegador. Leer el buzón → resolver el contenedor SendGrid del encabezado `Location` (con un GET sin seguimiento) → consumir la ruta del enlace de confirmación → portador `AuthV2` → `AgreeToOnboarding` → `GetOrCreateDefaultAPIKey` → verificación en vivo → añadir a `keys.txt` y `accounts.json`.
+1. **Fase de navegador** — un contexto de Chrome aislado, fijado a una salida. Se carga la página de registro, se resuelve el desafío reCAPTCHA Enterprise de la propia página y sigue el POST `RegisterWithEmail` dentro de la página. Los recursos del captcha se almacenan en caché en disco una vez y se sirven a todos los contextos desde ahí, así que una salida efímera solo tiene que transportar la pequeña página del formulario y el POST. Si el transporte de la página muere a mitad de vuelo, el POST de registro se reintenta desde Node a través de una salida rotada.
+2. **Fase posterior** — HTTP simple, rotando salidas, sin navegador. Leer el buzón → resolver el envoltorio de SendGrid desde la cabecera `Location` (con un GET sin seguimiento) → consumir la ruta del enlace de confirmación → bearer `AuthV2` → `AgreeToOnboarding` → `GetOrCreateDefaultAPIKey` → verificación en vivo → añadir a `keys.txt` y `accounts.json`.
 
-## ⚙️ Opciones CLI
+## ⚙️ Opciones de CLI
 
 ```bash
-node src/cli.js mint   --count=30        # crear cuentas nuevas y generar una clave por cuenta
-node src/cli.js finish                   # iniciar sesión en cuentas ya creadas y finalizar su clave
-node src/cli.js verify --keys=keys.txt   # volver a comprobar claves ya en disco
-node src/cli.js help                     # tareas y banderas
+node src/cli.js mint   --count=30        # create fresh accounts and mint one key each
+node src/cli.js finish                   # log in to accounts already created and finish their key
+node src/cli.js verify --keys=keys.txt   # re-check keys that are already on disk
+node src/cli.js help                     # tasks and flags
 ```
 
-| Tarea | Banderas |
+| Tarea | Flags |
 | --- | --- |
-| `mint` | `--count N` (30) · `--mail <puerto>` (9700) · `--port N` (CDP de Chrome, 9341) · `--min-kbs N` (60) · `--budget-min N` (600) · `--headless` · `--keep` |
-| `finish` | `--box=<id>` · `--email=<dir>` · `--password=<pw>` · `--registered=<en>` (todos en forma `=`, `--cross` = comprobación cruzada del buzón) |
-| `verify` | `--keys=<archivo>` (por defecto `keys.txt`) · `--limit=N` (0 = todas) |
+| `mint` | `--count N` (30) · `--mail <port>` (9700) · `--port N` (Chrome CDP, 9341) · `--min-kbs N` (60) · `--budget-min N` (600) · `--headless` · `--keep` |
+| `finish` | `--box=<id>` · `--email=<addr>` · `--password=<pw>` · `--registered=<at>` (todos en forma `=`; `--cross` = verificación cruzada del buzón) |
+| `verify` | `--keys=<file>` (por defecto `keys.txt`) · `--limit=N` (0 = todas) |
 
-Se recomienda Turbo (5); más puede aumentar el riesgo de carga o bloqueo en equipos débiles.
+Se recomienda turbo (5); más supone riesgo de carga/ban en equipos débiles.
 
-La tarea `help` del distribuidor lista las tareas; las banderas se leen como `--name=value`. `node src/launcher.js` ofrece crear · finalizar · verificar · ajustes — el encabezado muestra cuántas salidas tiene `proxies.txt` y cuántas claves hay en disco, y los ajustes se guardan en `launcher.config.json`.
+La tarea `help` del despachador lista las tareas; los flags se leen como `--name=value`. `node src/launcher.js` ofrece mint · finish · verify · settings — la cabecera muestra cuántas salidas contiene `proxies.txt` y cuántas claves hay en disco, y la configuración persiste en `launcher.config.json`.
 
-| Variable de entorno | Predeterminado | Significado |
+| Variable de entorno | Valor por defecto | Significado |
 | --- | --- | --- |
-| `COHERE_MAILBOX` | intermediario loopback | backend de buzón (`emailnator` si se establece) |
-| `COHERE_MAILTRAP_FOLDER` | buzón Mailtrap | carpeta Mailtrap para capturas |
+| `COHERE_MAILBOX` | broker de loopback | backend de buzón (`emailnator` cuando se establece) |
+| `COHERE_MAILTRAP_FOLDER` | buzón de Mailtrap | carpeta de Mailtrap para las capturas |
 
 ## 🛰️ Detrás de un proxy
 
-* `proxies.txt` — una salida por línea, `esquema://host:puerto` con `http` / `socks4` / `socks5`; se admiten credenciales `user:pass@`, `#` inicia un comentario, y un `host:puerto` simple predetermina a `http://`. Las líneas vacías se omiten.
-* **Preflight en el punto de uso:** una salida solo se usa tras pasar una comprobación real de egreso; se rechazan respuestas privadas/CGNAT de inmediato. El tráfico solo sale a través de una salida del grupo.
-* **Fase con rotación de salidas:** la fase posterior reintenta en todo el grupo (la ruta de confirmación tiene 12 intentos), y `verify` rota salidas ante `403`, fallando una clave solo ante `401`.
-* **Sin regla de una cuenta por salida:** una salida puede transportar muchas cuentas — en el lote enviado, 5 salidas transportaron 15 claves y una de ellas transportó 9.
+* `proxies.txt` — una salida por línea, `scheme://host:port` con `http` / `socks4` / `socks5`; se admiten credenciales `user:pass@`, `#` inicia un comentario y un `host:port` sin esquema usa `http://` por defecto. Las líneas en blanco se omiten.
+* **Comprobación previa en el punto de uso:** una salida se usa solo después de haber llevado justo antes una comprobación real de egreso; las respuestas privadas/CGNAT se rechazan de plano. El tráfico objetivo solo sale por una salida del pool.
+* **Fase de rotación de salidas:** la fase posterior reintenta en todo el pool (la ruta de confirmación tiene 12 intentos), y `verify` rota salidas ante `403` mientras que solo marca una clave como fallida ante `401`.
+* **Sin regla de una cuenta por salida:** una salida puede transportar muchas cuentas — en el lote publicado, 5 salidas transportaron 15 claves y una de ellas transportó 9.
 
 ## 📄 Archivos
 
 | Ruta | Contenido |
 | --- | --- |
-| `keys.txt` | las claves, **una por línea**, añadidas inmediatamente tras pasar la comprobación en vivo |
-| `accounts.json` | un registro por cuenta: buzón, contraseña, clave, salida que la generó |
-| `out/` | directorios por intento (capturas de pantalla + volcados DOM/red), registro del lote, seguimiento de salidas |
-| `src/models.json` | generado por `verify` — respuesta real de `GET /v1/models` de la primera clave verificada |
+| `keys.txt` | las claves, **una por línea**, añadidas en el momento en que una clave pasa la comprobación en vivo |
+| `accounts.json` | un registro por cuenta: buzón, contraseña, clave, la salida que la emitió |
+| `out/` | directorios de ejecución por intento (capturas de pantalla + volcados de DOM/red), el registro del lote, contabilidad de salidas |
+| `src/models.json` | escrito por `verify` — la respuesta en vivo de `GET /v1/models` de la primera clave que se verifica |
 
-## 🔌 Conectar a 9Router
+## 🔌 Conectar con 9Router
 
-[9Router](https://9router.com) es un enrutador autohospedado compatible con OpenAI. Cohere es compatible con OpenAI (punto de conexión de compatibilidad `https://api.cohere.ai/compatibility/v1`), así que regístralo una vez y usa todas las claves:
+[9Router](https://9router.com) es un router autoalojado y compatible con OpenAI. Cohere es compatible con OpenAI (endpoint de compatibilidad `https://api.cohere.ai/compatibility/v1`), así que regístralo una vez y usa todas las claves:
 
 ```bash
 node src/connect-9router.js \
@@ -239,7 +259,7 @@ node src/connect-9router.js \
   --keys-file keys.txt
 ```
 
-Cada clave en `keys.txt` se convierte en una conexión del nodo proveedor `cohere` (`--api-key <clave>` registra una sola clave, `--model <id>` sobrescribe el predeterminado). Luego elige un modelo dentro de 9Router:
+Cada clave en `keys.txt` se convierte en una conexión del nodo proveedor `cohere` (`--api-key <key>` registra una sola clave en su lugar, `--model <id>` sobrescribe el valor por defecto). Después elige un modelo dentro de 9Router:
 
 ```
 cohere/command-a-03-2025
@@ -247,27 +267,27 @@ cohere/command-r-08-2024
 cohere/command-r7b-12-2024
 ```
 
-Apunta el conector a un `keys.txt` actualizado para añadir más cuentas; el nodo y su lista de modelos permanecen iguales. `node src/launcher.js --connect-9router` ejecuta exactamente esto y primero solicita la URL base y la contraseña.
+Apunta el conector a un `keys.txt` actualizado para añadir más cuentas; el nodo y su lista de modelos permanecen iguales. `node src/launcher.js --connect-9router` ejecuta exactamente esto y pregunta primero por la URL base y la contraseña.
 
-Valores predeterminados: `--base http://localhost:20128`, `--password 123456`, `--name Cohere`, `--prefix cohere`, `--base-url https://api.cohere.ai/compatibility/v1`, `--model command-a-03-2025`.
+Valores por defecto: `--base http://localhost:20128`, `--password 123456`, `--name Cohere`, `--prefix cohere`, `--base-url https://api.cohere.ai/compatibility/v1`, `--model command-a-03-2025`.
 
-## 🔑 Lo que obtienes con una clave
+## 🔑 Qué te da una clave
 
 | | |
 | --- | --- |
 | 🏢 Proveedor | **Cohere** — [cohere.com](https://cohere.com) |
-| 🎁 Lo que ofrece el proveedor | 1 clave de prueba por cuenta (1.000 llamadas/mes durante la campaña) — navegador Chrome real + puerta de confirmación SendGrid |
-| 🔑 Lo que obtienes con una clave | una clave API vinculada a su propia cuenta: los 35 IDs de modelo en el punto de conexión inferior, según los límites de tu plan. La cuota reside en la **cuenta**, razón exacta por la que esta herramienta crea una cuenta por clave |
-| 🌐 Formato de API | Compatible con OpenAI: `POST https://api.cohere.ai/compatibility/v1/chat/completions` |
-| 🔒 Tus datos | solo cohere.com y el backend de buzón que configures son contactados; las claves permanecen en tu máquina |
+| 🎁 Qué ofrece el proveedor | 1 clave de prueba por cuenta (1.000 llamadas/mes cuando se ejecutó la campaña) — Chrome real + puerta de confirmación de SendGrid |
+| 🔑 Qué te da una clave | una clave API limitada a su propia cuenta: los 35 ids de modelo en el endpoint de abajo, con los límites de tu plan. La cuota reside en la **cuenta**, que es exactamente por lo que esta herramienta crea una cuenta por clave |
+| 🌐 Forma de la API | Compatible con OpenAI: `POST https://api.cohere.ai/compatibility/v1/chat/completions` |
+| 🔒 Tus datos | solo se contacta con cohere.com y el backend de buzón que configures; las claves permanecen en tu máquina |
 
 ## 🐞 Problemas
 
-¿Cohere cambió el RPC, la ruta de confirmación o la política de registro? La herramienta se detiene en el paso fallido y lo indica. **[Abre un problema](../../issues)** con el comando ejecutado y la salida exacta — los volcados por intento bajo `out/` (capturas, registros DOM y red) hacen reproducible el fallo sin filtrar claves. Se aceptan PRs.
+¿Cohere cambió el RPC, la ruta de confirmación o la política de registro? La herramienta se detiene en el paso que falla y lo indica. **[Abre un issue](../../issues)** con el comando que ejecutaste y la salida exacta — los volcados por intento en `out/` (capturas de pantalla, registros de DOM y red) hacen que los fallos sean reproducibles sin filtrar una clave. Se aceptan PRs.
 
 ## 📄 Licencia
 
-MIT © 2026 — ver [LICENSE](LICENSE).
+MIT © 2026 — consulta [LICENSE](LICENSE).
 
 <div align="center">
 
