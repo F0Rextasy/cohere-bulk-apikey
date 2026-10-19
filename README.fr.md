@@ -30,10 +30,6 @@
 
 </div>
 
-
-
-
-
 ---
 
 ## ✨ Pourquoi ce projet existe

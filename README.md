@@ -30,11 +30,6 @@
 
 </div>
 
-
-
-
-
-
 ---
 
 ## ✨ Why this exists
