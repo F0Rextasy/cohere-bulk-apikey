@@ -86,7 +86,8 @@ async function verifyOne(key, pool) {
 }
 
 const verifyAny = async (key, { tries = 8 } = {}) => {
-  const pool = exits();
+  const found = exits();
+  const pool = found.length ? found : [lib.DIRECT_EXIT];
   let last = null;
   for (const p of pool.slice(0, tries)) {
     const r = await verifyOne(key, [p]);
@@ -103,8 +104,11 @@ if (require.main === module) {
 (async () => {
   const lines = fs.readFileSync(KEYS, 'utf8').split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
   const keys = LIMIT > 0 ? lines.slice(0, LIMIT) : lines;
-  const pool = exits();
-  if (!pool.length) throw new Error('no exits available; run probe.js');
+  // No pool = DIRECT mode: a proxy is recommended at scale (per-IP limits,
+  // bans) but it is optional — the direct pseudo-exit keeps verify working.
+  const found = exits();
+  const pool = found.length ? found : [lib.DIRECT_EXIT];
+  if (!found.length) lib.log('verify', 'no exit list — running WITHOUT a proxy (direct)');
   const outFile = path.join(lib.OUT, 'verify-report.txt');
   fs.mkdirSync(path.dirname(outFile), { recursive: true }); // a fresh clone has no out/
   fs.writeFileSync(outFile, '');

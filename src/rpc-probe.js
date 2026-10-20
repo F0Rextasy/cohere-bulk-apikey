@@ -91,7 +91,7 @@ async function call(proxy, { method, headers, body }) {
     {
       name: 'json + empty token',
       headers: { 'content-type': 'application/json', 'X-Recaptcha-Token': TOKEN, 'X-Email-Domain': 'example.com', origin: 'https://dashboard.cohere.com', referer: 'https://dashboard.cohere.com/welcome/register' },
-      body: { email: 'probe+cohere@example.com', password: 'Xy7!mQ2#vT9pLw', inviteHash: '', freeCreditCode: '', analyticsData: {} },
+      body: { email: 'probe+cohere@example.com', password: `Probe!${Date.now().toString(36)}#7x`, inviteHash: '', freeCreditCode: '', analyticsData: {} },
     },
     {
       name: 'json empty body',

@@ -42,16 +42,17 @@ function pickExit() {
 
 (async () => {
   fs.mkdirSync(RUN, { recursive: true });
-  const proxy = pickExit();
-  if (!proxy) throw new Error('no exit available');
+  // No exit list = DIRECT mode: a pool is recommended at scale (per-IP limits,
+  // bans) but it is optional.
+  const proxy = pickExit() || lib.DIRECT_EXIT;
   const chrome = B.launchChrome(PORT, 'click-confirm');
   const cdp = await B.connect(PORT);
   let ok = false;
   try {
-    const ctx = await B.openContext(cdp, { proxyServer: lib.proxyLib.browserUrl(proxy) });
+    const ctx = await B.openContext(cdp, lib.isDirect(proxy) ? {} : { proxyServer: lib.proxyLib.browserUrl(proxy) });
     const sid = ctx.sessionId;
     let teardown = null;
-    if (proxy.username) teardown = await lib.proxyLib.attachProxyAuth(cdp, sid, proxy);
+    if (!lib.isDirect(proxy) && proxy.username) teardown = await lib.proxyLib.attachProxyAuth(cdp, sid, proxy);
     const net = flow.attachNet(cdp, sid);
 
     lib.log('click-confirm', `exit ${proxy.raw} -> opening ${TARGET.slice(0, 120)}`);

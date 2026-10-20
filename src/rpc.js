@@ -59,8 +59,9 @@ async function call(method, body = {}, { token = null, headers = {}, tries = 8, 
     referer: 'https://dashboard.cohere.com/',
     ...headers,
   };
-  const list = pool();
-  if (!list.length) throw new Error('no exits available for rpc call');
+  // No pool = DIRECT mode: a pool is recommended at scale (per-IP limits,
+  // bans) but it is optional — the direct pseudo-exit keeps the call working.
+  const list = pool().length ? pool() : [lib.DIRECT_EXIT];
   const start = Math.floor(Math.random() * list.length);
   let lastErr = null;
   for (let i = 0; i < Math.min(tries, list.length); i++) {

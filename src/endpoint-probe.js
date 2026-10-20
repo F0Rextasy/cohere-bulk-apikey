@@ -55,7 +55,7 @@ function exits() {
 async function send(pathq, method, base, pool) {
   const body =
     method === 'POST'
-      ? { email: 'probe+cohere@example.com', password: 'Xy7!mQ2#vT9pLw', inviteHash: '', freeCreditCode: '', analyticsData: {} }
+      ? { email: 'probe+cohere@example.com', password: `Probe!${Date.now().toString(36)}#7x`, inviteHash: '', freeCreditCode: '', analyticsData: {} }
       : null;
   const headers = {
     accept: 'application/json',

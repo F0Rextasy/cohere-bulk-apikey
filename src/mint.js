@@ -96,12 +96,12 @@ function markUsed(raw, info) {
     while (keysHave() < targetKeys && Date.now() - started < BUDGET_MS) {
       attempt++;
       const exits = goodExits(minKbs);
-      if (!exits.length) {
-        lib.log('mint', `no soaked exits left; run soak.js against a fresh pool first`);
-        break;
-      }
-      const row = exits[Math.floor(Math.random() * Math.min(3, exits.length))];
-      const proxy = lib.parseProxy(row.raw);
+      // No soaked exits (or no pool at all) = DIRECT mode: a proxy is
+      // recommended at scale (per-IP limits, bans) but it is optional.
+      const direct = !exits.length;
+      if (direct) lib.log('mint', `no soaked exits — running WITHOUT a proxy (direct)`);
+      const row = direct ? { raw: 'direct', kbs: 0 } : exits[Math.floor(Math.random() * Math.min(3, exits.length))];
+      const proxy = direct ? lib.DIRECT_EXIT : lib.parseProxy(row.raw);
       const t0 = Date.now();
       lib.log('mint', `--- attempt ${attempt} via ${row.raw} (${row.kbs} KB/s) ---`);
       console.log(`… #${attempt} başladı (${maskExit(row.raw)})`);
@@ -117,9 +117,9 @@ function markUsed(raw, info) {
         lib.log('mint', `mailbox ${box.address}`);
         lib.saveJson(path.join(acctDir, 'account.json'), { ...box, proxy: row.raw, at: lib.stamp() });
 
-        const ctx = await B.openContext(cdp, { proxyServer: lib.proxyLib.browserUrl(proxy) });
+        const ctx = await B.openContext(cdp, lib.isDirect(proxy) ? {} : { proxyServer: lib.proxyLib.browserUrl(proxy) });
         browserContextId = ctx.browserContextId;
-        if (proxy.username) teardownAuth = await lib.proxyLib.attachProxyAuth(cdp, ctx.sessionId, proxy);
+        if (!lib.isDirect(proxy) && proxy.username) teardownAuth = await lib.proxyLib.attachProxyAuth(cdp, ctx.sessionId, proxy);
 
         const ip = await B.evalJs(cdp, ctx.sessionId, `fetch('https://api.ipify.org/?format=json').then(r=>r.json()).then(j=>j.ip)`).catch((e) => `ERR ${e.message}`);
         lib.log('mint', `exit ip ${ip}`);
@@ -138,7 +138,7 @@ function markUsed(raw, info) {
         lib.log('mint', `attempt ${attempt}: ok=${res.ok} stage=${res.stage} err=${res.error || ''} ${Math.round((Date.now() - t0) / 1000)}s`);
         if (res.ok) {
           const isNew = lib.appendKey(res.key, { address: box.address, proxy: row.raw, attempt });
-          markUsed(row.raw, { account: attempt, ok: true });
+          if (!direct) markUsed(row.raw, { account: attempt, ok: true });
           const accountsFile = path.join(lib.ROOT, 'accounts.json');
           const accounts = lib.loadJson(accountsFile, []);
           accounts.push({ address: box.address, password: res.password, key: res.key, proxy: row.raw, at: lib.stamp() });

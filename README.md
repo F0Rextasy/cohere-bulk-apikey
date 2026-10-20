@@ -137,8 +137,8 @@ curl https://api.cohere.com/v1/chat \
 git clone https://github.com/F0Rextasy/cohere-bulk-apikey.git
 cd cohere-bulk-apikey
 
-# 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port)
-printf 'http://127.0.0.1:8080\n' > proxies.txt
+# 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port) — optional
+printf 'http://127.0.0.1:8080\n' > proxies.txt   # optional — without a pool the HTTP rails run direct
 
 # 2) mailboxes — a local broker that hands out disposable inboxes over plain HTTP
 #    (a Mailtrap-backed broker on :9700 served the shipped batch; an inboxes.com
@@ -232,7 +232,8 @@ The dispatcher's `help` task lists the tasks; flags are read as `--name=value`. 
 ## 🛰️ Behind a proxy
 
 * `proxies.txt` — one exit per line, `scheme://host:port` with `http` / `socks4` / `socks5`; `user:pass@` credentials are supported, `#` starts a comment, and a bare `host:port` defaults to `http://`. Blank lines are skipped.
-* **Point-of-use preflight:** an exit is used only after it has just carried a real egress check; private/CGNAT answers are rejected outright. Target traffic only ever leaves through a pool exit.
+* **Optional — recommended at scale (per-IP limits, bans).** The HTTP rails (`rpc`, `verify`, `recon`, `click-confirm`) work without a proxy too: with no pool file the request leaves directly and the run logs the exit as `direct`.
+* **Point-of-use preflight (when a pool is given):** an exit is used only after it has just carried a real egress check; private/CGNAT answers are rejected outright. The browser sign-up still wants a pool — the dashboard is IP-gated and the mint path is built on *soaked* exits (run `probe.js`/`soak.js` first).
 * **Exit-rotating phase:** the post phase retries across the whole pool (the confirm route gets 12 tries), and `verify` rotates exits on `403` while failing a key only on `401`.
 * **No account-per-exit rule:** one exit may carry many accounts — in the shipped batch, 5 exits carried 15 keys and one of them carried 9.
 

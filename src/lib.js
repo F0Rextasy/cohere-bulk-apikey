@@ -48,7 +48,16 @@ class Jar {
 }
 
 /**
- * One HTTPS request through `proxy` (null = direct, avoid). Returns
+ * The direct-mode pseudo-exit: `raw` keeps the logs honest, `direct` turns the
+ * proxy tunnel off. The pool is OPTIONAL — recommended at scale (per-IP limits,
+ * bans) — so every flow can fall back to this instead of aborting.
+ */
+const DIRECT_EXIT = Object.freeze({ raw: 'direct', direct: true, protocol: 'direct', host: 'direct', port: 0 });
+const isDirect = (p) => !p || p.direct === true;
+
+/**
+ * One HTTPS request through `proxy`; `null` or DIRECT_EXIT means "no proxy"
+ * (direct — a pool is optional). Returns
  * { status, headers, text, json, cookies }.
  */
 function request(proxy, { method = 'GET', url, headers = {}, body, timeoutMs = 45000, jar }) {
@@ -72,7 +81,7 @@ function request(proxy, { method = 'GET', url, headers = {}, body, timeoutMs = 4
         host: u.hostname,
         port: u.port || 443,
         path: u.pathname + u.search,
-        agent: proxy ? proxyLib.createAgent(proxy) : undefined,
+        agent: isDirect(proxy) ? undefined : proxyLib.createAgent(proxy),
         headers: finalHeaders,
       },
       (res) => {
@@ -301,14 +310,20 @@ function loadProxies(file = process.env.COHEERE_PROXY_LIST || process.env.COHERE
   // dead and the whole soak comes back empty. Budgets are deliberately long.
   const handshake = parseInt(process.env.CH_TUNNEL_TMO || '45000', 10);
   const connect = parseInt(process.env.CH_CONNECT_TMO || '20000', 10);
-  return proxyLib
-    .loadProxyList(file)
-    .filter((p) => !proxyLib.isLocalHost(p.host))
-    .map((p) => {
-      p.timeoutMs = handshake;
-      p.connectTimeoutMs = connect;
-      return p;
-    });
+  try {
+    return proxyLib
+      .loadProxyList(file)
+      .filter((p) => !proxyLib.isLocalHost(p.host))
+      .map((p) => {
+        p.timeoutMs = handshake;
+        p.connectTimeoutMs = connect;
+        return p;
+      });
+  } catch (e) {
+    // No pool file at all = DIRECT mode: nothing to load, and the callers that
+    // need an exit handle an empty list explicitly (see rpc.js / verify.js).
+    return [];
+  }
 }
 
 /** parseProxy + our long tunnel/connect budgets (raw parse returns no budgets). */
@@ -324,6 +339,8 @@ module.exports = {
   UA,
   Jar,
   request,
+  DIRECT_EXIT,
+  isDirect,
   brokerCreate,
   mailboxCreate,
   brokerList,

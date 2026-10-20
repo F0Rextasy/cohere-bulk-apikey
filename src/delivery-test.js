@@ -20,7 +20,8 @@ const MINUTES = parseFloat(opt('minutes', '8'));
 
 (async () => {
   const box = await lib.brokerCreate(9700);
-  const password = 'Qv7#mK2pLw9tZr';
+  // throwaway probe password, generated per run — never a fixed credential
+  const password = `Probe!${Date.now().toString(36)}#7x`;
   lib.log('delivery-test', `box ${box.address} id ${box.token} (broker ${box.port})`);
   lib.saveJson(`${lib.OUT}/delivery-test-box.json`, { ...box, password, at: lib.stamp() });
 
