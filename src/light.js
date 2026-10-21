@@ -330,7 +330,7 @@ if (require.main === module) {
         let teardown = null;
         let cacheTeardown = null;
         try {
-          ctx = await B.openContext(cdp, BYPASS ? { proxyServer: lib.proxyLib.browserUrl(proxy), proxyBypassList: bypass } : { proxyServer: lib.proxyLib.browserUrl(proxy) });
+          ctx = await B.openContext(cdp, BYPASS ? { proxyServer: lib.proxyLib.browserUrl(proxy), proxyBypassList: BYPASS } : { proxyServer: lib.proxyLib.browserUrl(proxy) });
           if (proxy.username) teardown = await lib.proxyLib.attachProxyAuth(cdp, ctx.sessionId, proxy);
           cacheTeardown = await recaptcha.install(cdp, ctx.sessionId, { log: (m) => lib.log('light', m) }).catch(() => null);
           const ip = await egressCheck(cdp, ctx.sessionId);

@@ -7,6 +7,7 @@
 // Exports runAccount(cdp, sid, ctx) and the DOM/CDP helpers the CLIs share.
 
 const fs = require('fs');
+const crypto = require('crypto');
 const path = require('path');
 const lib = require('./lib');
 const B = require('./browser');
@@ -533,7 +534,12 @@ async function runAccount(cdp, sid, ctx) {
         break;
       }
     }
-    if (!result.ok) result.error = `no candidate key verified (${keys.length} tried)`;
+    if (!result.ok) {
+      result.error = `no candidate key verified (${keys.length} tried)`;
+      // A key the page showed but the live check could not confirm is still the
+      // only copy of that credential — hand it to the caller instead of dropping it.
+      result.unverifiedKey = keys[0];
+    }
     return result;
   } catch (e) {
     result.error = `${result.stage}: ${e.message}`;
@@ -556,7 +562,7 @@ function makePassword() {
   const upper = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
   const digits = '23456789';
   const syms = '!@#%^&*-_';
-  const pick = (s) => s[Math.floor(Math.random() * s.length)];
+  const pick = (s) => s[crypto.randomInt(s.length)]; // not Math.random: these are account credentials
   const rnd = (n) => Array.from({ length: n }, () => pick(lower + upper + digits)).join('');
   return pick(upper) + rnd(6) + pick(syms) + pick(digits) + rnd(7) + pick(syms) + pick(upper);
 }

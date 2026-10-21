@@ -5,7 +5,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const ROOT = ROOT; // data root (the repo root)
 const lib = require('./lib');
 
 const args = process.argv.slice(2);
@@ -16,7 +15,7 @@ const opt = (name, dflt) => {
 
 const TARGET = parseInt(opt('target', '40'), 10);
 const CONC = Math.min(5, parseInt(opt('conc', '5'), 10));
-const DEFAULT_POOL = path.join(ROOT, 'out', 'union-live.txt');
+const DEFAULT_POOL = path.join(lib.ROOT, 'out', 'union-live.txt');
 const POOL = opt('pool', process.env.COHERE_PROXY_LIST || DEFAULT_POOL);
 const OUT_FILE = opt('out', path.join(lib.OUT, 'live-exits.txt'));
 const PRIMARY = 'dashboard.cohere.com';

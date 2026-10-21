@@ -58,8 +58,16 @@ function keysHave() {
 function goodExits(minKbs) {
   const f = path.join(lib.OUT, 'good-exits.txt');
   const used = lib.loadJson(path.join(lib.OUT, 'used-exits.json'), {});
-  const rows = fs
-    .readFileSync(f, 'utf8')
+  // No pool file at all is the documented direct-mode case, not an error: the
+  // read used to throw ENOENT out of the attempt loop, so the run died before it
+  // could ever pick DIRECT.
+  let text = '';
+  try {
+    text = fs.readFileSync(f, 'utf8');
+  } catch (e) {
+    return [];
+  }
+  const rows = text
     .split(/\r?\n/)
     .filter(Boolean)
     .map((l) => {
@@ -148,6 +156,13 @@ function markUsed(raw, info) {
           console.log(`✓ #${attempt} KEY ALINDI: ${res.key.slice(0, 22)}…   [${okCount} ok / ${attempt} deneme]`);
         } else {
           markUsed(row.raw, { account: attempt, ok: false, stage: res.stage, error: res.error });
+          // A key the page showed but the live check could not confirm (a dead
+          // exit, a 429) is still the only copy of that credential: the sibling
+          // tools all park it in out/unverified-keys.txt, so mint does too.
+          if (res.unverifiedKey) {
+            fs.appendFileSync(path.join(lib.OUT, 'unverified-keys.txt'), `${res.unverifiedKey}\t${box.address}\tunverified in mint attempt ${attempt}\n`);
+            lib.log('mint', `attempt ${attempt}: kept the scraped key in out/unverified-keys.txt (verify said: ${res.error})`);
+          }
           console.log(`✗ #${attempt} key yok: ${`${res.stage || 'unknown'} ${res.error || ''}`.trim()}`);
         }
         // keep the account record for the report even when registration succeeded
@@ -185,8 +200,10 @@ function markUsed(raw, info) {
         spawnSync('taskkill', ['/PID', String(chrome.pid), '/T', '/F'], { windowsHide: true, stdio: 'ignore' });
       } catch (e) {}
     }
-    lib.log('mint', `run over: ${keysHave()} keys total, ${attempt} attempts`);
-    console.log(`MINT ${okCount}/${COUNT} OK`);
+    const short = okCount < COUNT;
+    lib.log('mint', `run over: ${keysHave()} keys total, ${attempt} attempts, ${okCount}/${COUNT} this run`);
+    console.log(`MINT ${okCount}/${COUNT}${short ? ' — short of the target' : ' OK'}`);
+    if (short) process.exitCode = 1;
   }
 })().catch((e) => {
   lib.log('mint', `FAIL ${e.stack}`);

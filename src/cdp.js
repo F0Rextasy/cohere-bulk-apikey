@@ -49,7 +49,7 @@ class RawWebSocket extends EventEmitter {
     this.timeoutMs = timeoutMs;
     this.buffer = Buffer.alloc(0);
     this.connected = false;
-    this._queue = [];
+    this._fragments = null; // in-flight fragmented message (text + continuations)
   }
 
   connect() {
@@ -109,7 +109,9 @@ class RawWebSocket extends EventEmitter {
           this.connected = true;
           this.socket = socket;
           clearTimeout(timer);
-          if (this.buffer.length) this._parse(this.buffer);
+          const leftover = this.buffer;
+          this.buffer = Buffer.alloc(0);
+          if (leftover.length) this._parse(leftover);
           resolve(this);
           return;
         }
@@ -150,8 +152,16 @@ class RawWebSocket extends EventEmitter {
       }
       this.buffer = this.buffer.slice(offset + len);
 
-      if (opcode === 0x1) {
-        this.emit('message', payload.toString('utf8'));
+      const fin = (b0 & 0x80) !== 0;
+      if (opcode === 0x1 || opcode === 0x0) {
+        // Chrome and cloud-browser proxies split a large message across frames
+        // (text + continuation): it is whole only on the frame that carries FIN.
+        this._fragments = Buffer.concat([this._fragments || Buffer.alloc(0), payload]);
+        if (fin) {
+          const whole = this._fragments;
+          this._fragments = null;
+          this.emit('message', whole.toString('utf8'));
+        }
       } else if (opcode === 0x8) {
         this.emit('close');
         this.socket && this.socket.end();
@@ -187,7 +197,6 @@ class CDP extends EventEmitter {
     this.opts = opts;
     this._id = 0;
     this._pending = new Map();
-    this._sessions = new Map();
     this._listeners = new Map();
     this.defaultSessionId = null;
   }
@@ -209,8 +218,9 @@ class CDP extends EventEmitter {
       return;
     }
     if (msg.id !== undefined && this._pending.has(msg.id)) {
-      const { resolve, reject } = this._pending.get(msg.id);
+      const { resolve, reject, timer } = this._pending.get(msg.id);
       this._pending.delete(msg.id);
+      clearTimeout(timer);
       if (msg.error) reject(Object.assign(new Error(msg.error.message), { data: msg.error.data, code: msg.error.code }));
       else resolve(msg.result);
       return;
@@ -229,14 +239,14 @@ class CDP extends EventEmitter {
     const payload = { id, method, params };
     if (sessionId) payload.sessionId = sessionId;
     return new Promise((resolve, reject) => {
-      this._pending.set(id, { resolve, reject });
-      this.ws.send(JSON.stringify(payload));
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         if (this._pending.has(id)) {
           this._pending.delete(id);
           reject(new Error(`CDP timeout: ${method}`));
         }
       }, this.opts.commandTimeoutMs || 45000);
+      this._pending.set(id, { resolve, reject, timer });
+      this.ws.send(JSON.stringify(payload));
     });
   }
 

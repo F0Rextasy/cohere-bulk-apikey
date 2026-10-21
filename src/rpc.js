@@ -36,11 +36,21 @@ function exits() {
     for (const l of readTabbed(f)) push(l.split('\t')[0], 500);
   }
   for (const l of readTabbed('good-exits.txt')) push(l.split('\t')[0], 300);
+  // The published tree has no out/ — the operator's own pool is the documented
+  // proxies.txt (verify.js already reads it). Without this a filled-in pool was
+  // ignored and every call left from this machine's own address.
+  try {
+    for (const l of fs.readFileSync(path.join(lib.ROOT, 'proxies.txt'), 'utf8').split(/\r?\n/)) {
+      const raw = l.split(/\s+#/)[0].trim();
+      if (raw) push(raw, 600);
+    }
+  } catch (e) {}
   rows.sort((a, b) => a.rank - b.rank);
   return [...new Set(rows.map((r) => r.raw))].map((r) => lib.parseProxy(r)).filter(Boolean);
 }
 
 let POOL = null;
+let directWarned = false; // one line per process, not per call
 function pool() {
   if (!POOL || !POOL.length) POOL = exits();
   return POOL;
@@ -62,6 +72,10 @@ async function call(method, body = {}, { token = null, headers = {}, tries = 8, 
   // No pool = DIRECT mode: a pool is recommended at scale (per-IP limits,
   // bans) but it is optional — the direct pseudo-exit keeps the call working.
   const list = pool().length ? pool() : [lib.DIRECT_EXIT];
+  if (list.length === 1 && list[0] === lib.DIRECT_EXIT && !directWarned) {
+    directWarned = true;
+    lib.log('rpc', 'no exit in the pool — this call leaves from your own address (direct)');
+  }
   const start = Math.floor(Math.random() * list.length);
   let lastErr = null;
   for (let i = 0; i < Math.min(tries, list.length); i++) {

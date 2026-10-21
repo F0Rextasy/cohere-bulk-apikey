@@ -268,7 +268,9 @@ function loadJson(file, fallback) {
 
 function saveJson(file, value) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, JSON.stringify(value, null, 2));
+  // Accounts carry mailbox tokens and API keys: keep them owner-only where the
+  // platform honours the mode (Windows applies it to new files only).
+  fs.writeFileSync(file, JSON.stringify(value, null, 2), { mode: 0o600 });
 }
 
 /** Append a key to keys.txt (dedup) + meta + user mirror. */
@@ -280,11 +282,11 @@ function appendKey(key, meta = {}) {
   const current = fs.existsSync(keysFile) ? fs.readFileSync(keysFile, 'utf8') : '';
   const has = current.split(/\r?\n/).map((l) => l.trim()).filter(Boolean).includes(line);
   if (has) return false;
-  fs.appendFileSync(keysFile, line + '\n');
-  fs.appendFileSync(path.join(ROOT, 'out', 'keys.meta.ndjson'), JSON.stringify({ key, at: stamp(), ...meta }) + '\n');
+  fs.appendFileSync(keysFile, line + '\n', { mode: 0o600 });
+  fs.appendFileSync(path.join(ROOT, 'out', 'keys.meta.ndjson'), JSON.stringify({ key, at: stamp(), ...meta }) + '\n', { mode: 0o600 });
   const mirror = path.join(os.homedir(), 'cohere-keys.txt');
   try {
-    fs.appendFileSync(mirror, line + '\n');
+    fs.appendFileSync(mirror, line + '\n', { mode: 0o600 });
   } catch (e) {}
   return true;
 }
