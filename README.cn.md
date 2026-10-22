@@ -18,6 +18,7 @@
 [![License](https://img.shields.io/badge/license-MIT-6ea8fe?style=for-the-badge)](LICENSE)
 [![Models](https://img.shields.io/badge/models-35%20served-412991?style=for-the-badge)](https://dashboard.cohere.com)
 [![9Router](https://img.shields.io/badge/9Router-connector-8B5CF6?style=for-the-badge)](#-connect-to-9router)
+[![OmniRoute](https://img.shields.io/badge/OmniRoute-connector-8B5CF6?style=for-the-badge)](#-connect-to-omniroute)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
 [🛠 快速开始](#-quick-start) · [🎁 免费额度](#-free-tier--how-much-you-get) · [🤖 模型](#-models--all-35-of-them) · [🧪 使用 API](#-how-to-use-the-api) · [✅ 已验证](#-verified-working--every-key-is-tested) · [🧭 工作原理](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [⚙️ 选项](#️-cli-options) · [🛰️ 代理](#️-behind-a-proxy) · [🐞 问题](#-issues)
@@ -268,6 +269,27 @@ cohere/command-r7b-12-2024
 
 默认值：`--base http://localhost:20128`、`--password 123456`、`--name Cohere`、`--prefix cohere`、`--base-url https://api.cohere.ai/compatibility/v1`、`--model command-a-03-2025`。
 
+## 🔌 连接到 OmniRoute
+
+[OmniRoute](https://omniroute.online) 是一个自托管、兼容 OpenAI 的路由器。Cohere 兼容 OpenAI（兼容端点 `https://api.cohere.ai/compatibility/v1`），因此注册一次即可使用每个密钥：
+
+```bash
+node src/connect-omniroute.js \
+  --base http://localhost:20128 --password 123456 \
+  --keys-file keys.txt
+```
+
+`keys.txt` 中的每个密钥都会成为 `cohere` 提供者节点的一个连接（`--api-key <key>` 改为注册单个密钥，`--model <id>` 覆盖默认值）。然后在 OmniRoute 内选择一个模型：
+
+```
+cohere/command-a-03-2025
+cohere/command-r-08-2024
+cohere/command-r7b-12-2024
+```
+
+将连接器指向刷新后的 `keys.txt` 即可添加更多账户；节点及其模型列表保持不变。`node src/launcher.js --connect-omniroute` 正是执行此操作，并会先询问基础 URL 和密码。
+
+默认值：`--base http://localhost:20128`、`--password 123456`、`--name Cohere`、`--prefix cohere`、`--base-url https://api.cohere.ai/compatibility/v1`、`--model command-a-03-2025`。
 ## 🔑 一个密钥能给你什么
 
 | | |

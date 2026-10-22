@@ -18,6 +18,7 @@
 [![License](https://img.shields.io/badge/license-MIT-6ea8fe?style=for-the-badge)](LICENSE)
 [![Models](https://img.shields.io/badge/models-35%20served-412991?style=for-the-badge)](https://dashboard.cohere.com)
 [![9Router](https://img.shields.io/badge/9Router-connector-8B5CF6?style=for-the-badge)](#-connect-to-9router)
+[![OmniRoute](https://img.shields.io/badge/OmniRoute-connector-8B5CF6?style=for-the-badge)](#-connect-to-omniroute)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
 [🛠 クイックスタート](#-quick-start) · [🎁 無料枠](#-free-tier--how-much-you-get) · [🤖 モデル](#-models--all-35-of-them) · [🧪 API の使い方](#-how-to-use-the-api) · [✅ 検証済み](#-verified-working--every-key-is-tested) · [🧭 仕組み](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [⚙️ オプション](#️-cli-options) · [🛰️ プロキシ](#️-behind-a-proxy) · [🐞 問題報告](#-issues)
@@ -268,6 +269,27 @@ cohere/command-r7b-12-2024
 
 デフォルト: `--base http://localhost:20128`、`--password 123456`、`--name Cohere`、`--prefix cohere`、`--base-url https://api.cohere.ai/compatibility/v1`、`--model command-a-03-2025`。
 
+## 🔌 OmniRoute に接続する
+
+[OmniRoute](https://omniroute.online) はセルフホスト型の OpenAI 互換ルーターです。Cohere は OpenAI 互換（互換エンドポイント `https://api.cohere.ai/compatibility/v1`）なので、一度登録すればすべてのキーを使えます:
+
+```bash
+node src/connect-omniroute.js \
+  --base http://localhost:20128 --password 123456 \
+  --keys-file keys.txt
+```
+
+`keys.txt` 内のすべてのキーが `cohere` プロバイダーノードの1つの接続になります（`--api-key <key>` を使えば単一キーのみを登録し、`--model <id>` でデフォルトを上書きできます）。その後、OmniRoute 内でモデルを選択してください:
+
+```
+cohere/command-a-03-2025
+cohere/command-r-08-2024
+cohere/command-r7b-12-2024
+```
+
+コネクタを更新された `keys.txt` に向ければアカウントを追加できます。ノードとそのモデル一覧は変わりません。`node src/launcher.js --connect-omniroute` はまさにこれを実行し、最初にベース URL とパスワードを尋ねます。
+
+デフォルト: `--base http://localhost:20128`、`--password 123456`、`--name Cohere`、`--prefix cohere`、`--base-url https://api.cohere.ai/compatibility/v1`、`--model command-a-03-2025`。
 ## 🔑 1つのキーで得られるもの
 
 | | |

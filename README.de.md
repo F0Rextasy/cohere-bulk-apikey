@@ -18,6 +18,7 @@
 [![License](https://img.shields.io/badge/license-MIT-6ea8fe?style=for-the-badge)](LICENSE)
 [![Models](https://img.shields.io/badge/models-35%20served-412991?style=for-the-badge)](https://dashboard.cohere.com)
 [![9Router](https://img.shields.io/badge/9Router-connector-8B5CF6?style=for-the-badge)](#-connect-to-9router)
+[![OmniRoute](https://img.shields.io/badge/OmniRoute-connector-8B5CF6?style=for-the-badge)](#-connect-to-omniroute)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
 [🛠 Schnellstart](#-quick-start) · [🎁 Gratis‑Stufe](#-free-tier--how-much-you-get) · [🤖 Modelle](#-models--all-35-of-them) · [🧪 API benutzen](#-how-to-use-the-api) · [✅ Verifiziert](#-verified-working--every-key-is-tested) · [🧭 Wie es funktioniert](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [⚙️ Optionen](#️-cli-options) · [🛰️ Hinter einem Proxy](#️-behind-a-proxy) · [🐞 Probleme](#-issues)
@@ -268,6 +269,27 @@ Richten Sie den Connector auf ein aktualisiertes `keys.txt`, um weitere Konten h
 
 Standardwerte: `--base http://localhost:20128`, `--password 123456`, `--name Cohere`, `--prefix cohere`, `--base-url https://api.cohere.ai/compatibility/v1`, `--model command-a-03-2025`.
 
+## 🔌 Mit OmniRoute verbinden
+
+[OmniRoute](https://omniroute.online) ist ein selbstgehosteter, OpenAI‑kompatibler Router. Cohere ist OpenAI‑kompatibel (Kompatibilitäts‑Endpoint `https://api.cohere.ai/compatibility/v1`), also registrieren Sie ihn einmal und nutzen jeden Schlüssel:
+
+```bash
+node src/connect-omniroute.js \
+  --base http://localhost:20128 --password 123456 \
+  --keys-file keys.txt
+```
+
+Jeder Schlüssel in `keys.txt` wird zu einer Verbindung des `cohere`‑Provider‑Nodes (`--api-key <key>` registriert stattdessen einen einzelnen Schlüssel, `--model <id>` überschreibt den Standard). Dann wählen Sie ein Modell in OmniRoute aus:
+
+```
+cohere/command-a-03-2025
+cohere/command-r-08-2024
+cohere/command-r7b-12-2024
+```
+
+Richten Sie den Connector auf ein aktualisiertes `keys.txt`, um weitere Konten hinzuzufügen; der Node und seine Modell‑Liste bleiben gleich. `node src/launcher.js --connect-omniroute` führt genau dies aus und fragt zuerst nach der Basis‑URL und dem Passwort.
+
+Standardwerte: `--base http://localhost:20128`, `--password 123456`, `--name Cohere`, `--prefix cohere`, `--base-url https://api.cohere.ai/compatibility/v1`, `--model command-a-03-2025`.
 ## 🔑 Was ein Schlüssel Ihnen gibt
 
 |  |  |

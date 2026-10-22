@@ -18,6 +18,7 @@
 [![License](https://img.shields.io/badge/license-MIT-6ea8fe?style=for-the-badge)](LICENSE)
 [![Models](https://img.shields.io/badge/models-35%20served-412991?style=for-the-badge)](https://dashboard.cohere.com)
 [![9Router](https://img.shields.io/badge/9Router-connector-8B5CF6?style=for-the-badge)](#-connect-to-9router)
+[![OmniRoute](https://img.shields.io/badge/OmniRoute-connector-8B5CF6?style=for-the-badge)](#-connect-to-omniroute)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
 [🛠 빠른 시작](#-quick-start) · [🎁 무료 티어](#-free-tier--how-much-you-get) · [🤖 모델](#-models--all-35-of-them) · [🧪 API 사용하기](#-how-to-use-the-api) · [✅ 검증됨](#-verified-working--every-key-is-tested) · [🧭 동작 방식](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [⚙️ 옵션](#️-cli-options) · [🛰️ 프록시](#️-behind-a-proxy) · [🐞 이슈](#-issues)
@@ -268,6 +269,27 @@ cohere/command-r7b-12-2024
 
 기본값: `--base http://localhost:20128`, `--password 123456`, `--name Cohere`, `--prefix cohere`, `--base-url https://api.cohere.ai/compatibility/v1`, `--model command-a-03-2025`.
 
+## 🔌 OmniRoute에 연결
+
+[OmniRoute](https://omniroute.online)는 자체 호스팅되는 OpenAI 호환 라우터입니다. Cohere는 OpenAI 호환이므로(호환 엔드포인트 `https://api.cohere.ai/compatibility/v1`) 한 번 등록하고 모든 키를 사용하면 됩니다:
+
+```bash
+node src/connect-omniroute.js \
+  --base http://localhost:20128 --password 123456 \
+  --keys-file keys.txt
+```
+
+`keys.txt`의 모든 키가 `cohere` 프로바이더 노드의 연결 하나가 됩니다(`--api-key <key>`는 대신 단일 키를 등록하고, `--model <id>`는 기본값을 재정의합니다). 그런 다음 OmniRoute 안에서 모델을 고르세요:
+
+```
+cohere/command-a-03-2025
+cohere/command-r-08-2024
+cohere/command-r7b-12-2024
+```
+
+커넥터를 갱신된 `keys.txt`로 가리키면 계정이 더 추가됩니다; 노드와 모델 목록은 그대로 유지됩니다. `node src/launcher.js --connect-omniroute`는 정확히 이 작업을 실행하며 먼저 기본 URL과 비밀번호를 묻습니다.
+
+기본값: `--base http://localhost:20128`, `--password 123456`, `--name Cohere`, `--prefix cohere`, `--base-url https://api.cohere.ai/compatibility/v1`, `--model command-a-03-2025`.
 ## 🔑 키 하나로 얻는 것
 
 | | |

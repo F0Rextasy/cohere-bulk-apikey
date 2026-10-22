@@ -169,6 +169,11 @@ The launcher is `src/launcher.js`: a menu over mint / finish / verify / settings
 
 ## ✅ Verified working — every key is tested
 
+> **Quality gates.** Every key here passed a live `chat-200` before it was written to `keys.txt`
+> (dead keys are never shipped). Router combos follow the same rule at the model level: an entry is
+> added **only if the model answers `chat-200` and can call tools** — a model without tool support,
+> a dead key or a dead provider is dropped instead of added. Works with **9Router and OmniRoute**.
+
 A key is written to `keys.txt` only after the live API answers with it:
 
 | check | call | expected |
@@ -268,7 +273,6 @@ cohere/command-r7b-12-2024
 Point the connector at a refreshed `keys.txt` to add more accounts; the node and its model list stay the same. `node src/launcher.js --connect-9router` runs exactly this and asks for the base URL and password first.
 
 Defaults: `--base http://localhost:20128`, `--password 123456`, `--name Cohere`, `--prefix cohere`, `--base-url https://api.cohere.ai/compatibility/v1`, `--model command-a-03-2025`.
-
 
 ## 🔌 Connect to OmniRoute
 

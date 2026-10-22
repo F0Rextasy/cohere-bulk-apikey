@@ -99,6 +99,12 @@ async function main() {
     rl.close();
     return;
   }
+
+  if (process.argv.includes('--connect-omniroute')) {
+    await omniRouter();
+    rl.close();
+    return;
+  }
   process.stdout.write('\x1b[2J\x1b[H');
   banner();
   console.log('  proxy exits: ' + (count(POOL) || 'none — running WITHOUT a proxy (direct)') + '     keys on disk: ' + count(KEYS) + '\n');
