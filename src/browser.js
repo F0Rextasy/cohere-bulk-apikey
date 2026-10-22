@@ -106,7 +106,6 @@ async function openContext(cdp, { proxyServer, url = 'about:blank', proxyBypassL
   const browserContextId = await cdp.createBrowserContext(opts);
   const { targetId, sessionId } = await cdp.newPage({ browserContextId, url: 'about:blank' });
   await cdp.send('Page.enable', {}, sessionId);
-  await cdp.send('Runtime.enable', {}, sessionId);
   await cdp.send('Network.enable', {}, sessionId);
   return { browserContextId, targetId, sessionId };
 }
