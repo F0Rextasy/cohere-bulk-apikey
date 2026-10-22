@@ -36,8 +36,8 @@ const flag = (name) => args.includes(`--${name}`);
 
 const DEFAULTS = {
   box: '<box-id>',
-  email: '<your-mailtrap-inbox>',
-  password: '<your-mailtrap-password>',
+  email: '<inbox>',
+  password: '<pw>',
   registered: '<registered-at>',
 };
 const BOX = {

@@ -180,7 +180,7 @@ Messungen des mitgelieferten Batches (aus den Lauf‑Logs):
 | Messung | Ergebnis |
 | --- | --- |
 | Gesamte Kette | **15 Konten → 15 Schlüssel** am 2026‑10‑14, 19:16–20:07 — register → mail → confirm → onboarding → key |
-| Verifizierung | **15/15 live** (`models 200` + `chat 200`, `command-a-03-2025`) |
+| Verifizierung | **verified working** (`models 200` + `chat 200`, `command-a-03-2025`) |
 | Nachweis‑Richtlinie | ein Schlüssel, dessen Live‑Check nicht sauber antwortet, wird **nicht** geschrieben — das Tool bevorzugt einen fehlenden Schlüssel gegenüber einem unbewiesenen |
 | Bestätigungs‑Route | `GET /confirm-email?token=…` → **307** → `GET /api/auth/confirm_email?token=…` — der erste Aufruf verbraucht das Token |
 | Onboarding‑Gate | `AgreeToOnboarding {agreementType:"PROFILE_SETUP"}` → `200` → `onboarded=true`, `accessType=FULL`, Schlüssel‑Aufruf `200`; ohne das `401` |
