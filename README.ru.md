@@ -141,6 +141,7 @@ cd cohere-bulk-apikey
 printf 'http://127.0.0.1:8080\n' > proxies.txt
 
 # 2) mailboxes — a local broker that hands out disposable inboxes over plain HTTP
+
 #    (a Mailtrap-backed broker on :9700 served the shipped batch; an inboxes.com
 #     broker on :9701 is the built-in fallback)
 

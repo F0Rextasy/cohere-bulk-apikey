@@ -179,7 +179,7 @@ The batch this repository shipped from, measured from the run logs:
 
 | Measurement | Result |
 | --- | --- |
-| Whole chain | **15 accounts → 15 keys** on 2026-10-14, 19:16–20:07 — register → mail → confirm → onboarding → key |
+| Whole chain | **keys verified** on 2026-10-14, 19:16–20:07 — register → mail → confirm → onboarding → key |
 | Verification | **verified working** (`models 200` + `chat 200`, `command-a-03-2025`) |
 | Proof policy | a key whose live check does not answer clean is **not** written — the tool prefers a missing key over an unproven one |
 | Confirm route | `GET /confirm-email?token=…` → **307** → `GET /api/auth/confirm_email?token=…` — the first touch consumes the token |

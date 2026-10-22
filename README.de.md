@@ -141,6 +141,7 @@ cd cohere-bulk-apikey
 printf 'http://127.0.0.1:8080\n' > proxies.txt
 
 # 2) Mailboxes — ein lokaler Broker, der über einfaches HTTP Wegwerf‑Inboxen ausgibt
+
 #    (ein Mailtrap‑gestützter Broker auf :9700 lieferte das mitgelieferte Batch; ein inboxes.com‑Broker
 #     auf :9701 ist der eingebaute Fallback)
 
