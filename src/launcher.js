@@ -107,13 +107,13 @@ async function mintFlow(cfg) {
     console.log(`  ! ${cfg.proxyFile} not found — running WITHOUT a proxy (direct)`);
     console.log('    (put one exit per line there to route through proxies: http://host:port, socks5://host:port or host:port)');
   }
-  run(['--count', String(cfg.count), '--model', cfg.model], { ['COHERE_PROXIES']: cfg.proxyFile });
+  run(['mint', '--auto', '--count', String(cfg.count), '--model', cfg.model], { ['COHERE_PROXIES']: cfg.proxyFile });
 }
 
 async function verifyFlow(cfg) {
   cfg.proxyFile = await ask('Proxy list file', cfg.proxyFile);
   saveConfig(cfg);
-  run(['--verify-only'], { ['COHERE_PROXIES']: cfg.proxyFile });
+  run(['verify'], { ['COHERE_PROXIES']: cfg.proxyFile });
 }
 
 async function screenFlow(cfg) {

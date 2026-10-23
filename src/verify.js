@@ -114,12 +114,14 @@ if (require.main === module) {
   let okCount = 0;
   let unknownCount = 0;
   let modelsWritten = false;
+  const dead = [];
   for (const key of keys) {
     const r = await verifyOne(key, pool);
     const short = `${key.slice(0, 4)}…${key.slice(-4)}`;
     // A 401 is a verdict on the key; a 403/423/429/5xx or an unreachable exit is
     // a verdict on the exit, and must not be recorded as a dead key.
     const verdict = r.ok ? 'LIVE' : /\b401\b/.test(String(r.status || r.err || '')) ? 'DEAD' : 'UNKNOWN';
+    if (verdict === 'DEAD') dead.push(key);
     const line = `${short}\t${verdict}\t${r.status || r.err}\tmodel=${r.model || '-'}\ttext=${JSON.stringify(r.text || '').slice(0, 60)}\texit=${r.proxy || '-'}`;
     if (verdict === 'UNKNOWN') unknownCount++;
     fs.appendFileSync(outFile, line + '\n');
@@ -137,6 +139,11 @@ if (require.main === module) {
     }
   }
   lib.log('verify', `live ${okCount}/${keys.length}, unknown ${unknownCount} -> ${outFile}`);
+  // The keys the API itself rejected (401) are written where they can be audited;
+  // a 403/423/429/5xx is a verdict on the exit, not on the key.
+  const deadFile = path.join(lib.ROOT, 'keys-dead.txt');
+  fs.writeFileSync(deadFile, dead.join('\n') + (dead.length ? '\n' : ''));
+  lib.log('verify', `dead keys ${dead.length} -> ${deadFile}`);
 })().catch((e) => {
   lib.log('verify', `FAIL ${e.stack}`);
   process.exit(1);

@@ -15,6 +15,9 @@ const lib = require('./lib');
 const B = require('./browser');
 const flow = require('./flow');
 const recaptcha = require('./recaptcha-cache');
+// The captcha engine (pageEval + the reCAPTCHA Enterprise token) lives in
+// src/solver.js — the same module the `--auto` entry point uses.
+const { pageEval, recaptchaToken } = require('./solver.js');
 
 const RECAPTCHA_KEY = '6LfwwhgpAAAAAJiItLCXBrm2UJpZe9xzFkaiXFiA';
 const DASH = 'https://dashboard.cohere.com';
@@ -27,11 +30,6 @@ const opt = (name, dflt) => {
   return hit ? hit.split('=').slice(1).join('=') : dflt;
 };
 const flag = (name) => args.includes(`--${name}`);
-
-/** Runs an expression in-page; Promise results are awaited. */
-function pageEval(cdp, sid, expr, opts = {}) {
-  return B.evalJs(cdp, sid, expr, { awaitPromise: true, ...opts });
-}
 
 /** In-page JSON fetch: same origin, cookies included, CORS as the SPA sees it. */
 function pageFetch(cdp, sid, url, { method = 'POST', headers = {}, body = null, timeoutMs = 60000 } = {}) {
@@ -52,47 +50,6 @@ function pageFetch(cdp, sid, url, { method = 'POST', headers = {}, body = null, 
   }).catch((e) => ({ status: null, error: String(e), url: ${JSON.stringify(url)} }));
 })()`;
   return pageEval(cdp, sid, expr);
-}
-
-/** Injects Google's reCAPTCHA Enterprise script into the page and returns a token. */
-async function recaptchaToken(cdp, sid, action, { timeoutMs = 120000 } = {}) {
-  await pageEval(
-    cdp,
-    sid,
-    `(() => {
-      if (window.__chRecapInjected) return 'already';
-      window.__chRecapInjected = true;
-      const s = document.createElement('script');
-      s.src = 'https://www.google.com/recaptcha/enterprise.js?render=${RECAPTCHA_KEY}&hl=en';
-      s.async = true;
-      document.head.appendChild(s);
-      return 'injected';
-    })()`
-  );
-  const ready = await flow.waitIn(
-    cdp,
-    sid,
-    `(
-      typeof window.grecaptcha !== 'undefined' &&
-      window.grecaptcha.enterprise && typeof window.grecaptcha.enterprise.execute === 'function' &&
-      window.__chRecapReady ? 'ready' : (function(){ if (typeof window.grecaptcha !== 'undefined' && window.grecaptcha.enterprise && window.grecaptcha.enterprise.ready) { window.grecaptcha.enterprise.ready(function(){ window.__chRecapReady = true; }); } return null; })()
-    )`,
-    { timeoutMs, everyMs: 1000, label: 'grecaptcha-enterprise' }
-  );
-  if (!ready) throw new Error('reCAPTCHA enterprise never became ready (google unreachable through this exit?)');
-  const tok = await pageEval(
-    cdp,
-    sid,
-    `new Promise((resolve, reject) => {
-      const t = setTimeout(() => reject(new Error('execute timeout')), 60000);
-      try {
-        grecaptcha.enterprise.execute(${JSON.stringify(RECAPTCHA_KEY)}, { action: ${JSON.stringify(action)} })
-          .then((v) => { clearTimeout(t); resolve(v); })
-          .catch((e) => { clearTimeout(t); reject(e); });
-      } catch (e) { clearTimeout(t); reject(e); }
-    })`
-  );
-  return tok;
 }
 
 /**
