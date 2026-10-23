@@ -31,11 +31,8 @@ function help() {
   for (const [name, t] of Object.entries(TASKS)) console.log('  ' + name.padEnd(9) + ' ' + t.note);
   console.log('\noptions: every task takes its own flags — ask it directly:');
   console.log('  node src/<task-file> --help');
-  console.log('\nrun-shape presets (forwarded to the task as-is):');
-  console.log('  --preset=turbo|balanced|safe   turbo = 3 s account gap (recommended), balanced = 6, safe = 8');
-  console.log('\nproxy pool (optional — recommended at scale: per-IP limits, bans):');
-  console.log('  one exit per line in proxies.txt — scheme://host:port[#comment], user:pass@ supported;');
-  console.log('  without a pool the HTTP rails (rpc/verify/recon/click-confirm) run direct, the browser mint prefers one');
+  console.log('\nproxy pool:');
+  console.log('  one exit per line in proxies.txt — scheme://host:port[#comment], user:pass@ supported');
   console.log('\nno options? run the interactive launcher:  node src/launcher.js');
 }
 

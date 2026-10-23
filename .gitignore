@@ -14,7 +14,3 @@ launcher.config.json
 *.log
 .DS_Store
 Thumbs.db
-
-# generated at the repository root by a run
-out/
-logs/

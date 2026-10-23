@@ -21,7 +21,7 @@
 [![OmniRoute](https://img.shields.io/badge/OmniRoute-connector-8B5CF6?style=for-the-badge)](#-connect-to-omniroute)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
-[🛠 Quick start](#-quick-start) · [🎁 Free tier](#-free-tier--how-much-you-get) · [🤖 Models](#-models--all-35-of-them) · [🧪 Use the API](#-how-to-use-the-api) · [✅ Verified](#-verified-working--every-key-is-tested) · [🧭 How it works](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [⚙️ Options](#️-cli-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Issues](#-issues)
+[🛠 Quick start](#-quick-start) · [🎁 Free tier](#-free-tier--how-much-you-get) · [🤖 Models](#-models--all-35-of-them) · [🧪 Use the API](#-how-to-use-the-api) · [✅ Verified](#-verified-working--every-key-is-tested) · [🧭 How it works](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [🔌 OmniRoute](#-connect-to-omniroute) · [⚙️ Options](#️-cli-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Issues](#-issues)
 
 </div>
 
@@ -72,34 +72,21 @@ Cohere's free tier is the **trial key on the account** — **1,000 API calls per
 > 💡 The free tier is set by Cohere and can change. Check the live numbers at [cohere.com](https://cohere.com) — and let the tool's own gate decide:
 
 ```bash
-node src/cli.js verify --keys=keys.txt     # every key in keys.txt is re-tested with a real chat call
+node src/cli.js --verify-only     # every key in keys.txt is re-tested with a real chat call
 ```
 
 ## 🤖 Models — all 35 of them
 
 A verified key sees the **whole account catalogue — 35 models** on `GET /v1/models`, written to [`src/models.json`](src/models.json) by the first key that passes verification:
 
-The live chat probe (2026-10-19, 2 keys) answered `200` on these 17 ids; the remaining catalogue entries are embedding / rerank / transcribe ids that the compatibility endpoint does not serve:
-
-|Model|✓|
-|---|---|
-|`command-a-03-2025`|✓|
-|`c4ai-aya-expanse-32b`|✓|
-|`c4ai-aya-vision-32b`|✓|
-|`command-a-plus-05-2026`|✓|
-|`command-a-reasoning-08-2025`|✓|
-|`command-a-translate-08-2025`|✓|
-|`command-a-vision-07-2025`|✓|
-|`command-r-08-2024`|✓|
-|`command-r-plus-08-2024`|✓|
-|`command-r7b-12-2024`|✓|
-|`command-r7b-arabic-02-2025`|✓|
-|`north-mini-code-1-0`|✓|
-|`north-small-translate-09-2026`|✓|
-|`tiny-aya-earth`|✓|
-|`tiny-aya-fire`|✓|
-|`tiny-aya-global`|✓|
-|`tiny-aya-water`|✓|
+| Family | Examples |
+| --- | --- |
+| Command (chat/generation) | `command-a-03-2025`, `command-a-plus-05-2026`, `command-a-reasoning-08-2025`, `command-a-translate-08-2025`, `command-a-vision-07-2025` |
+| Command R | `command-r-08-2024`, `command-r-plus-08-2024`, `command-r7b-12-2024`, `command-r7b-arabic-02-2025` |
+| Tiny Aya (small models) | `tiny-aya-earth`, `tiny-aya-fire`, `tiny-aya-global`, `tiny-aya-water` |
+| Embed | `embed-v4.0`, `embed-v5.0-pro`, `embed-v5.0-fast`, `embed-english-v3.0`, `embed-multilingual-v3.0` |
+| Rerank | `rerank-v4.0-pro`, `rerank-v4.0-fast`, `rerank-v3.5`, `rerank-english-v3.0`, `rerank-multilingual-v3.0` |
+| Aya / speech / code | `c4ai-aya-expanse-32b`, `c4ai-aya-vision-32b`, `cohere-transcribe-03-2026`, `north-mini-code-1-0` |
 
 Live probe of one key:
 
@@ -169,11 +156,6 @@ The launcher is `src/launcher.js`: a menu over mint / finish / verify / settings
 
 ## ✅ Verified working — every key is tested
 
-> **Quality gates.** Every key here passed a live `chat-200` before it was written to `keys.txt`
-> (dead keys are never shipped). Router combos follow the same rule at the model level: an entry is
-> added **only if the model answers `chat-200` and can call tools** — a model without tool support,
-> a dead key or a dead provider is dropped instead of added. Works with **9Router and OmniRoute**.
-
 A key is written to `keys.txt` only after the live API answers with it:
 
 | check | call | expected |
@@ -185,7 +167,7 @@ The batch this repository shipped from, measured from the run logs:
 
 | Measurement | Result |
 | --- | --- |
-| Whole chain | **keys verified** on 2026-10-14, 19:16–20:07 — register → mail → confirm → onboarding → key |
+| Whole chain | **each account minted its own key** on 2026-10-14, 19:16–20:07 — register → mail → confirm → onboarding → key |
 | Verification | **verified working** (`models 200` + `chat 200`, `command-a-03-2025`) |
 | Proof policy | a key whose live check does not answer clean is **not** written — the tool prefers a missing key over an unproven one |
 | Confirm route | `GET /confirm-email?token=…` → **307** → `GET /api/auth/confirm_email?token=…` — the first touch consumes the token |
@@ -194,6 +176,12 @@ The batch this repository shipped from, measured from the run logs:
 ```bash
 node src/cli.js verify --keys=keys.txt    # reproduces both checks for your own file
 ```
+
+> **Quality gates.** Every key here passed a live `chat-200` before it was written to `keys.txt`
+> (dead keys are never shipped). Router combos follow the same rule at the model level: an entry is
+> added **only if the model answers `chat-200` and can call tools** — a model without tool support,
+> a dead key or a dead provider is dropped instead of added. Re-run the verify step any time;
+> failures are reported, never hidden.
 
 ## 🧭 How it works
 
@@ -225,8 +213,6 @@ node src/cli.js help                     # tasks and flags
 | `mint` | `--count N` (30) · `--mail <port>` (9700) · `--port N` (Chrome CDP, 9341) · `--min-kbs N` (60) · `--budget-min N` (600) · `--headless` · `--keep` |
 | `finish` | `--box=<id>` · `--email=<addr>` · `--password=<pw>` · `--registered=<at>` (all `=` form, `--cross` = cross-check the box) |
 | `verify` | `--keys=<file>` (default `keys.txt`) · `--limit=N` (0 = all) |
-
-Turbo önerilir (5); daha fazlası zayıf bilgisayarda yük/ban riski.
 
 The dispatcher's `help` task lists the tasks; flags are read as `--name=value`. `node src/launcher.js` offers mint · finish · verify · settings — the header shows how many exits `proxies.txt` holds and how many keys are on disk, and settings persist in `launcher.config.json`.
 
@@ -295,6 +281,7 @@ cohere/command-r7b-12-2024
 Point the connector at a refreshed `keys.txt` to add more accounts; the node and its model list stay the same. `node src/launcher.js --connect-omniroute` runs exactly this and asks for the base URL and password first.
 
 Defaults: `--base http://localhost:20128`, `--password 123456`, `--name Cohere`, `--prefix cohere`, `--base-url https://api.cohere.ai/compatibility/v1`, `--model command-a-03-2025`.
+
 ## 🔑 What one key gets you
 
 | | |

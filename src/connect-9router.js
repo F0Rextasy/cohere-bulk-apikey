@@ -4,34 +4,28 @@
 /**
  * Connect Cohere to a 9Router instance.
  *
- * Cohere ships an OpenAI-compatible endpoint (https://api.cohere.ai/compatibility/v1), so a single
- * connection is enough: register one `openai-compatible` provider-node with
- * prefix `cohere`, then one connection per key of your bulk key file.
- * Rotate keys by running this again with a new key file — the node and its
- * model list stay the same.
+ * Cohere serves an OpenAI-compatible endpoint (https://api.cohere.ai/compatibility/v1), so a single
+ * provider-node carries every key: this registers one `openai-compatible` node
+ * with prefix `cohere` and then one connection per API key, named
+ * `cohere-001`, `cohere-002`, … Re-running it is idempotent (an existing node
+ * or connection is reused), and 9Router load-balances across the keys of a node.
  *
  * Usage:
  *   node src/connect-9router.js \
  *     --base http://localhost:20128 --password 123456 \
- *     --keys-file keys.txt [--model <id>]
+ *     --api-key cohere_xxxx [--name "Cohere"] [--prefix cohere]
  *
- *   node src/connect-9router.js --api-key <one key>        # register a single key
+ *   node src/connect-9router.js                  # register every key in keys.txt
+ *   node src/connect-9router.js --model <id>     # pin the connection's default model
  *
  * Options:
- *   --base <url>        9Router base URL                 [http://localhost:20128]
- *   --password <pw>     9Router password                                    [123456]
- *   --api-key <key>     register exactly this key
- *   --keys-file <file>  one key per line, `#` comments skipped  [keys.txt in
- *                       the repository root]
- *   --name <name>       connection name in 9Router                   [Cohere]
- *                       (keys-file mode appends -001, -002, … per key)
- *   --prefix <prefix>   provider-node prefix; model ids become
- *                       `<prefix>/<model>`                                  [cohere]
- *   --base-url <url>    provider base URL                             [https://api.cohere.ai/compatibility/v1]
- *   --model <id>        default model for new connections            [command-a-03-2025]
- *
- * Keys are never printed. Connections are matched by name, so re-running is
- * safe and `--name` is what makes two keys distinct.
+ *   --base <url>       9Router base URL         (default http://localhost:20128)
+ *   --password <pw>    9Router login password   (default 123456)
+ *   --api-key <key>    Cohere API key     (default: every key in keys.txt)
+ *   --name <name>      provider-node name       (default Cohere)
+ *   --prefix <slug>    provider prefix in 9Router (default cohere)
+ *   --base-url <url>   provider base URL        (default https://api.cohere.ai/compatibility/v1)
+ *   --model <id>       connection default model (default: provider's default model)
  *
  * Zero dependencies. Node.js >= 18.
  */
@@ -39,21 +33,27 @@
 const fs = require('fs');
 const path = require('path');
 
-const HERE = path.resolve(__dirname, '..'); // data root (the repo root)
-const UA = 'cohere-bulk-apikey-9router-connector/1.0';
+const UA = 'cohere-bulk-9router-connector/1.0'
+
+const DEFAULTS = {
+  base: 'http://localhost:20128',
+  password: '123456',
+  name: "Cohere",
+  prefix: "cohere",
+  baseUrl: "https://api.cohere.ai/compatibility/v1",
+  defaultModel: "command-a-03-2025",
+};
+
+/** Model ids a fresh key lists, as routed under `<prefix>/…` by 9Router. */
+const MODELS = ["command-a-03-2025","command-r-08-2024","command-r7b-12-2024","embed-v4.0","rerank-v4.0-pro"];
 
 async function login9router(base, password) {
   const res = await fetch(`${base}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'User-Agent': UA },
-    body: JSON.stringify({ password: password ?? '123456' }),
+    body: JSON.stringify({ password: password ?? DEFAULTS.password }),
   });
-  // getSetCookie() ships with undici 5.19 (node >= 18.14): on an older 18.x the
-  // jar stays empty, login still says ok and every later call answers 401.
-  const sc =
-    typeof res.headers.getSetCookie === 'function' && res.headers.getSetCookie().length
-      ? res.headers.getSetCookie()
-      : (res.headers.get('set-cookie') || '').split(/,(?=[^;]+=)/).filter(Boolean);
+  const sc = typeof res.headers.getSetCookie === 'function' ? res.headers.getSetCookie() : [];
   const cookie = sc.map((c) => c.split(';')[0]).join('; ');
   return { ok: res.ok, cookie, body: (await res.text()).slice(0, 200) };
 }
@@ -73,7 +73,7 @@ async function api(base, cookie, route, init = {}) {
   try {
     json = JSON.parse(text);
   } catch {
-    /* non-JSON bodies are reported as text */
+    /* a non-JSON answer is reported as text */
   }
   return { status: res.status, ok: res.ok, json, text: text.slice(0, 400) };
 }
@@ -81,9 +81,9 @@ async function api(base, cookie, route, init = {}) {
 async function ensureNode(base, cookie, { name, prefix, baseUrl }) {
   const list = await api(base, cookie, '/api/provider-nodes');
   const nodes = (list.json && list.json.nodes) || [];
-  const existing = nodes.find((n) => n.name === name || n.prefix === prefix);
+  const existing = nodes.find((n) => n.prefix === prefix || n.name === name);
   if (existing) {
-    console.log(`provider-node exists: ${existing.id} (prefix ${existing.prefix})`);
+    console.log(`provider-node exists: ${existing.id} (prefix ${existing.prefix} · baseUrl ${existing.baseUrl || baseUrl})`);
     return existing;
   }
   const created = await api(base, cookie, '/api/provider-nodes', {
@@ -91,90 +91,122 @@ async function ensureNode(base, cookie, { name, prefix, baseUrl }) {
     body: JSON.stringify({ name, prefix, apiType: 'chat', type: 'openai-compatible', baseUrl }),
   });
   if (!created.ok) throw new Error(`create node failed ${created.status}: ${created.text}`);
-  console.log(`provider-node created: ${created.json.node.id} (prefix ${prefix})`);
+  console.log(`provider-node created: ${created.json.node.id}`);
   return created.json.node;
 }
 
-async function ensureConnection(base, cookie, { nodeId, name, apiKey, defaultModel }) {
+async function ensureConnection(base, cookie, { nodeId, name, apiKey, priority = 1, defaultModel }) {
   const list = await api(base, cookie, '/api/providers');
   const conns = (list.json && list.json.connections) || [];
   const existing = conns.find((c) => c.name === name);
   if (existing) {
     console.log(`connection exists: ${existing.id} (${existing.name})`);
-    return { created: false, connection: existing };
+    return existing;
   }
   const created = await api(base, cookie, '/api/providers', {
     method: 'POST',
-    body: JSON.stringify({ provider: nodeId, apiKey, name, priority: 1, defaultModel: defaultModel || null }),
+    body: JSON.stringify({ provider: nodeId, apiKey, name, priority, defaultModel: defaultModel || null }),
   });
   if (!created.ok && created.status !== 409) {
     throw new Error(`create connection failed ${created.status}: ${created.text}`);
   }
-  const connection = (created.json && created.json.connection) || null;
-  console.log(`connection created: ${(connection && connection.id) || '(conflict)'} (${name})`);
-  return { created: created.ok, connection };
+  console.log(`connection created: ${(created.json && created.json.connection && created.json.connection.id) || '(conflict)'}`);
+  return created.json && created.json.connection;
 }
 
-/** Every non-comment, non-empty line of a key file. */
-function readKeys(file) {
-  const p = path.isAbsolute(file) ? file : path.join(HERE, file);
-  if (!fs.existsSync(p)) throw new Error(`key file not found: ${p}`);
-  const keys = fs
-    .readFileSync(p, 'utf8')
-    .split(/\r?\n/)
-    .map((l) => l.trim())
-    .filter((l) => l && !l.startsWith('#'));
-  if (!keys.length) throw new Error(`no keys in ${p}`);
-  return keys;
-}
-
-async function connect9Router({
-  base = 'http://localhost:20128',
-  password = '123456',
-  apiKey = null,
-  keysFile = null,
-  name = 'Cohere',
-  prefix = 'cohere',
-  baseUrl = 'https://api.cohere.ai/compatibility/v1',
-  defaultModel = 'command-a-03-2025',
+/** Register every key of `keys` — one connection per key, `<prefix>-001`, `-002`, … */
+async function connectKeys({
+  base = DEFAULTS.base,
+  password = DEFAULTS.password,
+  keys,
+  name = DEFAULTS.name,
+  prefix = DEFAULTS.prefix,
+  baseUrl = DEFAULTS.baseUrl,
+  defaultModel = DEFAULTS.defaultModel,
 } = {}) {
-  const keys = apiKey ? [apiKey] : readKeys(keysFile || 'keys.txt');
-  const { ok, cookie, body } = await login9router(base, password);
-  console.log(`9Router login: ${ok ? 'ok' : 'not required/failed'}${ok ? '' : ` ${body}`}`);
-  const node = await ensureNode(base, cookie, { name, prefix, baseUrl });
-  let added = 0;
-  for (let i = 0; i < keys.length; i++) {
-    const connName = apiKey ? name : `${name}-${String(i + 1).padStart(3, '0')}`;
-    const { created } = await ensureConnection(base, cookie, { nodeId: node.id, name: connName, apiKey: keys[i], defaultModel });
-    if (created) added += 1;
+  const list = (keys || []).map((k) => String(k).trim()).filter(Boolean);
+  if (!list.length) throw new Error('--api-key is required (or put your keys in keys.txt)');
+  const url = String(base).replace(/\/+$/, '');
+  const { ok, cookie, body } = await login9router(url, password);
+  console.log(`9Router login: ${ok ? 'ok' : 'not required/failed'} ${ok ? '' : body}`);
+  const node = await ensureNode(url, cookie, { name, prefix, baseUrl });
+  const out = [];
+  for (let i = 0; i < list.length; i++) {
+    const connName = `${prefix}-${String(i + 1).padStart(3, '0')}`;
+    out.push(await ensureConnection(url, cookie, { nodeId: node.id, name: connName, apiKey: list[i], defaultModel }));
   }
-  console.log(`\nDone. ${added}/${keys.length} connection(s) added · models: cohere/command-a-03-2025 · cohere/command-r-08-2024 · cohere/command-r7b-12-2024`);
-  return { node, added, total: keys.length };
+  console.log(`\nDone. ${list.length} key(s) on node ${node.id} — models: ${MODELS.map((m) => `${prefix}/${m}`).join(' · ')}`);
+  return out;
+}
+
+/** Register one key — rotate keys by calling this again with another `apiKey`. */
+async function connect9Router(opts = {}) {
+  const [connection] = await connectKeys({ ...opts, keys: [opts.apiKey] });
+  return connection;
+}
+
+/** `keys.txt` at the checkout root (beside `src/`) — the layout the tools run in. */
+function defaultKeysFile() {
+  return path.join(__dirname, '..', 'keys.txt');
+}
+
+function readKeys(keysFile = defaultKeysFile()) {
+  if (!fs.existsSync(keysFile)) return [];
+  return fs
+    .readFileSync(keysFile, 'utf8')
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'));
+}
+
+async function connectKeysFile({ keysFile = defaultKeysFile(), ...opts } = {}) {
+  const keys = readKeys(keysFile);
+  if (!keys.length) throw new Error(`no API keys in ${keysFile} — mint some first, or pass --api-key`);
+  console.log(`keys: ${keys.length} from ${keysFile}`);
+  return connectKeys({ ...opts, keys });
+}
+
+function parseRouterArgs(argv = process.argv.slice(2)) {
+  const arg = (name) => {
+    const i = argv.indexOf(`--${name}`);
+    return i === -1 ? undefined : argv[i + 1];
+  };
+  return {
+    base: arg('base'),
+    password: arg('password'),
+    apiKey: arg('api-key'),
+    name: arg('name'),
+    prefix: arg('prefix'),
+    baseUrl: arg('base-url'),
+    defaultModel: arg('model'),
+  };
 }
 
 if (require.main === module) {
-  const args = {};
   const argv = process.argv.slice(2);
-  for (let i = 0; i < argv.length; i++) {
-    if (argv[i].startsWith('--')) {
-      const k = argv[i].slice(2);
-      const v = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true;
-      args[k] = v;
-    }
+  if (argv.includes('--help') || argv.includes('-h')) {
+    const doc = fs.readFileSync(__filename, 'utf8').match(/\/\*\*([\s\S]*?)\*\//);
+    console.log(doc ? doc[1].replace(/^\s*\*[ ]?/gm, '').trim() : 'see README.md');
+    process.exit(0);
   }
-  connect9Router({
-    base: args.base,
-    password: args.password,
-    apiKey: args['api-key'],
-    keysFile: args['keys-file'],
-    name: args.name,
-    prefix: args.prefix,
-    baseUrl: args['base-url'],
-    defaultModel: args.model,
-  }).catch((e) => {
+  const opts = parseRouterArgs(argv);
+  const run = opts.apiKey ? connect9Router(opts) : connectKeysFile(opts);
+  run.catch((e) => {
     console.error('[fatal] ' + e.message);
     process.exit(1);
   });
 }
 
-module.exports = { connect9Router, login9router, ensureNode, ensureConnection };
+module.exports = {
+  connect9Router,
+  connectKeys,
+  connectKeysFile,
+  readKeys,
+  defaultKeysFile,
+  parseRouterArgs,
+  login9router,
+  ensureNode,
+  ensureConnection,
+  DEFAULTS,
+  MODELS,
+};

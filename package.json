@@ -1,12 +1,11 @@
 {
   "name": "cohere-bulk-apikey",
   "version": "1.0.0",
-  "description": "Bulk API keys for cohere.com — free trial tier: 35 models incl. command-a-03-2025, command-r-plus, tiny-aya, embed-v5.0, rerank-v4.0 (1,000 calls/month per account). One account per key.",
+  "description": "Bulk-create Cohere accounts with auto-generated API keys — OpenAI-compatible inference + 9Router connector.",
   "license": "MIT",
   "type": "commonjs",
   "bin": {
     "cohere-bulk-apikey": "src/cli.js",
-    "cohere-bulk-apikey-9router": "src/connect-9router.js",
     "cohere-bulk-apikey-launcher": "src/launcher.js"
   },
   "main": "src/cli.js",
@@ -25,7 +24,6 @@
     "register",
     "launcher",
     "cohere",
-    "bulk",
     "apikey"
   ],
   "files": [
