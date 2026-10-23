@@ -4,6 +4,21 @@
 //   node src/verify.js [--keys=../keys.txt] [--limit=0]
 
 const fs = require('fs');
+/** keys-dead.txt standard: key \t reason \t ISO, reason in 401|403|quota|ban.
+ * 429/5xx/transport are transient (retry them — the same key may answer later): never dead. */
+function deadReason(status, text = '') {
+  const s = `${status == null ? '' : status} ${text || ''}`;
+  if (/\b429\b|rate.?limit|\b5\d\d\b|timeout|ECONNRESET|ECONNREFUSED|ETIMEDOUT|EHOSTUNREACH|transport|network/i.test(s)) return null;
+  if (/\b401\b|unauthor/i.test(s)) return '401';
+  if (/\b403\b|forbidden/i.test(s)) return '403';
+  if (/\b402\b|quota|insufficient|no credit|out of credit|balance|exhaust/i.test(s)) return 'quota';
+  if (/banned|suspend|deactivat|disabled/i.test(s)) return 'ban';
+  return null;
+}
+/** The standard line (key \t reason \t ISO), or null when the reason is not final. */
+const deadLine = (key, reason) => (reason ? [key, reason, new Date().toISOString()].join('\t') : null);
+/** The key side of a standard line (dedupe helper). */
+const deadKeyOf = (line) => String(line).split(String.fromCharCode(9))[0];
 const path = require('path');
 const lib = require('./lib');
 
@@ -121,7 +136,10 @@ if (require.main === module) {
     // A 401 is a verdict on the key; a 403/423/429/5xx or an unreachable exit is
     // a verdict on the exit, and must not be recorded as a dead key.
     const verdict = r.ok ? 'LIVE' : /\b401\b/.test(String(r.status || r.err || '')) ? 'DEAD' : 'UNKNOWN';
-    if (verdict === 'DEAD') dead.push(key);
+    if (verdict === 'DEAD') {
+      const reason = deadReason(r.status, `${r.err || ''} ${r.text || ''}`);
+      if (reason) dead.push({ key, reason });
+    }
     const line = `${short}\t${verdict}\t${r.status || r.err}\tmodel=${r.model || '-'}\ttext=${JSON.stringify(r.text || '').slice(0, 60)}\texit=${r.proxy || '-'}`;
     if (verdict === 'UNKNOWN') unknownCount++;
     fs.appendFileSync(outFile, line + '\n');
@@ -142,7 +160,10 @@ if (require.main === module) {
   // The keys the API itself rejected (401) are written where they can be audited;
   // a 403/423/429/5xx is a verdict on the exit, not on the key.
   const deadFile = path.join(lib.ROOT, 'keys-dead.txt');
-  fs.writeFileSync(deadFile, dead.join('\n') + (dead.length ? '\n' : ''));
+  // keys-dead.txt standard: key \t reason(401|403|quota|ban) \t new Date().toISOString()
+
+  const deadLines = dead.map((d) => deadLine(d.key, d.reason)).filter(Boolean);
+  fs.writeFileSync(deadFile, deadLines.join('\n') + (deadLines.length ? '\n' : ''));
   lib.log('verify', `dead keys ${dead.length} -> ${deadFile}`);
 })().catch((e) => {
   lib.log('verify', `FAIL ${e.stack}`);
