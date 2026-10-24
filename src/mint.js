@@ -19,7 +19,10 @@ process.on('uncaughtException', (e) => console.log(`WARN uncaught: ${String(e &&
 const args = process.argv.slice(2);
 const opt = (name, dflt) => {
   const hit = args.find((a) => a.startsWith(`--${name}=`));
-  return hit ? hit.split('=').slice(1).join('=') : dflt;
+  if (hit) return hit.split('=').slice(1).join('=');
+  // the documented one-command form is `--count 1`, not only `--count=1`
+  const i = args.indexOf(`--${name}`);
+  return i >= 0 && args[i + 1] && !args[i + 1].startsWith('--') ? args[i + 1] : dflt;
 };
 const flag = (name) => args.includes(`--${name}`);
 
@@ -55,19 +58,17 @@ function keysHave() {
   }
 }
 
-function goodExits(minKbs) {
-  const f = path.join(lib.OUT, 'good-exits.txt');
-  const used = lib.loadJson(path.join(lib.OUT, 'used-exits.json'), {});
-  // No pool file at all is the documented direct-mode case, not an error: the
-  // read used to throw ENOENT out of the attempt loop, so the run died before it
-  // could ever pick DIRECT.
+/** The soak ranking (out/good-exits.txt) is a *preference*, not a gate: a pool
+ *  that was given is spent even before anything in it has been soaked — falling
+ *  back to direct would put the request on our own address. */
+function soakedExits(minKbs, used) {
   let text = '';
   try {
-    text = fs.readFileSync(f, 'utf8');
+    text = fs.readFileSync(path.join(lib.OUT, 'good-exits.txt'), 'utf8');
   } catch (e) {
     return [];
   }
-  const rows = text
+  return text
     .split(/\r?\n/)
     .filter(Boolean)
     .map((l) => {
@@ -75,8 +76,35 @@ function goodExits(minKbs) {
       return { raw, kbs: +kbs, reg: +reg, cap: +cap, regchunk: +regchunk };
     })
     .filter((r) => r.kbs >= minKbs && !used[r.raw]);
-  rows.sort((a, b) => a.reg + a.regchunk + a.cap - (b.reg + b.regchunk + b.cap));
-  return rows;
+}
+
+/** The plain pool as given: `--pool` / COHERE_PROXIES, else the out/ lists. */
+function poolExits() {
+  return lib.loadProxies().map((p) => ({ raw: p.raw, kbs: 0 }));
+}
+
+/** A pool that was given but yields no exit is fatal — only a pool-less run may go direct. */
+function poolSource() {
+  const env = process.env.COHERE_PROXIES || process.env.COHERE_PROXY_LIST;
+  if (env) return env;
+  return [
+    path.join(lib.ROOT, 'proxies.txt'),
+    path.join(lib.OUT, 'live-exits.txt'),
+    path.join(lib.OUT, 'union-live.txt'),
+    path.join(lib.OUT, 'good-exits.txt'),
+  ].find((f) => {
+    try { return fs.existsSync(f) && fs.statSync(f).size > 0; } catch (e) { return false; }
+  }) || null;
+}
+
+function goodExits(minKbs) {
+  const used = lib.loadJson(path.join(lib.OUT, 'used-exits.json'), {});
+  const soaked = soakedExits(minKbs, used);
+  if (soaked.length) {
+    soaked.sort((a, b) => a.reg + a.regchunk + a.cap - (b.reg + b.regchunk + b.cap));
+    return soaked;
+  }
+  return poolExits().filter((r) => !used[r.raw]);
 }
 
 function markUsed(raw, info) {
@@ -104,10 +132,13 @@ function markUsed(raw, info) {
     while (keysHave() < targetKeys && Date.now() - started < BUDGET_MS) {
       attempt++;
       const exits = goodExits(minKbs);
-      // No soaked exits (or no pool at all) = DIRECT mode: a proxy is
-      // recommended at scale (per-IP limits, bans) but it is optional.
+      // A pool that was given and has nothing usable is fatal; only a pool-less
+      // run is the documented direct mode (a proxy is optional, but never silent).
+      if (!exits.length && poolSource()) {
+        throw new Error(`pool ${poolSource()} has no usable exit — refusing to run direct (your own address)`);
+      }
       const direct = !exits.length;
-      if (direct) lib.log('mint', `no soaked exits — running WITHOUT a proxy (direct)`);
+      if (direct) lib.log('mint', 'no pool at all — running WITHOUT a proxy (direct)');
       const row = direct ? { raw: 'direct', kbs: 0 } : exits[Math.floor(Math.random() * Math.min(3, exits.length))];
       const proxy = direct ? lib.DIRECT_EXIT : lib.parseProxy(row.raw);
       const t0 = Date.now();

@@ -50,7 +50,7 @@ class Jar {
 /**
  * The direct-mode pseudo-exit: `raw` keeps the logs honest, `direct` turns the
  * proxy tunnel off. The pool is OPTIONAL — recommended at scale (per-IP limits,
- * bans) — so every flow can fall back to this instead of aborting.
+ * bans) — so a pool-less run falls back to this instead of aborting.
  */
 const DIRECT_EXIT = Object.freeze({ raw: 'direct', direct: true, protocol: 'direct', host: 'direct', port: 0 });
 const isDirect = (p) => !p || p.direct === true;
@@ -111,7 +111,7 @@ function request(proxy, { method = 'GET', url, headers = {}, body, timeoutMs = 4
 // Emailnator's gmail pool is the working mailbox there.
 let emailnator = null;
 try {
-  emailnator = require('../../../cloudflare-wai/emailnator'); // workspace build only — a fresh clone falls back to null
+  emailnator = require('./vendor/emailnator'); // vendored: a fresh clone ships it
 } catch (e) {}
 
 const isEmailnatorToken = (token) => typeof token === 'string' && token.includes('@');
@@ -306,7 +306,7 @@ const DEFAULT_POOL = [
   }
 });
 
-function loadProxies(file = process.env.COHEERE_PROXY_LIST || process.env.COHERE_PROXY_LIST || DEFAULT_POOL) {
+function loadProxies(file = process.env.COHERE_PROXIES || process.env.COHERE_PROXY_LIST || DEFAULT_POOL) {
   // Measured 2026-10-14: while the upstream WAN flaps, exits that answer in a
   // healthy second need up to ~35 s; an 8 s CONNECT cap silently scores them
   // dead and the whole soak comes back empty. Budgets are deliberately long.

@@ -17,6 +17,10 @@
 const path = require('path');
 const { spawnSync } = require('child_process');
 
+// `--pool FILE` is the one-shot form of COHERE_PROXIES — lib.loadProxies() reads it.
+const poolAt = process.argv.indexOf('--pool');
+if (poolAt > 1 && process.argv[poolAt + 1]) process.env.COHERE_PROXIES = path.resolve(process.argv[poolAt + 1]);
+
 const TASKS = {
   mint: { file: 'mint.js', note: 'create fresh accounts and mint one key each' },
   finish: { file: 'finish.js', note: 'log in to accounts already created and finish their key' },
@@ -87,7 +91,9 @@ if (!entry) {
   help();
   process.exit(1);
 }
-const child = spawnSync(process.execPath, [path.join(__dirname, entry.file), ...argv.slice(1)], {
+// A leading flag IS the task (`--count 1` = mint), so only a real task name is dropped.
+const childArgs = (argv[0] === task || argv[0] === '--connect-9router') ? argv.slice(1) : argv;
+const child = spawnSync(process.execPath, [path.join(__dirname, entry.file), ...childArgs], {
   windowsHide: true,
   cwd: path.resolve(__dirname, '..'),
   stdio: 'inherit',
